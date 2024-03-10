@@ -1,7 +1,12 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+from typing import Any, Callable, Optional, Tuple, TypeVar, Union
 
 import torch
 import torch.distributed as dist
+# import Literal from typing
+from typing import Literal
+
+# Replace "Literal" with "Any"
+# dist.init_process_group(backend="nccl", world_rank=rank, world_size=world_size, init_method="env://", rank=rank, world_rank=rank, world_size=world_size)
 from torch import Tensor
 from torch.autograd import Function
 from torch.autograd.function import FunctionCtx
