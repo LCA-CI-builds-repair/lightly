@@ -58,14 +58,13 @@ Results (4.5.2023):
 | VICRegL          |        256 |    800 |                  0.778 |  218.7 Min |      4.0 GByte |
 -------------------------------------------------------------------------------------------------
 
-"""
-import copy
 import os
 import time
 import sys
-
 import numpy as np
 import pytorch_lightning as pl
+# Added import to fix CI
+import isort
 import torch
 import torch.nn as nn
 import torchvision
