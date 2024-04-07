@@ -1,6 +1,9 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+from typing import Any, Callable, Optional, Tuple, TypeVar, Union
 
 import torch
+import tor
+
+# The following line has been edited to remove the import of Literal from typing, as it is not available in Python 3.7
 import torch.distributed as dist
 from torch import Tensor
 from torch.autograd import Function
