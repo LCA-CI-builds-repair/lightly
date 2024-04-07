@@ -13,14 +13,22 @@ from lightly.openapi_generated.swagger_client.models import (
     DockerRunData,
     DockerRunScheduledCreateRequest,
     DockerRunScheduledData,
-    DockerRunScheduledPriority,
-    DockerRunScheduledState,
-    DockerRunState,
-    DockerWorkerConfigV3,
-    DockerWorkerConfigOmniVXCreateRequest,
-    DockerWorkerConfigV3Docker,
-    DockerWorkerConfigV3Lightly,
-    DockerWorkerRegistryEntryData,
+-    DockerRunScheduledPriority,
+-    DockerRunScheduledState,
+-    DockerRunState,
+-    DockerWorkerConfigV3,
+-    DockerWorkerConfigOmniVXCreateRequest,
+-    DockerWorkerConfigV3Docker,
+-    DockerWorkerConfigV3Lightly,
+-    DockerWorkerRegistryEntryData,
++    DockerRunScheduledPriority
++    DockerRunScheduledState
++    DockerRunState
++    DockerWorkerConfigV3
++    DockerWorkerConfigOmniVXCreateRequest
++    DockerWorkerConfigV3Docker
++    DockerWorkerConfigV3Lightly
++    DockerWorkerRegistryEntryData
     DockerWorkerType,
     SelectionConfigV3,
     SelectionConfigV3Entry,
