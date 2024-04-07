@@ -61,11 +61,10 @@ Results (4.5.2023):
 """
 import copy
 import os
-import time
 import sys
-
-import numpy as np
+import time
 import pytorch_lightning as pl
+import numpy as np # Move numpy import to the top
 import torch
 import torch.nn as nn
 import torchvision
