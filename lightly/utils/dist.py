@@ -12,14 +12,19 @@ class GatherLayer(Function):
     This code was taken and adapted from here:
     https://github.com/Spijkervet/SimCLR
 
-    """
+```python
+class GatherLayer(nn.Module):
 
-    # Type ignore is required because superclass uses Any type for ctx.
-    @staticmethod
-    def forward(ctx: Any, input: Tensor) -> Tuple[Tensor, ...]:  # type: ignore[misc]
-        ctx.save_for_backward(input)
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, ctx: Any, input: Tensor) -> Tuple[Tensor, ...]:  # type: ignore[misc]
+        self.save_for_backward(input)
         output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
         dist.all_gather(output, input)
+        return output
+```
+
         return tuple(output)
 
     # Type ignore is required because superclass uses Any type for ctx.
