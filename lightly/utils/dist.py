@@ -1,7 +1,12 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+from typing import Any, Callable, Optional, Tuple, TypeVar, Union
 
 import torch
 import torch.distributed as dist
+
+try:
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
 from torch import Tensor
 from torch.autograd import Function
 from torch.autograd.function import FunctionCtx
