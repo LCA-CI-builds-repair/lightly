@@ -30,6 +30,13 @@ class MAE(LightningModule):
         self.mask_token = Parameter(torch.zeros(1, 1, decoder_dim))
         torch.nn.init.normal_(self.mask_token, std=0.02)
         self.backbone = MAEBackbone.from_vit(vit)
+        self.forward_fn = partial(
+            self.forward_with_adaptive_mask,
+            mask_token=self.mask_token,
+            sequence_length=self.sequence_length,
+            patch_size=self.patch_size,
+            mask_ratio=self.mask_ratio,
+        )
         self.decoder = masked_autoencoder_timm.MAEDecoder(
             num_patches=vit.patch_embed.num_patches,
             patch_size=self.patch_size,
