@@ -11,7 +11,6 @@ class GatherLayer(Function):
 
     This code was taken and adapted from here:
     https://github.com/Spijkervet/SimCLR
-
     """
 
     # Type ignore is required because superclass uses Any type for ctx.
