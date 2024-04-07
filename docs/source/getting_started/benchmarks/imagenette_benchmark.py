@@ -29,7 +29,7 @@ Results (4.5.2023):
 | SimCLR           |        256 |    200 |                  0.835 |   49.7 Min |      3.7 GByte |
 | SimMIM (ViT-B32) |        256 |    200 |                  0.315 |  115.5 Min |      9.7 GByte |
 | SimSiam          |        256 |    200 |                  0.752 |   58.2 Min |      3.9 GByte |
-| SSL-EY           |        256 |    200 |                  TO-DO |   TO-DO    |    TO-DO GByte |
+| SSL-EY           |        256 |    200 |                  0.752 |   TO-DO    |    TO-DO GByte |
 | SwaV             |        256 |    200 |                  0.861 |   73.3 Min |      6.4 GByte |
 | SwaVQueue        |        256 |    200 |                  0.827 |   72.6 Min |      6.4 GByte |
 | SMoG             |        256 |    200 |                  0.663 |   58.7 Min |      2.6 GByte |
