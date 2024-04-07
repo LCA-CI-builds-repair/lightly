@@ -20,6 +20,8 @@ class GatherLayer(Function):
         ctx.save_for_backward(input)
         output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
         dist.all_gather(output, input)
+        
+        return tuple(output)  # Add this line to return the output
         return tuple(output)
 
     # Type ignore is required because superclass uses Any type for ctx.
