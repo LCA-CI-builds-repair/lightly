@@ -11,15 +11,19 @@ class GatherLayer(Function):
 
     This code was taken and adapted from here:
     https://github.com/Spijkervet/SimCLR
+    from typing import Any, Tuple
+    from torch import Tensor
+    from torch.distributed import DistributedDataParallel as DDP
 
-    """
+    class GatherLayer(nn.Module):
+        def __init__(self, dim: int = -1):
+            super().__init__()
+            self.dim = dim
 
-    # Type ignore is required because superclass uses Any type for ctx.
-    @staticmethod
-    def forward(ctx: Any, input: Tensor) -> Tuple[Tensor, ...]:  # type: ignore[misc]
-        ctx.save_for_backward(input)
-        output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
-        dist.all_gather(output, input)
+        def forward(self, input: Tensor) -> Tuple[Tensor, ...]:
+            output = [input.clone() for _ in range(DDP.get_world_size())]
+            DDP.all_gather(output, input)
+            return tuple(output)
         return tuple(output)
 
     # Type ignore is required because superclass uses Any type for ctx.
