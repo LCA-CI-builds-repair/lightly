@@ -13,14 +13,21 @@ from lightly.openapi_generated.swagger_client.models import (
     DockerRunData,
     DockerRunScheduledCreateRequest,
     DockerRunScheduledData,
-    DockerRunScheduledPriority,
-    DockerRunScheduledState,
-    DockerRunState,
-    DockerWorkerConfigV3,
-    DockerWorkerConfigOmniVXCreateRequest,
-    DockerWorkerConfigV3Docker,
-    DockerWorkerConfigV3Lightly,
-    DockerWorkerRegistryEntryData,
+import os
+from datetime import datetime
+from uuid import uuid4
+
+from celery import shared_task, Task
+from celery.utils.log import get_task_logger
+
+from lightly.api.api_workflow_compute import compute_worker_config
+from lightly.api.api_workflow_compute import DockerRunState
+from lightly.api.api_workflow_compute import DockerRunScheduledState
+from lightly.api.api_workflow_compute import DockerRunScheduledPriority
+from lightly.api.api_workflow_compute import DockerWorkerConfigOmniVXCreateRequest
+from lightly.api.api_workflow_compute import DockerWorkerConfigV3Docker
+from lightly.api.api_workflow_compute import DockerWorkerConfigV3Lightly
+from lightly.api.api_workflow_compute import DockerWorkerRegistryEntryData
     DockerWorkerType,
     SelectionConfigV3,
     SelectionConfigV3Entry,
