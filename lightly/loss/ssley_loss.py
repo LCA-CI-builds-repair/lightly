@@ -1,7 +1,51 @@
 import torch
-import torch.distributed as dist
-import torch.nn.functional as F
-from torch import Tensor
+import torch.distributed    def __init__(
+        self,
+        lambda_param: float,
+        mu_param: float,
+        nu_param: float,
+        gather_distributed: bool = False,
+        eps=0.0001,
+    ):
+        super(SSLEYLoss, self).__init__()
+        if gather_distributed and not torch.distributed.is_available():
+            raise ValueError(
+                "gather_distributed is True but torch.distributed is not available. "
+                "Please set gather_distributed=False or install a torch version with "
+                "distributed support."
+            )
+
+        self.lambda_param = lambda_param
+        self.mu_param = mu_param
+        self.nu_param = nu_param
+        self.gather_distributed = gather_distributed
+        self.eps = eps
+
+    def forward(self, z_a: torch.Tensor, z_b: torch.Tensor) -> torch.Tensor:
+        """Returns SSL-EY loss.
+
+        Args:
+            z_a:
+                Tensor with shape (batch_size, ..., dim).
+            z_b:
+                Tensor with shape (batch_size, ..., dim).
+        """
+        assert (
+            z_a.shape[0] > 1 and z_b.shape[0] > 1
+        ), f"z_a and z_b must have batch size > 1 but found {z_a.shape[0]} and {z_b.shape[0]}"
+        assert (
+            z_a.shape == z_b.shape
+        ), f"z_a and z_b must have same shape but found {z_a.shape} and {z_b.shape}."
+
+        # invariance term of the loss
+        inv_loss = invariance_loss(x=z_a, y=z_b)
+
+        # gather all batches
+        if self.gather_distributed and torch.distributed.is_initialized():
+            world_size = torch.distributed.get_world_size()
+            if world_size > 1:
+                z_a = torch.cat(torch.distributed.gather(z_a), dim=0)
+                z_b = torch.cat(torch.distributed.gather(z_b), dim=0)om torch import Tensor
 
 from lightly.utils.dist import gather
 

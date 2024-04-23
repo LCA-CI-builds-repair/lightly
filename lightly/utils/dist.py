@@ -1,4 +1,15 @@
-from typing import Optional, Tuple
+from typing imp    def forward(self, ctx, input: torch.Tensor) -> Tuple[torch.Tensor, ...]:
+        ctx.save_for_backward(input)
+        output = [torch.empty_like(input) for _ in range(torch.distributed.get_world_size())]
+        torch.distributed.all_gather(output, input)
+        return tuple(output)
+
+    @staticmethod
+    def backward(self, ctx, *grads: torch.Tensor) -> Tuple[torch.Tensor]:
+        (input,) = ctx.saved_tensors
+        grad_out = torch.empty_like(input)
+        grad_out[:] = grads[torch.distributed.get_rank()]
+        return grad_out Tuple
 
 import torch
 import torch.distributed as dist
