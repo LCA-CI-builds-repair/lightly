@@ -1,4 +1,34 @@
-from typing import List, Sequence, TypeVar
+ffrom typing import List, Sequence, TypeVar
+
+_K = TypeVar("_K")
+_V = TypeVar("_V")
+
+def sort_items_by_keys(
+    keys: Sequence[_K], items: Sequence[_V], sorted_keys: Sequence[_K]
+) -> List[_V]:
+    """Sorts the items based on the sorted keys.
+
+    Args:
+        keys:
+            Keys by which items can be identified.
+        items:
+            Items to be sorted.
+        sorted_keys:
+            Keys in sorted order.
+
+    Returns:
+        List of sorted items.
+
+    Examples:
+        >>> keys = [3, 2, 1]
+        >>> items = ['!', 'world', 'hello']
+        >>> sorted_keys = [1, 2, 3]
+        >>> sorted_items = sort_items_by_keys(keys, items, sorted_keys)
+        >>> print(sorted_items)
+        >>> > ['hello', 'world', '!']
+    """
+    sorted_items = [item for _, item in sorted(zip(keys, items), key=lambda x: sorted_keys.index(x[0]))]
+    return sorted_items, TypeVar
 
 _K = TypeVar("_K")
 _V = TypeVar("_V")

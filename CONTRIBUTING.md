@@ -1,6 +1,10 @@
 # How to contribute to lightly?
 
-Everyone is welcome to contribute, and we value everybody's contribution. Code is thus not the only way to help the community. Answering questions, helping others, reaching out and improving the documentations are immensely valuable to the community.
+Everyone is welcome to contribute, and we value everybody's co```
+$ make format
+$ make all-checks
+
+If you encounter an error from isort or black, please run `make format` again before running `make all-checks`.ion. Code is thus not the only way to help the community. Answering questions, helping others, reaching out and improving the documentations are immensely valuable to the community.
 
 It also helps us if you spread the word: reference the library from blog posts on the awesome projects it made possible, shout out on Twitter every time it has helped you, or simply star the repo to say "thank you".
 

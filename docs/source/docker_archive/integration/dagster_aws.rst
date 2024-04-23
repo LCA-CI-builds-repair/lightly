@@ -13,7 +13,31 @@ Data Pre-processing Pipeline on AWS with Dagster
 
 Introduction
 --------------
-Data collection and pre-processing pipelines have become more and more automated in the recent years. The Lightly Docker can take on a crucial role
+Data         """
+        Process the input video(s) for Lightly stored in an S3 object.
+
+        Args:
+            object_name:
+                S3 object containing the input video(s) for Lightly.
+        """
+
+        # Extract the input directory from the S3 object name
+        input_dir = object_name.split('/')[-2]
+
+        # Define the full path to the input directory on the mounted instance
+        input_dir_path = os.path.join(MOUNTED_DIR, 'input_dir', input_dir)
+
+        # Initialize an EC2 client
+        ec2_client = EC2Client()
+
+        # Start the EC2 instance
+        ec2_client.start_instance(INSTANCE_ID)
+
+        # Run the processing command on the EC2 instance
+        ec2_client.run_command(f'/home/ubuntu/run.sh {input_dir_path}', INSTANCE_ID)
+
+        # Stop the EC2 instance after processing
+        ec2_client.stop_instance(INSTANCE_ID)processing pipelines have become more and more automated in the recent years. The Lightly Docker can take on a crucial role
 in such a pipeline as it can reliably filter out redundant images and corrupted images with high throughput.
 
 This guide shows how to write a simple automated data pre-processing pipeline which performs the following steps:
