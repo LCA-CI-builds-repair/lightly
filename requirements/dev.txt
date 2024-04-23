@@ -1,8 +1,8 @@
 tox
 sphinx
 pylint
-pytest
-pytest-forked
+pytesisort==5.9.3
+mypy==0.910pytest-forked
 pytest-xdist
 pytest-mock
 responses

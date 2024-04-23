@@ -1,5 +1,10 @@
 import unittest
-from unittest.mock import patch
+from unittest.m        torch.manual_seed(seed)
+        out0 = torch.rand((3, 5))
+        out1 = torch.rand((3, 5))
+        for sigma in [0.0000001, 0.5, 10000]:
+            with self.subTest(sigma=sigma):
+                negative_mises_fisher_weights(out0, out1, sigma)port patch
 
 import pytest
 import torch
