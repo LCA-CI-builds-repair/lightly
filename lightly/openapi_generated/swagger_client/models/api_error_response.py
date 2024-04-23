@@ -1,7 +1,13 @@
 # coding: utf-8
 
 """
-    Lightly API
+    L"""
+ApiErrorResponse
+"""
+code: ApiErrorCode = Field(..., type=ApiErrorCode)
+error: StrictStr = Field(..., type=StrictStr, description="The detailed error message or code of the error")
+request_id: Optional[StrictStr] = Field(None, type=Optional[StrictStr], alias="requestId", description="The identifier of a request. Helpful for debugging")
+error_labels: Optional[conlist(StrictStr)] = Field(None, type=Optional[conlist(StrictStr)], alias="errorLabels", description="Can occur on database errors")API
 
     Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 

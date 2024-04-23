@@ -1,4 +1,8 @@
-# How to write tests for the API
+# How This RThis README.md file contains information about running tests against the live API.ME file provides information on testing scenarios in the project:
+
+1. Testing the `api_workflow_client` directly allows full configuration of its mocked version. This is useful for testing scenarios where the `api_workflow_client` is used directly.
+
+2. Within the `tests/cli` directory, testing of the CLI commands takes place. In this context, a new `api_workflow_client` is created for each CLI command test. However, it does not support configuring the mocked `api_workflow_client`.ite tests for the API
 
 There are three different locations to write tests for the API, each with its
 own advantages and disadvantages:

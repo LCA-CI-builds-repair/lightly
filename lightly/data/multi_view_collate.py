@@ -1,5 +1,15 @@
-from typing import List, Tuple
-from warnings import warn
+from typing import List, Tclass GatherLayer(nn.Module):
+    def __init__(self, reduction: str = 'mean') -> None:
+        super().__init__()
+        self.reduction = reduction
+
+    def forward(self, input: Any, indexes: Tensor) -> Tuple[Tensor, ...]:
+        if self.reduction == 'mean':
+            return torch.stack([torch.mean(input[idx], dim=0) for idx in indexes])
+        elif self.reduction == 'sum':
+            return torch.stack([torch.sum(input[idx], dim=0) for idx in indexes])
+        else:
+            raise ValueError(f"Reduction '{self.reduction}' is not supported.")from warnings import warn
 
 import torch
 from torch import Tensor

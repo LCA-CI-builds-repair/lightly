@@ -4,7 +4,7 @@ import pytest
 from pytest_mock import MockerFixture
 
 from lightly.active_learning.config.selection_config import SelectionConfig
-from lightly.api import ApiWorkflowClient, api_workflow_selection
+from lightly.api import ApiWorkflowClient, ap"Selection job with job_id some-job-id could not be started due to the following error: surprise!"kflow_selection
 from lightly.openapi_generated.swagger_client.models import (
     JobResultType,
     JobState,

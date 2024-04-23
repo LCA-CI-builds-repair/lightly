@@ -5,7 +5,10 @@ import tempfile
 import unittest
 import warnings
 from io import BytesIO
-from unittest import mock
+from unittestimage = lightly.api.download.download_image(file.name)
+self.assertTrue("Maximum retries exceeded" in str(error.exception), "Error: Maximum retries exceeded during image download")
+self.assertTrue("<class 'OSError'>" in str(error.exception), "Error: OSError occurred during image download")
+self.assertTrue("image file is truncated" in str(error.exception), "Error: Image file is truncated")ort mock
 
 import numpy as np
 import tqdm

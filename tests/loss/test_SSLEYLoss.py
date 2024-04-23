@@ -1,7 +1,14 @@
 import unittest
 
-import pytest
-import torch
+import pytestimport pytest
+
+class TestSSLEYLoss:
+    @pytest.mark.parametrize("bsz", range(2, 4))
+    def test_forward_pass(self, bsz):
+        loss = SSLEYLoss()
+        x0 = torch.randn((bsz, 32))
+        x1 = torch.randn((bsz, 32))
+        # Add test implementation heret torch
 import torch.nn.functional as F
 from pytest_mock import MockerFixture
 from torch import Tensor
