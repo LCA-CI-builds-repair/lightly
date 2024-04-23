@@ -1,4 +1,7 @@
-# How to write tests for the API
+#There are three different locations to write tests for the API, each with its
+own advantages and disadvantages:
+
+1. In tests/api_workflow_client:to write tests for the API
 
 There are three different locations to write tests for the API, each with its
 own advantages and disadvantages:

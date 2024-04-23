@@ -1,4 +1,10 @@
-from typing import Dict, Sequence
+from typing im        predicted_classes:
+            Tensor of shape (batch_size, num_classes) with the predicted classes sorted
+            in descending order of confidence.
+        targets:
+            Tensor of shape (batch_size) containing the target classes.
+        k:
+            The number of top elements to retrieve for evaluation.ict, Sequence
 
 import torch
 from torch import Tensor

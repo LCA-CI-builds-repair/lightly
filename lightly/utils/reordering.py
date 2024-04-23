@@ -1,4 +1,14 @@
-from typing import List, Sequence, TypeVar
+from typing         keys:
+            Keys by which items can be identified.
+        items:
+            Items to sort.
+        sorted_keys:
+            Keys in sorted order.
+
+    Returns:
+        The list of sorted items.
+
+    Examples:, Sequence, TypeVar
 
 _K = TypeVar("_K")
 _V = TypeVar("_V")

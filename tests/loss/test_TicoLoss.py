@@ -1,7 +1,17 @@
 import unittest
 
-import pytest
+import pyteimport pytest
 import torch
+from your_module import TiCoLoss
+
+class TestTiCoLoss:
+    @pytest.mark.parametrize("bsz", range(2, 4))
+    def test_forward_pass(self, bsz):
+        torch.manual_seed(0)
+        loss = TiCoLoss()
+        x0 = torch.randn((bsz, 256))
+        x1 = torch.randn((bsz, 256))
+        # Add test logic herert torch
 from pytest_mock import MockerFixture
 from torch import distributed as dist
 

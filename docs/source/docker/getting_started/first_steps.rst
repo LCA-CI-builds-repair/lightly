@@ -13,7 +13,11 @@ The Lightly Worker follows a train, embed, select workflow:
 
 #. You can either use a pre-trained model from the model zoo or fine-tune
    a model on your unlabeled dataset using self-supervised learning. The output
-   of the train step is a model checkpoint.
+   of the train step is a model-------------------------
+Oftentimes not all files in a bucket are relevant. In that case, it's possible
+to pass a list of filenames to the worker using the `relevant_filenames_file` configuration option.
+It will then only consider the listed filenames and ignore all others. To do so, you can create a text file which
+contains one relevant filename per line and then pass the path to the text file when scheduling the job. This method works for videos and images.kpoint.
 
 #. The embed step creates embeddings of the input dataset. Each sample gets
    represented using a low-dimensional vector. The output of the embed step is

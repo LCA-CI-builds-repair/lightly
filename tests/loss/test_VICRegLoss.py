@@ -1,7 +1,16 @@
 import unittest
 
-import pytest
+import pytestimport pytest
 import torch
+from your_module import VICRegLoss
+
+class TestVICRegLoss:
+    @pytest.mark.parametrize("bsz", range(2, 4))
+    def test_forward_pass(self, bsz):
+        loss = VICRegLoss()
+        x0 = torch.randn((bsz, 32))
+        x1 = torch.randn((bsz, 32))
+        # Add test logic heret torch
 import torch.nn.functional as F
 from pytest_mock import MockerFixture
 from torch import Tensor
