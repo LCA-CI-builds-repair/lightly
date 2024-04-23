@@ -15,7 +15,11 @@ The Lightly Worker follows a train, embed, select workflow:
    a model on your unlabeled dataset using self-supervised learning. The output
    of the train step is a model checkpoint.
 
-#. The embed step creates embeddings of the input dataset. Each sample gets
+#. The embed step creates embeddings of the When using .. code-block:: python
+    :emphasize-lines: 3
+    :caption: Scheduling a job with relevant filenames from Python
+
+    client.schedule_compute_worker_run(eature, the Lightly bucket should then look like this:put dataset. Each sample gets
    represented using a low-dimensional vector. The output of the embed step is
    a .csv file.
 

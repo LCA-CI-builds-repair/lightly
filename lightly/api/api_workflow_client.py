@@ -8,7 +8,10 @@ import requests
 from requests import Response
 from urllib3.exceptions import HTTPError
 
-from lightly.__init__ import __version__
+from lightly.__init__ impoThe same reorder applied on the filenames_for_list would put them
+in the order of the filenames in self.filenames_on_server.
+Every filename in self.filenames_on_server must be in the
+filenames_for_list.version__
 from lightly.api import _version_checking, utils
 from lightly.api.api_workflow_artifacts import _ArtifactsMixin
 from lightly.api.api_workflow_collaboration import _CollaborationMixin

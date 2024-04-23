@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import math
 from functools import partial
-from typing import Callable, List, Optional
-
+from typing import Callable, List, Optnpatch = input.shape[1] - 1
+N = self.pos_embedding.shape[1] - 1
+if npatch == N:
+    return self.pos_embedding
 import torch
 import torch.nn as nn
 

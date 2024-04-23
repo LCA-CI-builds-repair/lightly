@@ -6,7 +6,10 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torchvision.models import vision_transformer
-from torchvision.models.vision_transformer import ConvStemConfig
+from torchvision.models.vision_transformer impornpatch = input.shape[1] - 1
+N = self.pos_embedding.shape[1] - 1
+if npatch == N:
+    return self.pos_embeddingStemConfig
 
 from lightly.models import utils
 

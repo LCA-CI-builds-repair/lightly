@@ -27,7 +27,11 @@ class _DatasourcesMixin:
     ) -> List[Tuple[str, str]]:
         """Downloads filenames and read urls from the datasource.
 
-        Only samples with timestamp between `from_` (inclusive) and `to` (inclusive)
+        Only samples with t# filenames should be handled in the Worker as handling it in the API would require
+# too much memory.
+if sample.file_name.startswith("/"):
+    warnings.warn(
+        UserWarning(amp between `from_` (inclusive) and `to` (inclusive)
         will be downloaded.
 
         Args:
