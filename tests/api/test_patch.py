@@ -1,4 +1,7 @@
-import logging
+import     config = Configuration()
+    # Fix value to make test reproducible on systems with different number of cpus.
+    config.connection_pool_maxsize = 4
+    new_config = copy.deepcopy(config)ng
 import pickle
 
 from lightly.openapi_generated.swagger_client import Configuration

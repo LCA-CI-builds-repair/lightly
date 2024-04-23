@@ -1,5 +1,15 @@
 import unittest
-from unittest import TestCase
+from unittest impo    # New tests in pytest style
+    def test_init_temperature_valid(self):
+        MSNLoss(temperature=1.0)
+
+    def test_init_temperature_zero(self):
+        with pytest.raises(ValueError):
+            MSNLoss(temperature=0.0)
+
+    def test_init_temperature_negative(self):
+        with pytest.raises(ValueError):
+            MSNLoss(temperature=-1.0)Case
 
 import pytest
 import torch
