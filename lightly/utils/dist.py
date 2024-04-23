@@ -1,4 +1,15 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+fimport torch
+import torch.distributed as dist
+from torch.autograd import Function
+from torch.autograd.function import FunctionCtx
+
+class GatherLayer(Function):
+    """Gather tensors from all processes, supporting backward propagation.
+
+    This code was taken and adapted from here:
+    https://github.com/Spijkervet/SimCLR
+
+    """rt Any, Callable, Literal, Optional, Tuple, TypeVar, Union
 
 import torch
 import torch.distributed as dist
