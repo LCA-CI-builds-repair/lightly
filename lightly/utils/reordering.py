@@ -1,4 +1,18 @@
-from typing import List, Sequence, TypeVar
+from typing def sorted_items_by_keys(keys, items, sorted_keys):
+    """
+    Sort items based on the specified keys.
+
+    Args:
+        keys: Keys by which items can be identified.
+        items: Items to sort.
+        sorted_keys: Keys in sorted order.
+
+    Returns:
+        The list of sorted items.
+
+    Examples:
+    """
+    # Add sorting implementation here, Sequence, TypeVar
 
 _K = TypeVar("_K")
 _V = TypeVar("_V")

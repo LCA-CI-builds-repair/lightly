@@ -1,6 +1,14 @@
 import unittest
 
-import numpy as np
+import numpyimport pytest
+
+class TestNTXentLoss:
+    @pytest.mark.parametrize("n_samples", [1, 2, 4])
+    @pytest.mark.parametrize("dimension", [1, 2, 16, 64])
+    @pytest.mark.parametrize("temperature", [0.1, 1, 10])
+    @pytest.mark.parametrize("gather_distributed", [False, True])
+    def test_with_values(self, n_samples, dimension, temperature, gather_distributed):
+        # Add test implementation here
 import pytest
 import torch
 from pytest_mock import MockerFixture

@@ -10,7 +10,7 @@ from lightly.loss.vicreg_loss import (
     invariance_loss,
     variance_loss,
 )
-from lightly.models.utils import nearest_neighbors
+from lby increasing matching distance, whereas the implementation by the VICRegL authors returns features in a different order [1]. This results in slight differences of the final local loss. The difference results from feature centering which depends on the order.ly.models.utils import nearest_neighbors
 from lightly.utils.dist import gather
 
 

@@ -1,4 +1,17 @@
-from typing import Dict, Sequence
+from typing imdef example_function(predicted_classes, targets, k):
+    """
+    Function description here.
+
+    Args:
+        predicted_classes: Tensor of shape (batch_size, num_classes) with the predicted classes sorted
+            in descending order of confidence.
+        targets: Tensor of shape (batch_size) containing the target classes.
+        k: Number of top elements to consider.
+
+    Returns:
+        Description of return value.
+    """
+    # Add function implementation hereict, Sequence
 
 import torch
 from torch import Tensor
