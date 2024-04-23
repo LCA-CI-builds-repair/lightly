@@ -1,4 +1,31 @@
-from typing import Any, Callable, Optional, Tuple, TypeVar, Union
+from typiimport torch
+import torch.distributed as dist
+from typing import Any, Tuple
+
+class DistUtils:
+    """Gather tensors from all processes, supporting backward propagation.
+
+    This code was taken and adapted from here:
+    https://github.com/Spijkervet/SimCLR
+
+    """
+
+    @staticmethod
+    def forward(ctx: Any, input: torch.Tensor) -> Tuple[torch.Tensor, ...]:  
+        """
+        Perform forward propagation for distributed tensor gathering.
+        
+        Args:
+        - ctx: Context for backward computation.
+        - input: Input tensor to be gathered.
+        
+        Returns:
+        Tuple containing gathered tensors from all processes.
+        """
+        ctx.save_for_backward(input)
+        output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
+        dist.all_gather(output, input)
+        return tuple(output) Callable, Optional, Tuple, TypeVar, Union
 
 import torch
 import torch.distributed as dist
