@@ -1,4 +1,12 @@
-import concurrent.futures
+iimport os
+import pathlib
+import shutil
+import threading
+import warnings
+from concurrent.futures import ThreadPoolExecutor
+from typing import Callable, Dict, Iterable, List, Optional, Tuple, Type, Union, Literal  # Add import statement for Literal type
+
+import PILcurrent.futures
 import os
 import pathlib
 import shutil

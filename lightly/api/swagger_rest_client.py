@@ -1,4 +1,7 @@
-from typing import Any, Dict, Tuple, Union
+ffrom lightly.openapi_generated.swagger_client.api_client import Configuration
+from lightly.openapi_generated.swagger_client.rest import RESTClientObject
+from typing import Literal  # Add import statement for Literal type
+yping import Any, Dict, Tuple, Union
 
 from lightly.openapi_generated.swagger_client.api_client import Configuration
 from lightly.openapi_generated.swagger_client.rest import RESTClientObject

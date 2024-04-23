@@ -1,4 +1,11 @@
-from functools import partial
+ffrom typing import Callable, Optional, Literal  # Add import statement for Literal type
+
+import torch
+from torch import Tensor
+from torch import distributed as torch_dist
+from torch import nn
+
+from lightly.utils import distols import partial
 from typing import Callable, Optional
 
 import torch

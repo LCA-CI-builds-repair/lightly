@@ -1,4 +1,10 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+fimport torch
+import torch.distributed as dist
+from torch import Tensor
+from torch.autograd import Function
+from torch.autograd.function import FunctionCtx
+from typing import Literal  # Add import statement for Literal type
+ng import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
 
 import torch
 import torch.distributed as dist

@@ -1,4 +1,8 @@
-from typing import Any, Callable, Dict, Optional, Union
+fimport torch
+from torch import Tensor
+from torch.optim.optimizer import Optimizer, required  # type: ignore[attr-defined]
+from typing import Literal  # Add import statement for Literal type
+ping import Any, Callable, Dict, Optional, Union
 
 import torch
 from torch import Tensor

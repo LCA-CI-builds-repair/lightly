@@ -1,4 +1,7 @@
-from typing import Dict, List, Optional, Tuple, Union
+ffrom lightly.transforms.simclr_transform import SimCLRTransform
+from lightly.transforms.utils import IMAGENET_NORMALIZE
+from typing import Literal  # Add import statement for Literal type
+yping import Dict, List, Optional, Tuple, Union
 
 from lightly.transforms.simclr_transform import SimCLRTransform
 from lightly.transforms.utils import IMAGENET_NORMALIZE

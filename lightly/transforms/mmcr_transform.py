@@ -1,4 +1,8 @@
-from typing import Dict, List, Optional, Tuple, Union
+ffrom lightly.transforms.byol_transform import BYOLView1Transform
+from lightly.transforms.multi_view_transform import MultiViewTransform
+from lightly.transforms.utils import IMAGENET_NORMALIZE
+from typing import Literal  # Add import statement for Literal type
+ping import Dict, List, Optional, Tuple, Union
 
 from lightly.transforms.byol_transform import BYOLView1Transform
 from lightly.transforms.multi_view_transform import MultiViewTransform
