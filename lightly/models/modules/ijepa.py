@@ -6,7 +6,13 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torchvision.models import vision_transformer
-from torchvision.models.vision_transformer import ConvStemConfig
+from torchvision.models.vision_transformer impor        # Determine the number of patches in the input and the pos_embedding
+        num_patches_input = input.shape[1] - 1
+        num_pos_embedding = self.pos_embedding.shape[1] - 1
+        
+        # Check if the number of patches in the input matches the number of pos_embeddings
+        if num_patches_input == num_pos_embedding:
+            return self.pos_embeddingStemConfig
 
 from lightly.models import utils
 

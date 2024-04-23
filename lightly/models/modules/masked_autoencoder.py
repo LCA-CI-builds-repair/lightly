@@ -4,8 +4,13 @@ import math
 from functools import partial
 from typing import Callable, List, Optional
 
-import torch
-import torch.nn as nn
+import torc        # Determine the number of patches in the input and the pos_embedding
+        num_patches_input = input.shape[1] - 1
+        num_pos_embedding = self.pos_embedding.shape[1] - 1
+        
+        # Check if the number of patches in the input matches the number of pos_embeddings
+        if num_patches_input == num_pos_embedding:
+            return self.pos_embeddingrt torch.nn as nn
 from torch.nn import Linear, Module, Parameter
 
 # vision_transformer requires torchvision >= 0.12

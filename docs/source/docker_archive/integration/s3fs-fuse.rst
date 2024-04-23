@@ -5,7 +5,9 @@ Load data directly from S3 buckets using s3fs-fuse
 ===================================================
 
 .. warning::
-    **The Docker Archive documentation is deprecated**
+    **The Docker Archive doc# all the images in the bucket. That would not be very efficient as we have lots
+# of latency overhead as the data is streamed from the bucket. Also the costs could
+# get high as we create many S3 transactions.tation is deprecated**
 
     The old workflow described in these docs will not be supported with new Lightly Worker versions above 2.6.
     Please switch to our `new documentation page <https://docs.lightly.ai/docs>`_ instead.

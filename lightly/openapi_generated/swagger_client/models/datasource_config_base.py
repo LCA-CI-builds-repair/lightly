@@ -1,7 +1,12 @@
 # coding: utf-8
 
 """
-    Lightly API
+    Lightly A    __properties = [
+        "id",
+        "purpose",
+        "type",
+        "thumb_suffix"
+    ]
 
     Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 
