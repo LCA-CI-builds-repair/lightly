@@ -1,5 +1,13 @@
 import unittest
-from unittest import TestCase
+from unittest impoimport pytest
+
+class TestMSNLoss:
+    @pytest.mark.parametrize("temperature", [1.0, 0.0])
+    def test__init__temperature(self, temperature):
+        MSNLoss(temperature=temperature)
+        if temperature == 0.0:
+            with pytest.raises(ValueError):
+                MSNLoss(temperature=temperature)tCase
 
 import pytest
 import torch

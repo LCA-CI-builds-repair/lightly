@@ -1,4 +1,19 @@
-# How to write tests for the API
+#There are three diffThis runs tests against the live API.
+
+Additional context or information about running tests against the live API can be added here.nt locations to write tests for the API, each with its
+own advantages and disadvantages:
+
+1. In tests/api_workflow_client: 
+    - Advantages: Allows testing the API workflow client directly.
+    - Disadvantages: May not cover all API functionalities.
+
+2. [Add Second Location Here]:
+    - Advantages: [Add Advantages Here]
+    - Disadvantages: [Add Disadvantages Here]
+
+3. [Add Third Location Here]:
+    - Advantages: [Add Advantages Here]
+    - Disadvantages: [Add Disadvantages Here]to write tests for the API
 
 There are three different locations to write tests for the API, each with its
 own advantages and disadvantages:

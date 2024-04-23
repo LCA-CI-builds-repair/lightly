@@ -1,5 +1,14 @@
 import unittest
-from unittest.mock import patch
+from unittestimport pytest
+
+class TestDCLLoss:
+    @pytest.mark.parametrize("seed", [0])
+    @pytest.mark.parametrize("sigma", [0.0000001, 0.5, 10000])
+    def test_negative_mises_fisher_weights(self, seed, sigma):
+        torch.manual_seed(seed)
+        out0 = torch.rand((3, 5))
+        out1 = torch.rand((3, 5))
+        # Add test implementation for negative Mises-Fisher weights calculation hereimport patch
 
 import pytest
 import torch

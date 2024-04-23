@@ -1,7 +1,13 @@
 import unittest
 
-import pytest
-import torch
+import pyteimport pytest
+
+class TestSwavLoss:
+    @pytest.mark.parametrize("n", [32])
+    @pytest.mark.parametrize("n_high_res", [2])
+    def test_forward_pass(self, n, n_high_res):
+        high_res = [torch.eye(n, n) for i in range(n_high_res)]
+        # Add test implementation for forward pass hereort torch
 from pytest_mock import MockerFixture
 from torch import distributed as dist
 
