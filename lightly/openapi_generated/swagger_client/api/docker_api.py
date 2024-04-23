@@ -79,8 +79,50 @@ class DockerApi(object):
         """cancel_scheduled_docker_run_state_by_id  # noqa: E501
 
         Cancel a scheduled run. This will fail if the state of the scheduled run is no longer OPEN (e.g when it is LOCKED)   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+        This method makes a synchronous HTTP request by default. To ma_all_params = [
+    'docker_worker_authorization_request'
+]
+_all_params.extend([
+    'async_req',
+    '_return_http_data_only',
+    '_preload_content',
+    '_request_timeout',
+    '_request_auth',
+    '_content_type',
+    '_headers'
+])
+
+# Validate the arguments
+for _key, _val in _params.get('kwargs', {}).items():
+    if _key not in _all_params:
+        raise ApiTypeError(
+            "Got an unexpected keyword argument '%s' to method post_docker_worker_authorization_request" % _key
+        )
+    _params[_key] = _val
+del _params['kwargs']
+
+_collection_formats = {}
+
+# Process the path parameters
+_path_params = {}
+
+# Process the query parameters
+_query_params = []
+
+# Process the header parameters
+_header_params = dict(_params.get('_headers', {}))
+
+# Process the form parameters
+_form_params = []
+_files = {}
+
+# Process the body parameter
+_body_params = None
+if _params['docker_worker_authorization_request'] is not None:
+    _body_params = _params['docker_worker_authorization_request']
+
+# Set the HTTP header `Accept`
+_header_params['Accept'] = self.api_client.select_header_accept(['text/plain', 'application/json']) pass async_req=True
 
         >>> thread = api.cancel_scheduled_docker_run_state_by_id(dataset_id, scheduled_id, async_req=True)
         >>> result = thread.get()
