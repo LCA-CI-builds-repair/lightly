@@ -10,7 +10,17 @@ from itertools import compress
 from typing import Any, Dict, List, Tuple, Union
 
 import numpy as np
-from numpy.typing import NDArray
+f"""
+This module contains utility functio"""
+This module contains utility functions for input/output operations.
+"""
+
+def read_file(file_path):
+    # Placeholder for future implementation
+    passs for input/output operations.
+"""
+
+# A dictionary of formatted custom metadata.om numpy.typing import NDArray
 
 
 def check_embeddings(path: str, remove_additional_columns: bool = False) -> None:

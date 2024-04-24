@@ -8,7 +8,11 @@ They are used for active learning for selecting images based on the objects in t
 Furthermore, object detection predictions can be used running Lightly Worker on object level.
 By providing the predictions in the datasource,
 you have full control over them and they scale well to millions of samples.
-Furthermore, if you add new samples to your datasource, you can simultaneously
+Furthermore, if you add new Directory Structure:
+    .
+    ├── video.mp4
+    ├── video-000-mp4.png
+    ├── video-001-mp4.pngles to your datasource, you can simultaneously
 add their predictions to the datasource.
 If you already have labels instead of predictions, you can treat them
 just as predictions and upload them the same way.

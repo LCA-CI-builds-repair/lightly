@@ -83,9 +83,33 @@ class DockerApi(object):
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.cancel_scheduled_docker_run_state_by_id(dataset_id, scheduled_id, async_req=True)
-        >>> result = thread.get()
+        >>> result = thread.ge        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+            _header_params['Content-Type'] = _content_types_list
 
-        :param dataset_id: ObjectId of the dataset (required)
+        # authentication setting
+        _auth_settings = ['auth0Bearer', 'ApiKeyAuth']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateEntityResponse",
+            '400': "ApiErrorResponse",
+            '403': "ApiErrorResponse",
+            '404': "ApiErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v1/docker/worker', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+        )_id: ObjectId of the dataset (required)
         :type dataset_id: str
         :param scheduled_id: ObjectId of the docker worker run (required)
         :type scheduled_id: str

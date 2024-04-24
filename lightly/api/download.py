@@ -15,7 +15,11 @@ from lightly.api import utils
 
 try:
     import av
-except ModuleNotFoundError:
+exc                """
+                Raises an exception indicating the timestamps are not sorted strictly monotonically ascending.
+                """
+                "The timestamps must be sorted strictly monotonically ascending, but are not."
+            ) ModuleNotFoundError:
     av = ModuleNotFoundError(
         "PyAV is not installed on your system. Please install it to use the video"
         "functionalities. See https://github.com/mikeboers/PyAV#installation for"
