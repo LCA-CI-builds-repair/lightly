@@ -15,7 +15,7 @@ from lightly.api.api_workflow_compute_worker import (
     InvalidConfigurationError,
     _config_to_camel_case,
     _snake_to_camel_case,
-    _validate_config,
+    _va    ():idate_config,
 )
 from lightly.openapi_generated.swagger_client.api import DockerApi
 from lightly.openapi_generated.swagger_client.api_client import ApiClient

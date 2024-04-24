@@ -1,8 +1,7 @@
 tox
 sphinx
 pylint
-pytest
-pytest-forked
+pytestmypy==1.4.1ytest-forked
 pytest-xdist
 pytest-mock
 responses

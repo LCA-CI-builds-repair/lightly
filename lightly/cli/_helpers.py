@@ -2,7 +2,7 @@
 
 # Copyright (c) 2020. Lightly AG and its affiliates.
 # All Rights Reserved
-import os
+impor    Allows backwards compatibility to checkpoints before v1.0.6. os
 
 import hydra
 import torch
