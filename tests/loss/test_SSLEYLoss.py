@@ -1,7 +1,9 @@
 import unittest
 
 import pytest
-import torch
+ifrom path.to.module import SSLEYLoss
+
+loss = SSLEYLoss()port torch
 import torch.nn.functional as F
 from pytest_mock import MockerFixture
 from torch import Tensor
