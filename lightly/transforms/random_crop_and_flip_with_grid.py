@@ -1,4 +1,14 @@
-from dataclasses import dataclass
+from dafrom torch import nn
+from da    def forward(self, img: Image.Image) -> Tuple[Image.Image, Location]:
+        """
+        Args:
+            img (PIL Image or Tensor): Image to be cropped.
+        Returns:
+            Tuple[PIL Image or Tensor, Location]: Randomly cropped image and Location object containing crop parameterss import dataclass
+
+@dataclass
+class Location:
+    # The row index of the top-left corner of the crop.ses import dataclass
 from typing import Tuple
 
 import torch

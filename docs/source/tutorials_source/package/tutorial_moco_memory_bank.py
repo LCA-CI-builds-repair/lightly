@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 
-.. _lightly-moco-tutorial-2:
-
-Tutorial 2: Train MoCo on CIFAR-10
+.. _lightly-moco-tutorifrom lightly.loss import NTXentLoss
+from lightly.models import ResNetGenerator
+from lightly.models.modules.heads import MoCoProjectionHead
+from lightly.utils import (
+    batch_shuffle,
+    batch_unshuffle,
+    deactivate_requires_grad,
+    update_momentum,
+)torial 2: Train MoCo on CIFAR-10
 ==============================================
 
 In this tutorial, we will train a model based on the MoCo Paper

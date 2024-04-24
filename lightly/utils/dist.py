@@ -1,4 +1,37 @@
-from typing import Optional, Tuple
+from timport torch
+import torch.distimport torch
+import torch.distributed as dist
+from lightly.utils.dist import GatherLayer
+
+def get_world_size() -> int:
+    """Returns the current world size (number of distributed processes)."""
+    return dist.get_world_size() if dist.is_initialized() else 1
+
+def gather(input: torch.Tensor) -> Tuple[torch.Tensor]:
+    """Gathers this tensor from all processes. Supports backprop."""
+    return GatherLayer.apply(input)as dist
+
+class GatherLayer(torch.autograd.Function):
+    """Gather tensors from all processes, supporting backward propagation.
+
+    This code was taken and adapted from here:
+    https://github.com/Spijkervet/SimCLR
+
+    """
+
+    @staticmethod
+    def forward(ctx, input: torch.Tensor) -> Tuple[torch.Tensor, ...]:
+        ctx.save_for_backward(input)
+        output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
+        dist.all_gather(output, input)
+        return tuple(output)
+
+    @staticmethod
+    def backward(ctx, *grads: torch.Tensor) -> torch.Tensor:
+        (input,) = ctx.saved_tensors
+        grad_out = torch.empty_like(input)
+        grad_out[:] = grads[dist.get_rank()]
+        return grad_outTuple
 
 import torch
 import torch.distributed as dist

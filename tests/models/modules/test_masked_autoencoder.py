@@ -1,6 +1,15 @@
-import unittest
+import uniimport unittest
+import torchvision
+from lightly.models.modules.masked_autoencoder import MAEEncoder
 
-import torch
+@unittest.skipUnless(_torchvision_vit_available, "Torchvision ViT not available")
+class TestMAEEncoder(unittest.TestCase):
+    def _vit(self):
+        return torchvision.models.vision_transformer.vit_b_32(progress=False)
+
+    def test_from_vit(self):
+        encoder = self._vit().encoder
+        MAEEncoder.from_vit_encoder(encoder)ort torch
 import torchvision
 
 from lightly import _torchvision_vit_available

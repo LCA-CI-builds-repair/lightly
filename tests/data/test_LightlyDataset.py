@@ -4,9 +4,73 @@ import tempfile
 import unittest
 from typing import List, Tuple
 
+import numpy import tempfile
+import os
+import shutil
+from tests.daimport os
+import tempfile
 import numpy as np
 import torchvision
-from PIL.Image import Image
+import torchvision.transforms as transforms
+from PIL import Image
+from tests.data.utils import create_dataset  # Assuming the create_dataset function is defined in a utils module
+
+class TestLightlyDataset(unittest.TestCase):
+
+    def test_create_lightly_dataset_from_folder(self):
+        # existing test code remains unchanged
+
+    def test_create_lightly_dataset_from_folder_nosubdir(self):
+        # existing test code remains unchanged
+
+    def test_from_torch_dataset(self):
+        _dataset = torchvision.datasets.FakeData(size=1, image_size=(3, 32, 32))
+        dataset = LightlyDataset.from_torch_dataset(_dataset)
+        self.assertEqual(len(_dataset), len(dataset))
+        self.assertEqual(len(dataset.get_filenames()), len(dataset))
+
+    def test_from_torch_dataset_with_transform(self):
+        dataset_ = torchvision.datasets.FakeData(size=1, image_size=(3, 32, 32))
+        dataset = LightlyDataset.from_torch_dataset(
+            dataset_, transform=transforms.ToTensor()
+        )
+        self.assertIsNotNone(dataset.transform)
+        self.assertIsNotNone(dataset.dataset.transform)
+
+    def test_filenames_dataset_no_samples(self):
+        tmp_dir, folder_names, sample_names = create_dataset()  # Fixing the missing function call
+        with self.assertRaises((RuntimeError, FileNotFoundError)):
+            dataset = LightlyDataset(input_dir=tmp_dir, filenames=[])
+
+    @unittest.skip("https://github.com/lightly-ai/lightly/issues/535")
+    def test_filenames_dataset_with_subdir(self):
+        tmp_dir, folder_names, sample_names = create_dataset()  # Fixing the missing function call
+        # existing test code remains unchanged
+
+    def test_filenames_dataset_no_subdir(self):
+        # create a dataset
+        n_tot = 100
+        dataset = torchvision.datasets.FakeData(size=n_tot, image_size=(3, 32, 32))
+        # existing test code remains unchangedir function is defined in a utils module
+
+class TestLightlyDataset(unittest.TestCase):
+
+    def test_create_lightly_dataset_from_folder(self):
+        # existing test code remains unchanged
+
+    def test_create_lightly_dataset_from_folder_nosubdir(self):
+        # create a dataset
+        n_tot = 100
+        tmp_dir, sample_names = create_dataset_no_subdir(n_tot)  # Fixing the missing function call
+
+        # create lightly dataset
+        dataset = LightlyDataset(input_dir=tmp_dir)
+        filenames = dataset.get_filenames()
+
+        # tests
+        self.assertEqual(len(filenames), n_tot)
+        self.assertEqual(len(dataset), n_tot)
+        self.assertListEqual(sorted(sample_names), sorted(filenames)) PIL.Image import Image
 
 from lightly.data import LightlyDataset
 from lightly.data._utils import check_images

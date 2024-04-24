@@ -1,9 +1,63 @@
 import unittest
-from unittest.mock import patch
-
+from unittestimport torch
 import pytest
-import torch
-from pytest_mock import MockerFixture
+from your_module import DCLLoss, DCLWLoss, negative_mises_fisher_weights
+
+@pytest.fixture
+def seed():
+    return 0
+
+class TestDCLLoss:
+    
+    def test_negative_mises_fisher_weights(self, seed):
+        torch.manual_seed(seed)
+        out0 = torch.rand((3, 5))
+        out1 = torch.rand((3, 5))
+        for sigma in [0.0000001, 0.5, 10000]:
+            negative_mises_fisher_weights(out0, out1, sigma)
+
+    def test_dclloss_forward(self, seed):
+        torch.manual_seed(seed=seed)
+        
+        for batch_size in [2, 3]:
+            for dim in [1, 3]:
+                out0 = torch.rand((batch_size, dim))
+                out1 = torch.rand((batch_size, dim))
+                for temperature in [0.1, 0.5, 1.0]:
+                    for gather_distributed in [False, True]:
+                        for weight_fn in [None, negative_mises_fisher_weights]:
+                            criterion = DCLLoss(
+                                temperature=temperature,
+                                gather_distributed=gather_distributed,
+                                weight_fn=weight_fn,
+                            )
+                            loss0 = criterion(out0, out1)
+                            loss1 = criterion(out1, out0)
+                            assert loss0 > 0
+                            assert loss0 == loss1
+
+    def test_dclloss_backprop(self, seed):
+        torch.manual_seed(seed=seed)
+        out0 = torch.rand(3, 5)
+        out1 = torch.rand(3, 5)
+        layer = torch.nn.Linear(5, 5)
+        out0 = layer(out0)
+        out1 = layer(out1)
+        criterion = DCLLoss()
+        optimizer = torch.optim.SGD(layer.parameters(), lr=0.1)
+        loss = criterion(out0, out1)
+        loss.backward()
+        optimizer.step()
+
+    def test_dclwloss_forward(self, seed):
+        torch.manual_seed(seed=seed)
+        out0 = torch.rand(3, 5)
+        out1 = torch.rand(3, 5)
+        criterion = DCLWLoss()
+        loss0 = criterion(out0, out1)
+        loss1 = criterion(out1, out0)
+        assert loss0 > 0
+        assert loss0 == loss1t_mock import MockerFixture
 from torch import distributed as dist
 
 from lightly.loss.dcl_loss import DCLLoss, DCLWLoss, negative_mises_fisher_weights
