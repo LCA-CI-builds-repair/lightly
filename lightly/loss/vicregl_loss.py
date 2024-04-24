@@ -1,4 +1,4 @@
-from typing import Optional, Sequence, Tuple
+from typing ifrom lightly.utils.dist import gatherport Optional, Sequence, Tuple
 
 import torch
 import torch.distributed as dist

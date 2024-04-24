@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+ffrom typing import Tupleom dataclasses import dataclass
 from typing import Tuple
 
 import torch

@@ -1,4 +1,4 @@
-import torch
+impot torch
 import torch.distributed as dist
 
 from lightly.utils.dist import gather

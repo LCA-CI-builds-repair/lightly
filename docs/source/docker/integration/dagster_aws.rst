@@ -7,7 +7,9 @@ Data Pre-processing Pipeline on AWS with Dagster
 
 Introduction
 --------------
-Data collection and pre-processing pipelines have become more and more automated in the recent years. The Lightly Worker can take on a crucial role
+Data collection and pre-processing pipelines have become more and more automated in the recent years. The Lightly Worker can take on    import os
+    import time
+    from dagster import solid, pipelineucial role
 in such a pipeline as it can reliably filter out redundant images and corrupted images with high throughput.
 
 This guide shows how to write a simple automated data pre-processing pipeline which performs the following steps:

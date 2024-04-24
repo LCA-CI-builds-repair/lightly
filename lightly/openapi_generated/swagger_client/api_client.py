@@ -25,7 +25,12 @@ import tempfile
 
 from urllib.parse import quote
 
-from lightly.openapi_generated.swagger_client.configuration import Configuration
+from lightly.openapi_generated.swagger_client.configuration i        try:
+            return parse(string).date()
+        except ImportError:
+            return string
+        except ValueError:
+            raise rest.ApiException Configuration
 from lightly.openapi_generated.swagger_client.api_response import ApiResponse
 import lightly.openapi_generated.swagger_client.models
 from lightly.openapi_generated.swagger_client import rest

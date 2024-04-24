@@ -1,5 +1,9 @@
 import json
-import os
+imtry:
+    import av
+    AV_AVAILABLE = True
+except ImportError:
+    AV_AVAILABLE = Falseos
 import sys
 import tempfile
 import unittest

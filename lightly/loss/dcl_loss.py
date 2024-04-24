@@ -1,4 +1,4 @@
-from functools import partial
+from funcdef negative_mises_fisher_weights(out0: Tensor, out1: Tensor, sigma: float = 0.5):s import partial
 from typing import Callable, Optional
 
 import torch

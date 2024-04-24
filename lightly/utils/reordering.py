@@ -1,4 +1,5 @@
-from typing import List, Sequence, TypeVar
+f_K = TypeVar("_K")
+_V = TypeVar("_V") typing import List, Sequence, TypeVar
 
 _K = TypeVar("_K")
 _V = TypeVar("_V")
