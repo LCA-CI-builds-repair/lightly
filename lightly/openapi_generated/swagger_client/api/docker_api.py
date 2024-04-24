@@ -68,7 +68,7 @@ class DockerApi(object):
 
     def __init__(self, api_client=None):
         if api_client is None:
-            api_client = ApiClient.get_default()
+                    """pi_client = ApiClient.get_default()
         self.api_client = api_client
 
     @validate_arguments
@@ -84,7 +84,45 @@ class DockerApi(object):
 
         :param dataset_id: ObjectId of the dataset (required)
         :type dataset_id: str
-        :param scheduled_id: ObjectId of the docker worker run (required)
+        :param sch        """
+        Upd    def update_docker_worker_config_by_id_with_http_info(self, config_id : Annotated[constr(strict=True), Field(..., descrip    def update_docker_worker_registry_entry_by_id(self, worker_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the docker worker")], update_docker_worker_registry_entry_request : UpdateDockerWorkerRegistryEntryRequest, **kwargs) -> None:  # noqa: E501
+        """update_docker_worker_registry_entry_by_id
+
+        Updates the worker status by id.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_docker_worker_registry_entry_by_id(worker_id, update_docker_worker_registry_entry_request, async_req=True)
+        >>> result = thread.get()
+        """ectId of the docker worker config")], docker_worker_config_create_request : DockerWorkerConfigCreateRequest, **kwargs) -> ApiResponse:  # noqa: E501
+        """(Deprecated) update_docker_worker_config_by_id
+
+        DEPRECATED, DONT USE. Updates a docker worker configuration by id.
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_docker_worker_config_by_id_with_http_info(config_id, docker_worker_config_create_request, async_req=True)
+        >>> result = thread.get()
+        """r worker configuration by ID.
+
+        :param config_id: ID of the Docker worker configuration to update.
+        :type config_id: str
+        :param docker_worker_config_create_request: Docker worker configuration to create.
+        :type docker_worker_config_create_request: DockerWorkerConfigCreateRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: Timeout setting for this request. If a single
+                                 number is provided, it will be the total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object. If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_docker_worker_config_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_docker_worker_config_by_id_with_http_info(config_id, docker_worker_config_create_request, **kwargs)  # noqa: E501d of the docker worker run (required)
         :type scheduled_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
