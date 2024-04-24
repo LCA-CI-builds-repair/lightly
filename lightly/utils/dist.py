@@ -1,4 +1,36 @@
-from typing import Any, Callable, Optional, Tuple, TypeVar, Union
+from typiimport torch
+import torch.distributed as dist
+from torch import Tensor
+from typing import Any, Tuple
+
+class GatherLayer(torch.autograd.Function):
+    """Gather tensors from all processes, supporting backward propagation."""
+
+    @staticmethod
+    def forward(ctx: Any, input: Tensor) -> Tuple[Tensor, ...]: 
+        ctx.save_for_backward(input)
+        output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
+        dist.all_gather(output, input)
+        return tuple(output)
+
+    @staticmethod
+    def backward(ctx: Any, *grads: Tensor) -> Tensor: 
+        (input,) = ctx.saved_tensors
+        grad_out = torch.empty_like(input)
+        grad_out[:] = grads[dist.get_rank()]
+        return grad_out
+
+def rank() -> int:
+    """Returns the rank of the current process."""
+    return dist.get_rank() if dist.is_initialized() else 0
+
+def world_size() -> int:
+    """Returns the current world size (number of distributed processes)."""
+    return dist.get_world_size() if dist.is_initialized() else 1
+
+def gather(input: Tensor) -> Tuple[Tensor]:
+    """Gathers this tensor from all processes. Supports backprop."""
+    return GatherLayer.apply(input)le, TypeVar, Union
 
 import torch
 import torch.distributed as dist

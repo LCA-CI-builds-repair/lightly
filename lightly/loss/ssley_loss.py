@@ -1,5 +1,17 @@
-import torch
-import torch.distributed as dist
+importfrom torch.nn import Module
+
+class SSLEYLoss(Module):
+    """Implementation of the SSL-EY loss [0].
+
+    - [0]: Efficient Algorithms for the CCA Family: Unconstrained Objectives with Unbiased Gradients, 2023, https://arxiv.org/abs/2310.01012
+
+    Attributes:
+        gather_distributed: bool
+            If True then the cross-correlation matrices from all GPUs are gathered and
+            summed before the loss calculation.
+        eps: float
+            Epsilon for numerical stability.
+    """ torch.distributed as dist
 from torch import Tensor
 from torch.nn import Module
 
