@@ -1,4 +1,35 @@
-from typing import Dict, List, Optional, Tuple, Union
+ffrom lightly.transforms.multi_view_transform import MultiViewTransform
+from lightly.transforms.simsiam_transform import SimSiamViewTransform
+from lightly.transforms.utils import IMAGENET_NORMALIZE
+from torchvision.transforms import RandomResizedCrop, RandomHorizontalFlip, ColorJitter, RandomGrayscale, GaussianBlur
+
+class FastSiamTransform(MultiViewTransform):
+    """Implements the transformations for FastSiam.
+
+    Input to this transform:
+        PIL Image or Tensor.
+
+    Output of this transform:
+        List of Tensor of length 4.
+
+    Applies the following augmentations by default:
+        - Random resized crop
+        - Random horizontal flip
+        - Color jitter
+        - Random gray scale
+        - Gaussian blur
+
+    """
+
+    def __init__(self):
+        transform = [
+            RandomResizedCrop(224),
+            RandomHorizontalFlip(),
+            ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1),
+            RandomGrayscale(p=0.2),
+            GaussianBlur(kernel_size=23, sigma=(0.1, 2.0))
+        ]
+        super(FastSiamTransform, self).__init__(transform)t, List, Optional, Tuple, Union
 
 from lightly.transforms.multi_view_transform import MultiViewTransform
 from lightly.transforms.simsiam_transform import SimSiamViewTransform

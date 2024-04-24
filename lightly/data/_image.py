@@ -1,6 +1,40 @@
-""" Image Dataset """
+"# Copyright (c) 2020. Lightly AG and its affiliates.
+# All Rights Reserved
 
-# Copyright (c) 2020. Lightly AG and its affiliates.
+import os
+from typing import List, Tuple
+
+import torchvision.datasets as datasets
+from torchvision import transforms
+
+from lightly.data._image_loaders import default_loader
+
+
+def _make_dataset(
+    directory, extensions=None, is_valid_file=None
+) -> List[Tuple[str, int]]:
+    """Returns a list of all image files with targets in the directory.
+
+    Args:
+        directory:
+            Root directory path (should not contain subdirectories!).
+        extensions:
+            Tuple of valid extensions.
+        is_valid_file:
+            Used to find valid files.
+
+    Returns:
+        List of instance tuples: (path_i, target_i = 0).
+
+    """
+
+    if extensions is None:
+        if is_valid_file is None:
+            raise ValueError("Both extensions and is_valid_file cannot be None")
+        else:
+            _is_valid_file = is_valid_file
+    else:
+        _is_valid_file = lambda x: has_file_allowed_extension(x, extensions)2020. Lightly AG and its affiliates.
 # All Rights Reserved
 
 import os

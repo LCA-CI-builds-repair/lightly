@@ -1,5 +1,29 @@
-import warnings
-from datetime import datetime
+ifrom datetime import datetime
+
+from lightly.active_learning import raise_active_learning_deprecation_warning
+from lightly.openapi_generated.swagger_client.models.sampling_method import (
+    SamplingMethod,
+)
+
+class SelectionConfig:
+    """Configuration class for a selection.
+
+    Attributes:
+        method (SamplingMethod):
+            The method to use for selection, one of CORESET, RANDOM, CORAL, ACTIVE_LEARNING
+        n_samples (int):
+            The maximum number of samples to be chosen by the selection
+            including the samples in the preselected tag. One of the stopping
+            conditions.
+        min_distance (float):
+            The minimum distance of samples in the chosen set, one of the
+            stopping conditions.
+        name (str):
+            The name of this selection, defaults to a name consisting of all
+            other attributes and the datetime. A new tag will be created in the
+            web-app under this name.
+
+    """me import datetime
 
 from lightly.active_learning import raise_active_learning_deprecation_warning
 from lightly.openapi_generated.swagger_client.models.sampling_method import (

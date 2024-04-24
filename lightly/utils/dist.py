@@ -1,4 +1,31 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+fimport torch
+import torch.distributed as dist
+from torch import Tensor
+from torch.autograd import Function
+from typing import Tuple
+
+class GatherLayer(Function):
+    """Gather tensors from all processes, supporting backward propagation.
+
+    This code was taken and adapted from here:
+    https://github.com/Spijkervet/SimCLR
+
+    """
+
+    @staticmethod
+    def forward(ctx: FunctionContext, input: Tensor) -> Tuple[Tensor, ...]:
+        ctx.save_for_backward(input)
+        output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
+        dist.all_gather(output, input)
+        return tuple(output)
+
+    @staticmethod
+    def backward(ctx: FunctionContext, *grads: Tensor) -> Tensor:
+        # Type ignore because FunctionContext is not fully typed.
+        (input,) = ctx.saved_tensors  # type: ignore
+        grad_out = torch.empty_like(grads[dist.get_rank()])
+        dist.all_reduce(grad_out, op=dist.ReduceOp.SUM)
+        return grad_oute, Literal, Optional, Tuple, TypeVar, Union
 
 import torch
 import torch.distributed as dist

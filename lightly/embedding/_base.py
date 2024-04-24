@@ -1,6 +1,22 @@
-""" BaseEmbeddings """
+"import os
+from typing import Any, List, Optional, Sequence, Tuple, Union
 
-# Copyright (c) 2020. Lightly AG and its affiliates.
+import omegaconf
+from omegaconf import DictConfig
+from pytorch_lightning import LightningModule, Trainer
+from pytorch_lightning.callbacks.callback import Callback
+from torch import Tensor
+from torch.nn import Module
+from torch.optim import Optimizer
+from torch.optim.lr_scheduler import _LRScheduler
+from torch.utils.data import DataLoader
+
+from lightly.data.dataset import LightlyDataset
+from lightly.embedding import callbacks
+from lightly.utils.benchmarking import BenchmarkModule
+
+
+class BaseEmbedding(LightningModule):# Copyright (c) 2020. Lightly AG and its affiliates.
 # All Rights Reserved
 import copy
 import os

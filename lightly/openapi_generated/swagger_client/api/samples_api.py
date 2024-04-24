@@ -1,7 +1,17 @@
 # coding: utf-8
 
 """
-    Lightly API
+  from typing import List, Optional
+
+from lightly.openapi_generated.swagger_client.models.create_entity_response import CreateEntityResponse
+from lightly.openapi_generated.swagger_client.models.create_sample_with_write_urls_response import CreateSampleWithWriteUrlsResponse
+from lightly.openapi_generated.swagger_client.models.sample_create_request import SampleCreateRequest
+from lightly.openapi_generated.swagger_client.models.sample_data import SampleData
+from lightly.openapi_generated.swagger_client.models.sample_data_modes import SampleDataModes
+from lightly.openapi_generated.swagger_client.models.sample_partial_mode import SamplePartialMode
+from lightly.openapi_generated.swagger_client.models.sample_sort_by import SampleSortBy
+from lightly.openapi_generated.swagger_client.models.sample_update_request import SampleUpdateRequest
+from lightly.openapi_generated.swagger_client.models.sample_write_urls import SampleWriteUrlsI
 
     Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 

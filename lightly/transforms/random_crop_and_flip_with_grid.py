@@ -1,5 +1,38 @@
+ffrom typing import Any, Tuple, T
 from dataclasses import dataclass
-from typing import Tuple
+
+import torch
+import torchvision.transforms as T
+import torchvision.transforms.functional as F
+from PIL import Image
+from torch import nn
+
+
+@dataclass
+class Location:
+    # The row index of the top-left corner of the crop.
+    top: float
+    # The column index of the top-left corner of the crop.
+    left: float
+    # The height of the crop.
+    height: float
+    # The width of the crop.
+    width: float
+    # The height of the original image.
+    image_height: float
+    # The width of the original image.
+    image_width: float
+    # Whether to flip the image horizontally.
+    horizontal_flip: bool = False
+    # Whether to flip the image vertically.
+    vertical_flip: bool = False
+
+
+class RandomResizedCropWithLocation(T.RandomResizedCrop):  # type: ignore[misc] # Class cannot subclass "RandomResizedCrop" (has type "Any")
+    """
+    Do a random resized crop and return both the resulting image and the location. See base class.
+
+    """rom typing import Tuple
 
 import torch
 import torchvision.transforms as T

@@ -3,7 +3,20 @@
 """
     Lightly API
 
-    Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
+    from pydantic import BaseModel, Extra
+
+class TagArithmeticsResponse(BaseModel):
+    validate_assignment = True
+    use_enum_values = True
+    extra = Extra.forbid
+
+    def __init__(self, *args, **kwargs):
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@lightly.ai

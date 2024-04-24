@@ -1,4 +1,34 @@
-from functools import partial
+ffrom typing import Callable, Optional
+
+import torch
+from torch import Tensor
+from torch import distributed as torch_dist
+from torch import nn
+
+from lightly.utils import dist
+
+
+def negative_mises_fisher_weights(
+    out0: Tensor, out1: Tensor, sigma: float = 0.5
+) -> torch.Tensor:
+    """Negative Mises-Fisher weighting function as presented in Decoupled
+    Contrastive Learning [0].
+
+    Args:
+        out0:
+            Tensor of shape (batch_size, embedding_dim) from the first projection head.
+        out1:
+            Tensor of shape (batch_size, embedding_dim) from the second projection head.
+        sigma:
+            Scaling factor for the weighting.
+
+    Returns:
+        Weighted tensor with the same shape as the input tensors.
+
+    The implementation was inspired by [1].
+
+    - [0] Chun-Hsiao Y. et. al., 2021, Decoupled Contrastive Learning https://arxiv.org/abs/2110.06848
+    - [1] https://github.com/raminnakhli/Decoupled-Contrastive-Learning partial
 from typing import Callable, Optional
 
 import torch

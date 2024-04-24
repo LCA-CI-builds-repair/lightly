@@ -1,7 +1,18 @@
 # coding: utf-8
+from inspect import getfullargspec
+import json
+import pprint
+import re  # noqa: F401
 
-"""
-    Lightly API
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from typing import Any, List, Optional
+from lightly.openapi_generated.swagger_client.models.prediction_singleton_classification import PredictionSingletonClassification
+from lightly.openapi_generated.swagger_client.models.prediction_singleton_instance_segmentation import PredictionSingletonInstanceSegmentation
+from lightly.openapi_generated.swagger_client.models.prediction_singleton_keypoint_detection import PredictionSingletonKeypointDetection
+from lightly.openapi_generated.swagger_client.models.prediction_singleton_object_detection import PredictionSingletonObjectDetection
+from lightly.openapi_generated.swagger_client.models.prediction_singleton_semantic_segmentation import PredictionSingletonSemanticSegmentation
+
+PREDICTIONSINGLETON_ONE_OF_SCHEMAS = ["PredictionSingletonClassification", "PredictionSingletonInstanceSegmentation", "PredictionSingletonKeypointDetection", "PredictionSingletonObjectDetection", "PredictionSingletonSemanticSegmentation"] API
 
     Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 

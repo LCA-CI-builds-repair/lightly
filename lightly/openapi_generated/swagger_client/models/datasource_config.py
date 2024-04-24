@@ -1,7 +1,18 @@
 # coding: utf-8
 
 """
-    Lightly API
+ from typing import Any, List
+
+from pydantic import BaseModel, ValidationError
+from pydantic import Extra
+
+from lightly.openapi_generated.swagger_client.models.datasource_config_azure import DatasourceConfigAzure
+from lightly.openapi_generated.swagger_client.models.datasource_config_gcs import DatasourceConfigGCS
+from lightly.openapi_generated.swagger_client.models.datasource_config_lightly import DatasourceConfigLIGHTLY
+from lightly.openapi_generated.swagger_client.models.datasource_config_local import DatasourceConfigLOCAL
+from lightly.openapi_generated.swagger_client.models.datasource_config_obs import DatasourceConfigOBS
+from lightly.openapi_generated.swagger_client.models.datasource_config_s3 import DatasourceConfigS3
+from lightly.openapi_generated.swagger_client.models.datasource_config_s3_delegated_access import DatasourceConfigS3DelegatedAccess API
 
     Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 

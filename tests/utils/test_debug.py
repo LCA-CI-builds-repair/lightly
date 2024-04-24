@@ -1,7 +1,40 @@
+iimport unittest
 import math
-import unittest
 
 import numpy as np
+import torch
+from PIL import Image
+
+from lightly.data import collate
+from lightly.utils import debug
+
+try:
+    import matplotlib.pyplot as plt
+
+    MATPLOTLIB_AVAILABLE = True
+except ImportError:
+    MATPLOTLIB_AVAILABLE = False
+
+BATCH_SIZE = 10
+DIMENSION = 10
+
+
+class TestDebug(unittest.TestCase):
+    def _generate_random_image(self, w: int, h: int, c: int):
+        array = np.random.rand(h, w, c) * 255
+        image = Image.fromarray(array.astype("uint8")).convert("RGB")
+        return image
+
+    def test_std_of_l2_normalized_collapsed(self):
+        z = torch.ones(BATCH_SIZE, DIMENSION)  # collapsed output
+        self.assertEqual(debug.std_of_l2_normalized(z), 0.0)
+
+    def test_std_of_l2_normalized_uniform(self):
+        z = torch.eye(BATCH_SIZE)
+        self.assertLessEqual(
+            abs(debug.std_of_l2_normalized(z) - 1 / math.sqrt(z.shape[1])),
+            1e-5,
+        )mpy as np
 import torch
 from PIL import Image
 

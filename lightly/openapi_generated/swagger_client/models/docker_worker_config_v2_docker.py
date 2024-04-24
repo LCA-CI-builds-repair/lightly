@@ -1,7 +1,13 @@
-# coding: utf-8
+# coding: utfrom __future__ import annotations
+import json
+import re  # noqa: F401
 
-"""
-    Lightly API
+from pydantic import BaseModel, Extra, Field, StrictBool, StrictStr, conint
+from lightly.openapi_generated.swagger_client.models.docker_worker_config_v2_docker_datasource import DockerWorkerConfigV2DockerDatasource
+from lightly.openapi_generated.swagger_client.models.docker_worker_config_v2_docker_object_level import DockerWorkerConfigV2DockerObjectLevel
+from lightly.openapi_generated.swagger_client.models.docker_worker_config_v2_docker_stopping_condition import DockerWorkerConfigV2DockerStoppingCondition
+from lightly.openapi_generated.swagger_client.models.docker_worker_config_v3_docker_corruptness_check import DockerWorkerConfigV3DockerCorruptnessCheck
+from lightly.openapi_generated.swagger_client.models.lightly_docker_selection_method import LightlyDockerSelectionMethodhtly API
 
     Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 
