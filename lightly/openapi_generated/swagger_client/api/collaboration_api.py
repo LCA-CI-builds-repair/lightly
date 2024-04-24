@@ -3,7 +3,27 @@
 """
     Lightly API
 
-    Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
+    Lightly.ai enables you to do self-supervised learning in an easy and intuitive w_all_params = [
+    'dataset_id',
+    'shared_access_config_create_request'
+]
+_all_params.extend([
+    'async_req',
+    '_return_http_data_only',
+    '_preload_content',
+    '_request_timeout',
+    '_request_auth',
+    '_content_type',
+    '_headers'
+])
+
+# validate the arguments
+for _key, _val in _params['kwargs'].items():
+    if _key not in _all_params:
+        raise ApiTypeError(
+            "Got an unexpected keyword argument '%s' to method create_or_update_shared_access_config_by_dataset_id" % _key
+        )
+    _params[_key] = _valI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@lightly.ai

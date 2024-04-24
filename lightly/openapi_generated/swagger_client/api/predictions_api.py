@@ -24,8 +24,27 @@ from pydantic import Field, conint, conlist, constr, validator
 
 from typing import List, Optional
 
-from lightly.openapi_generated.swagger_client.models.create_entity_response import CreateEntityResponse
-from lightly.openapi_generated.swagger_client.models.prediction_singleton import PredictionSingleton
+from lightly.openapi_generated.swagger_client.models.create_entity_response import CreateE_all_params = [
+    'dataset_id',
+    'prediction_uuid_timestamp',
+    'task_name'
+]
+_all_params.extend([
+    'async_req',
+    '_return_http_data_only',
+    '_preload_content',
+    '_request_timeout',
+    '_request_auth',
+    '_content_type',
+    '_headers'
+])
+
+# validate the arguments
+for _key, _val in _params['kwargs'].items():
+    if _key not in _all_params:
+        raise ApiTypeError(
+            "Got an unexpected keyword argument '%s' to method get_predictions_by_dataset_id" % _key
+        )y.openapi_generated.swagger_client.models.prediction_singleton import PredictionSingleton
 from lightly.openapi_generated.swagger_client.models.prediction_task_schema import PredictionTaskSchema
 from lightly.openapi_generated.swagger_client.models.prediction_task_schemas import PredictionTaskSchemas
 

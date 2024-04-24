@@ -79,10 +79,204 @@ class DockerApi(object):
         """cancel_scheduled_docker_run_state_by_id  # noqa: E501
 
         Cancel a scheduled run. This will fail if the state of the scheduled run is no longer OPEN (e.g when it is LOCKED)   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
+        This method makes a synchronous HTTP request by d        _params = locals()
+
+        _all_params = [
+            'docker_worker_authorization        :type create_docker_worker_registry_e        :param _request_timeout: timeout setting for this request. If one
+                                 n        This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.cancel_scheduled_docker_run_state_by_id(dataset_id, scheduled_id, async_req=True)
+        >>> thread = api.update_docker_run_by_id(run_id, docker_run_update_request, async_req=True)
+        >>> result = thread.get()
+
+        :param run_id: ObjectId of the docker run (required)
+        :type run_id: str
+        :param docker_run_update_request: (required)
+        :type docker_run_update_request: DockerRunUpdateRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_docker_run_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.update_docker_run_by_id_with_http_info(run_id, docker_run_update_request, **kwargs)  # noqa: E501request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: string, optional - force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CreateEntityResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'create_docker_worker_registry_entry_request',
+            'for_user_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s' to method register_docker_worker" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('for_user_id') is not None:  # noqa: E501
+            _query_params.append((
+                'forUserId',
+                _params['for_user_id'].value if hasattr(_params['for_user_id'], 'value') else _params['for_user_id']
+            ))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['create_docker_worker_registry_entry_request'] is not None:
+            _body_params = _params['create_docker_worker_registry_entry_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['auth0Bearer', 'ApiKeyAuth']  # noqa: E501
+
+        _response_types_map = {
+            '201': "CreateEntityResponse",
+            '400': "ApiErrorResponse",
+            '403': "ApiErrorResponse",
+            '404': "ApiErrorResponse",
+        }serId for which we want to create the worker for. This is only allowed for users within the same team.
+        :type for_user_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CreateEntityResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            # Additional logic can be added here if needed  ]
+        _all_params.extend([
+            'async_req',
+            '_return_http_data_only',
+            '_preload_content',
+            '_request_timeout',
+            '_request_auth',
+            '_content_type',
+            '_headers'
+        ])
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s' to method post_docker_worker_authorization_request" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+
+        # process the form parameters
+        _form_params = []
+        _files = {}
+
+        # process the body parameter
+        _body_params = None
+        if _params['docker_worker_authorization_request'] is not None:
+            _body_params = _params['docker_worker_authorization_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(['text/plain', 'application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type', self.api_client.select_header_content_type(['application/json']))
+        if _content_types_list:
+            _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['auth0Bearer', 'ApiKeyAuth']  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "ApiErrorResponse",
+            '403': "ApiErrorResponse",
+            '404': "ApiErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v1/docker/workerAuthorization', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+        )>>> thread = api.cancel_scheduled_docker_run_state_by_id(dataset_id, scheduled_id, async_req=True)
         >>> result = thread.get()
 
         :param dataset_id: ObjectId of the dataset (required)

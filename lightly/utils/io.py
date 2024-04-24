@@ -10,10 +10,14 @@ from itertools import compress
 from typing import Any, Dict, List, Tuple, Union
 
 import numpy as np
-from numpy.typing import NDArray
-
-
-def check_embeddings(path: str, remove_additional_columns: bool = False) -> None:
+from numpy.typing impor        formatted[COCO_ANNOTATION_KEYS.images].append({
+            COCO_ANNOTATION_KEYS.images_id: i,
+            COCO_ANNOTATION_KEYS.images_filename: filename,
+        })
+        formatted[COCO_ANNOTATION_KEYS.custom_metadata].append({
+            COCO_ANNOTATION_KEYS.custom_metadata_image_id: i,
+            **metadata,
+        })def check_embeddings(path: str, remove_additional_columns: bool = False) -> None:
     """Raises an error if the embeddings csv file has not the correct format
 
     Use this check whenever you want to upload an embedding to the Lightly

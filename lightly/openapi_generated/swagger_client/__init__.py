@@ -3,7 +3,16 @@
 # flake8: noqa
 
 """
-    Lightly API
+  from lightly.openapi_generated.swagger_client.api_client import ApiClient
+from lightly.openapi_generated.swagger_client.api_response import ApiResponse
+from lightly.openapi_generated.swagger_client.configuration import Configuration
+from lightly.openapi_generated.swagger_client.exceptions import ApiAttributeError
+from lightly.openapi_generated.swagger_client.exceptions import ApiException
+from lightly.openapi_generated.swagger_client.exceptions import ApiKeyError
+from lightly.openapi_generated.swagger_client.exceptions import ApiException
+from lightly.openapi_generated.swagger_client.exceptions import ApiTypeError
+from lightly.openapi_generated.swagger_client.exceptions import ApiValueError
+from lightly.openapi_generated.swagger_client.exceptions import OpenApiException API
 
     Lightly.ai enables you to do self-supervised learning in an easy and intuitive way. The lightly.ai OpenAPI spec defines how one can interact with our REST API to unleash the full potential of lightly.ai  # noqa: E501
 
