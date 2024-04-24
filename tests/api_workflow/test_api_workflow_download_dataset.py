@@ -2,7 +2,22 @@ import pytest
 from pytest_mock import MockerFixture
 
 from lightly.api import ApiWorkflowClient, api_workflow_download_dataset
-from lightly.openapi_generated.swagger_client.models import (
+from ligfrom unittest.mock import Mock
+
+def test_download_dataset_warnings(client, mocked_datasets_api, mocked_mappings_api, mocked_samples_api, mocked_warning):
+    client._dataset_id = "dataset-id"
+    client._datasets_api = mocked_datasets_api
+    client._mappings_api = mocked_mappings_api
+    client._samples_api = mocked_samples_api
+
+    client.download_dataset(output_dir="path/to/dir", tag_name="some-tag")
+
+    assert mocked_warning.call_count == 2
+    warning_text = [str(call_args[0][0]) for call_args in mocked_warning.call_args_list]
+    assert warning_text == [
+        "Downloading of image file0 failed with error some error",
+        "Warning: Unsuccessful download! Failed at image: 0",
+    ]generated.swagger_client.models import (
     DatasetData,
     DatasetEmbeddingData,
     DatasetType,

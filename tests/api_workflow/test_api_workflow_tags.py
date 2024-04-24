@@ -3,7 +3,41 @@ from typing import List, Optional
 import pytest
 from pytest_mock import MockerFixture
 
-from lightly.api import ApiWorkflowClient
+import pytest
+from unittest.mock import Mock, patch
+from lightly.api_workflow.client import ApiWorkflowClient
+from lightly.api_workflow.tag import Tag
+from lightly.api_workflow.utils import generate_id
+
+
+def test_create_tag_from_filenames(mocker: MockerFixture) -> None:
+    client = ApiWorkflowClient(api_key="test_key")
+    mocked_get_filenames = mocker.patch.object(
+        ApiWorkflowClient, "get_filenames", return_value=["file0"]
+    )
+
+    with pytest.raises(RuntimeError) as exception:
+        client.create_tag_from_filenames(
+            fnames_new_tag=["some-file"], new_tag_name="some-tag"
+        )
+
+        assert str(exception.value) == (
+            "An error occurred when creating the new subset! "
+            "Out of the 1 filenames you provided, "
+            "only 0 has been found on the server. "
+            "Make sure you use the correct filenames. "
+            "Valid filename example from the dataset: file0"
+        )
+    
+    mocked_get_filenames.assert_called_once()
+
+
+def test_get_filenames_in_tag(mocker: MockerFixture) -> None:
+    tag = Tag(dataset_id=generate_id())
+    mocker.patch.object(ApiWorkflowClient, "__init__", return_value=None)
+    mocked_get_filenames = mocker.patch.object(
+        ApiWorkflowClient, "get_filenames", return_value=[f"file{i}" for i in range(3)]
+    )ort ApiWorkflowClient
 from lightly.api.api_workflow_tags import TagDoesNotExistError
 from lightly.openapi_generated.swagger_client.models import TagCreator, TagData
 from tests.api_workflow import utils

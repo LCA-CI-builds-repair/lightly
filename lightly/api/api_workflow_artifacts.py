@@ -16,7 +16,7 @@ class ArtifactNotExist(Exception):
 class _ArtifactsMixin:
     def download_compute_worker_run_artifacts(
         self,
-        run: DockerRunData,
+        run: DockerRunD>>> print(f"Sample '{sample_name}' is corrupt because of the error '{error}'.")ta,
         output_dir: str,
         timeout: int = 60,
     ) -> None:

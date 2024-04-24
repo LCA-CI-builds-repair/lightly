@@ -15,7 +15,26 @@ from lightly.api.api_workflow_compute_worker import (
     InvalidConfigurationError,
     _config_to_camel_case,
     _snake_to_camel_case,
-    _validate_config,
+  import pytest
+from unittest.mock import Mock
+import utils
+
+def test_create_compute_worker_config_error(client, mocked_raise_exception):
+    client._dataset_id = utils.generate_id()
+    client._compute_worker_api.create_docker_worker_config_v3 = mocked_raise_exception
+    
+    with pytest.raises(
+        ValueError,
+        match=r'Trying to schedule your job resulted in\n>> ACCOUNT_SUBSCRIPTION_INSUFFICIENT\n>> "Your current plan allows for 1000000 samples but you tried to use 2000000 samples, please contact sales at sales@lightly.ai to upgrade your account."\n>> Please fix the issue mentioned above and see our docs https://docs.lightly.ai/docs/all-configuration-options for more help.',
+    ):
+        r = client.create_compute_worker_config(
+            selection_config={
+                "n_samples": 2000000,
+                "strategies": [
+                    {"input": {"type": "EMBEDDINGS"}, "strategy": {"type": "DIVERSITY"}}
+                ],
+            },
+        )nfig,
 )
 from lightly.openapi_generated.swagger_client.api import DockerApi
 from lightly.openapi_generated.swagger_client.api_client import ApiClient

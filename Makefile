@@ -1,4 +1,16 @@
-# Copyright (c) 2020. Lightly AG and its affiliates.
+# Copyright (c) 2020. Lightly AG and its affil# Makefile for running tests and formatting code
+
+.PHONY: test
+test:
+    pytest
+
+.PHONY: make test
+make test:
+    pytest
+
+.PHONY: format
+format:
+    make formatates.
 # All Rights Reserved
 
 .PHONY: clean clean-build clean-pyc clean-out docs help

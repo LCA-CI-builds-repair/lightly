@@ -1,7 +1,50 @@
 .. _rst-docker-known-issues-faq:
 
 Known Issues and FAQ
-===================================
+|   0         | Processes:                                                     Traceback (most recent call last):
+    File "/opt/conda-----------------------------------------------
+
+The following error message appears when the Docker runtime does not have enough file handlers. By default, Docker uses 1024. However, when using multiple workers for data fetching (`lightly.loader.num_workers`), this might not be enough. As file handlers are used in many different parts of the code, the actual error message may differ. Internet connections like those for connecting to the Lightly API also use file handlers.
+
+.. code-block:: console
+
+    <Error [Errno 24] Too many open files>
+
+To solve this problem, we need to increase the number of file handlers for the Docker runtime.
+
+You can change the number of file handlers to 90000 by adding `--ulimit nofile=90000:90000` to the `docker run` command:
+
+.. code-block:: console
+
+    # Example of `docker run` with 90000 file handlers
+    docker run --ulimit nofile=90000:90000 --gpus all
+
+More documentation on Docker file handlers is provided [here](link).ultiprocessing/queues.py", line 236, in _feed
+        obj = _ForkingPickler.dumps(obj)
+    File "/opt/conda/envs/env/lib/python3.7/multiprocessing/reduction.py", line 51, in dumps         |
+        |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+        |        ID   ID                                                   Usage      |
+        |=============================================================================|
+        |  No running processes found                                                 |
+        +-----------------------------------------------------------------------------+
+
+6. Make sure we can run docker as a non-root user (recommended for security).
+    We can follow the instructions from the official Docker docs at https://docs.docker.com/engine/install/linux-postinstall/
+
+    .. code-block:: console
+
+        sudo groupadd docker
+
+    .. code-block:: console
+
+        sudo usermod -aG docker $USER
+
+    .. code-block:: console
+
+        newgrp docker  On   | 00000000:00:1E.0 Off |                    0 |
+| N/A   34C    P8     9W /  70W |      0MiB / 15109MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+===============================
 
 
 .. _rst-docker-known-issues-faq-install-docker:

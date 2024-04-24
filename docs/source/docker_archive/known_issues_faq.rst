@@ -1,8 +1,24 @@
 .. _rst-docker-known-issues-faq:
 
 Known Issues and FAQ
-===================================
+==========You can change the shared memory to 512 MBytes by adding `--shm-size="512m"` to 
+the docker run command:
 
+.. code-block:: console
+
+    # example of docker run with setting shared memory to 512 MBytes
+    docker run --shm-size="512m" --gpus all
+
+Docker crashes because of too many open files
+-----------------------------------------------
+
+The following error message appears when the Docker runtime does not have enough file handlers. By default, Docker uses 1024. However, when using multiple workers for data fetching (`lightly.loader.num_workers`), this might not be enough. As file handlers are used in many different parts of the code, the actual error message may differ. Internet connections like those for connecting to the Lightly API also use file handlers.
+
+.. code-block:: console
+
+    <Error [Errno 24] Too many open files>
+
+To solve this problem, we need to increase the number of file handlers for the Docker runtime.
 .. warning::
     **The Docker Archive documentation is deprecated**
 

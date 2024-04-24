@@ -23,7 +23,29 @@ except ImportError:
 
 
 class MockedRequestsModule:
-    def get(self, url, stream=None, *args, **kwargs):
+    def get(self, url, stream=import tempfile
+import unittest
+import lightly.api.download
+
+class TestDownload(unittest.TestCase):
+    def test_download_video_frame_count_timeout(self):
+        with tempfile.NamedTemporaryFile(suffix=".avi") as file:
+            _generate_video(file.name)
+            with self.assertRaisesRegex(
+                RuntimeError,
+                "Maximum retries exceeded.*av.error.ExitError.*Immediate exit requested.*",
+            ):
+                lightly.api.download.video_frame_count(file.name, timeout=0)
+
+    @unittest.skipUnless(AV_AVAILABLE, "Pyav not installed")
+    def test_download_video_frame_count_no_metadata(self):
+        fps = 24
+        for true_n_frames in [24, 30, 60]:
+            for suffix in [".avi", ".mpeg"]:
+                with tempfile.NamedTemporaryFile(suffix=suffix) as file, self.subTest(
+                    msg=f"n_frames={true_n_frames}, extension={suffix}"
+                ):
+                    # Test logic herewargs):
         return MockedResponse(url)
 
     class Session:

@@ -2,7 +2,32 @@ import os
 import time
 
 import pytest
-from pytest_mock import MockerFixture
+from pytest_import os
+import time
+from urllib3.exceptions import MaxRetryError
+import pytest
+from unittest.mock import Mock, patch
+from lightly.api import _version_checking
+
+
+def test_get_latest_version_timeout(mocker: MockerFixture) -> None:
+    mocker.patch.dict(os.environ, {"LIGHTLY_SERVER_LOCATION": "invalid-url"})
+    start = time.perf_counter()
+    with pytest.raises(MaxRetryError):
+        # Urllib3 raises a timeout error (connection refused) for invalid URLs.
+        _version_checking.get_latest_version("1.2.8", timeout_sec=0.1)
+    end = time.perf_counter()
+    assert end - start < 0.2  # Give some slack for timeout.
+
+
+def test_get_minimum_compatible_version(mocker: MockerFixture) -> None:
+    mocker.patch.object(
+        _version_checking.VersioningApi,
+        "get_minimum_compatible_pip_version",
+        return_value="1.2.8",
+    )
+
+    assert _version_checking.get_minimum_compatible_version() == "1.2.8"rFixture
 from urllib3.exceptions import MaxRetryError
 
 from lightly.api import _version_checking

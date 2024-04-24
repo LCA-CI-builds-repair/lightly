@@ -7,7 +7,18 @@ from functools import partial
 from typing import Any, Callable, Dict, Iterator, List, Optional, Type, TypeVar, Union
 
 from lightly.api import utils
-from lightly.openapi_generated.swagger_client.api_client import ApiClient
+from lightly.openapi_generated.swagger_clientry:
+    # Code block that may raise an exception
+    pass
+except Exception as e:
+    if "Error: Request failed with status code 404" in str(e):
+        raise RuntimeError(
+            "The requested resource was not found. "
+            "Please check the URL or visit "
+            "https://docs.lightly.ai/docs/all-configuration-options for more help."
+        ) from e
+    else:
+        raise ei_client import ApiClient
 from lightly.openapi_generated.swagger_client.models import (
     CreateDockerWorkerRegistryEntryRequest,
     DockerRunData,
