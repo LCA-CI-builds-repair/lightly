@@ -15,7 +15,38 @@ The Lightly Worker follows a train, embed, select workflow:
    a model on your unlabeled dataset using self-supervised learning. The output
    of the train step is a model checkpoint.
 
-#. The embed step creates embeddings of the input dataset. Each sample gets
+#. The embed step create    :emphasize-lines: 2
+    :caption: relevant_filenames.txt
+
+    image_1.png
+    subdir/*
+
+
+    You can also combine the power of the prefix with the `gitignore syntax <https://git-scm.com/docs/gitignore>`_ to exclude certain files again.
+
+    .. code-block:: text
+        :emphasize-lines: 2
+        :caption: relevant_filenames.txt
+
+        image_1.png
+        subdir/* subdir/image_4* !subdir/image_41.png !subdir/image_42.png
+        ^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        prefix   gitignore patterns separated by a whitespace
+
+
+        In the above example `image_1.png`, `subdir/image_2.png`, `subdir/image_3.png`, `subdir/image_41.png`, `subdir/image_42.png` would be considered, while `subdir/image_40.png` would be ignored.
+
+    When using this feature, the Lightly bucket should then look like this:
+
+
+    .. code-block:: console
+
+        s3://my-Lightly-bucket/
+            L .lightly/
+                L relevant_filenames.txt
+
+
+    The corresponding Python command to submit a job would then be as follows:t. Each sample gets
    represented using a low-dimensional vector. The output of the embed step is
    a .csv file.
 

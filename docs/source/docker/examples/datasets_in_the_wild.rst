@@ -2,7 +2,27 @@ Extract Diverse Video Frames
 =============================
 
 The following example is a showcase how the Lightly Worker can be used 
-to extract frames from a video based on their uniqueness rather than based on timestamps.
+to extract frames from a video based on their uniqueness rather than          to unit vector length. Max L2 distance between two vectors is 
+          therefore 2.0 (two vectors pointing in opposite directions). 
+
+
+Now let's take a look at the storage requirements. If we would extract all frames from the video
+and then run a selection algorithm on them we would need 553.4 MBytes. However, the Lightly Worker
+can process the video directly so we require only 6.4 MBytes of storage. This means it requires 70x less storage!
+
+
+.. list-table::
+   :widths: 50 50 50 30
+   :header-rows: 1
+
+   * - Metric
+     - ffmpeg extracted frames
+     - Lightly Worker using video
+     - Reduction
+   * - Storage Consumption
+     - 553.4 MBytes
+     - 6.4 MBytes
+     - 86.66x
 
 .. note:: For all examples we assume that the Lightly Worker is configured and running. See :ref:`docker-setup` for more information.
 

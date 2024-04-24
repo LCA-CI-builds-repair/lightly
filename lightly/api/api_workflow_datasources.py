@@ -27,7 +27,22 @@ class _DatasourcesMixin:
     ) -> List[Tuple[str, str]]:
         """Downloads filenames and read urls from the datasource.
 
-        Only samples with timestamp between `from_` (inclusive) and `to` (inclusive)
+        Only samples def check_file_path(
+    sample: DatasourceRawSamplesDataRow,
+    relevant_filenames_file_name: Optional[str],
+    listed_filenames: Set[str],
+) -> bool:
+    # Note: We want to remove these checks eventually. Absolute paths and relative paths
+    # with dot notation should be handled either in the API or the Worker. Duplicate
+    # filenames should be handled in the Worker as handling it in the API would require
+    # too much memory.
+    if sample.file_name.startswith("/"):
+        warnings.warn(
+            UserWarning(
+                f"Absolute file paths like {sample.file_name} are not supported in relevant filenames file {relevant_filenames_file_name} due to blob storage"
+            )
+        )
+        return Falseetween `from_` (inclusive) and `to` (inclusive)
         will be downloaded.
 
         Args:

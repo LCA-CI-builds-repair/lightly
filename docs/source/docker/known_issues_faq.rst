@@ -1,7 +1,32 @@
 .. _rst-docker-known-issues-faq:
 
 Known Issues and FAQ
-===================================
+======        | Processes:                                           -----------------------------------------------
+
+The following error message appears when the docker runtime has not enough
+shared memory. By default Docker uses 64 MBytes. However, when using multiple 
+workers for data fetching `lightly.loader.num_workers` there might not be enough.
+
+.. code-block:: console                |
+        |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+        |        ID   ID                                                   Usage      |
+        |=============================================================================|
+        |  No running processes found                                                 |
+        +-----------------------------------------------------------------------------+
+6. Make sure we can run docker as non root user (recommended for security).
+    We can follow the instructions from the official docker docs https://docs.docker.com/engine/install/linux-postinstall/
+
+    .. code-block:: console
+
+        sudo groupadd docker
+
+    .. code-block:: console
+
+        sudo usermod -aG docker $USER
+
+    .. code-block:: console
+
+        newgrp docker =========
 
 
 .. _rst-docker-known-issues-faq-install-docker:

@@ -5,7 +5,18 @@ from functools import partial
 from typing import Callable, List, Optional
 
 import torch
-import torch.nn as nn
+i    """
+    Backbone for the Masked Autoencoder model [0].
+
+    Converts images into patches and encodes them. Code inspired by [1].
+    Note that this implementation uses a learned positional embedding while [0]
+    uses a fixed positional embedding.
+
+    References:
+    - [0] Masked Autoencoder, 2021. Available at: https://arxiv.org/abs/2111.06377
+    - [1] GitHub repository for Masked Autoencoder. Available at: https://github.com/facebookresearch/mae
+    - [2] Early Convolutions Help Transformers See Better, 2021. Available at: https://arxiv.org/abs/2106.14881
+    """ch.nn as nn
 
 # vision_transformer requires torchvision >= 0.12
 from torchvision.models import vision_transformer

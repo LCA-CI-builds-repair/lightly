@@ -72,7 +72,21 @@ class DockerApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def cancel_scheduled_docker_run_state_by_id(self, dataset_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the dataset")], scheduled_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the docker worker run")], **kwargs) -> None:  # noqa: E501
+    def cancel_scheduled_docker_run_state_by_id(self, dataset_id : Annotated[constr(strict=True), Field(..., descr            '/v1/docker/worker/{workerId}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))d of the dataset")], scheduled_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the docker worker run")], **kwargs) -> None:  # noqa: E501
         """cancel_scheduled_docker_run_state_by_id  # noqa: E501
 
         Cancel a scheduled run. This will fail if the state of the scheduled run is no longer OPEN (e.g when it is LOCKED)   # noqa: E501

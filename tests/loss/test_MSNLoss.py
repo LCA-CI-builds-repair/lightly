@@ -1,7 +1,19 @@
 import unittest
-from unittest import TestCase
+from unittestclass TestMSNLoss:
+    def test__init__temperature(self) -> None:
+        MSNLoss(temperature=1.0)
+        with pytest.raises(ValueError):
+            MSNLoss(temperature=0.0)
+        with pytest.raises(ValueError):
+            MSNLoss(temperature=-1.0)
 
-import pytest
+    def test__init__sinkhorn_iterations(self) -> None:
+        MSNLoss(sinkhorn_iterations=0)
+        with pytest.raises(ValueError):
+            MSNLoss(sinkhorn_iterations=-1)
+
+    def test__init__me_max_weight(self) -> None:
+        criterion = MSNLoss(regularization_weight=0.0, me_max_weight=0.5)port pytest
 import torch
 import torch.nn.functional as F
 from pytest_mock import MockerFixture

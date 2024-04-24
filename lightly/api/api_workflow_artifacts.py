@@ -16,7 +16,23 @@ class ArtifactNotExist(Exception):
 class _ArtifactsMixin:
     def download_compute_worker_run_artifacts(
         self,
-        run: DockerRunData,
+        >>> # schedule r>>> # print all corrupt samples and corruptions
+>>> for sample_name, error in corruptness_check_information.items():
+>>>     print(f"Sample '{sample_name}' is corrupt because of the error '{error}'.")n
+>>> scheduled_run_id = client.schedule_compute_worker_run(...)
+
+>>> # wait until run completed
+>>> for run_info in client.compute_worker_run_info_generator(scheduled_run_id=scheduled_run_id):
+>>>     pass
+
+>>> # download corruptness check information file
+>>> run = client.get_compute_worker_run_from_scheduled_run(scheduled_run_id=scheduled_run_id)
+>>> client.download_compute_worker_run_corruptness_check_information(run=run, output_path="corruptness_check_information.json")
+
+>>> # print all corrupt samples and corruptions
+>>> import json
+>>> with open("corruptness_check_information.json", 'r') as f:
+>>>     corruptness_check_information = json.load(f)Data,
         output_dir: str,
         timeout: int = 60,
     ) -> None:

@@ -4,8 +4,23 @@ import warnings
 from io import IOBase
 from typing import *
 
-import requests
-from requests import Response
+im        self,
+        token: Optional[str] = None,
+        dataset_id: Optional[str] = None,
+        embedding_id: Optional[str] = None,
+        creator: str = Creator.USER_PIP,
+    ):
+        try:
+            if not _version_checking.is_compatible_version(lightly.__version__):
+                warnings.warn(
+                    UserWarning(
+                        (
+                            f"Incompatible version of Lightly pip package. "
+                            f"Please upgrade to the latest version "
+                            f"to access the API."
+                        )
+                    )
+                )m requests import Response
 from urllib3.exceptions import HTTPError
 
 from lightly.__init__ import __version__

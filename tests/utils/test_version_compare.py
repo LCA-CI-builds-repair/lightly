@@ -1,6 +1,25 @@
-import unittest
-
+iimport pytest
 from lightly.utils import version_compare
+
+class TestVersionCompare:
+    def test_valid_versions(self) -> None:
+        # general test of smaller than version numbers
+        assert version_compare("0.1.4", "1.2.0") == -1
+        assert version_compare("1.1.0", "1.2.0") == -1
+
+        # test bigger than
+        assert version_compare("1.2.0", "1.1.0") == 1
+        assert version_compare("1.2.0", "0.1.4") == 1
+
+        # test equal
+        assert version_compare("1.2.0", "1.2.0") == 0
+
+    def test_invalid_versions(self) -> None:
+        with pytest.raises(ValueError):
+            version_compare("1.2", "1.1.0")
+
+        with pytest.raises(ValueError):
+            version_compare("1.2.0.1", "1.1.0")ghtly.utils import version_compare
 
 
 class TestVersionCompare(unittest.TestCase):

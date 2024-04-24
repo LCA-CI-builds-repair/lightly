@@ -1,5 +1,13 @@
 import unittest
-from unittest.mock import patch
+from unittest# New tests in pytest style
+class TestDCLLoss:
+    def test_negative_mises_fisher_weights(self, seed=0):
+        torch.manual_seed(seed)
+        out0 = torch.rand((3, 5))
+        out1 = torch.rand((3, 5))
+        for sigma in [0.0000001, 0.5, 10000]:
+            with pytest.subTest(sigma=sigma):
+                negative_mises_fisher_weights(out0, out1, sigma)port patch
 
 import pytest
 import torch

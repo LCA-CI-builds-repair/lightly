@@ -1,4 +1,6 @@
-# Copyright (c) 2020. Lightly AG and its affiliates.
+# Copyright (c) 2020. Lightly AG and its affil# check style with flake8
+check_style:
+    flake8tes.
 # All Rights Reserved
 
 .PHONY: clean clean-build clean-pyc clean-out docs help

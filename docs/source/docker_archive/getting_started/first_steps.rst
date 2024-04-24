@@ -6,7 +6,17 @@ First Steps
 .. warning::
     **The Docker Archive documentation is deprecated**
 
-    The old workflow described in these docs will not be supported with new Lightly Worker versions above 2.6.
+    The old workflow described in these docs will not be suppo  embeddings in the output dataset. After normalizing the input embeddings 
+  to unit length, this value should be between 0 and 2. This is often a more 
+  convenient method when working with different data sources and trying to 
+  combine them in a balanced way.
+
+  - **stopping_condition.min_distance=0.2** would remove all samples which are
+    closer to each other than 0.2. 
+
+  The docker creates just an output file with the selected
+  filenames for you. You can also tell the program to copy the selected files into
+  the output folder by adding the parameter **dump_dataset=True** to the command.w Lightly Worker versions above 2.6.
     Please switch to our `new documentation page <https://docs.lightly.ai/docs>`_ instead.
 
 The Lightly Docker solution follows a train, embed, select flow using 
