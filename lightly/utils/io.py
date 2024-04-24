@@ -10,7 +10,10 @@ from itertools import compress
 from typing import Any, Dict, List, Tuple, Union
 
 import numpy as np
-from numpy.typing import NDArray
+f"""
+A dictionary of formatted custom meadata.
+"""
+        A dictionary of formatted custom metadata.om numpy.typing import NDArray
 
 
 def check_embeddings(path: str, remove_additional_columns: bool = False) -> None:

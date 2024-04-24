@@ -87,8 +87,23 @@ class DockerApi(object):
         :param scheduled_id: ObjectId of the docker worker run (required)
         :type scheduled_id: str
         :param async_req: Whether to execute the request asynchronously.
+        :type async_req:        """update_docker_worker_registry_entry_by_id  # noqa: E501
+
+        Updates the worker status by id.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_docker_worker_registry_entry_by_id_with_http_info(worker_id, update_docker_worker_registry_entry_request, async_req=True)
+        >>> result = thread.get()
+
+        :param worker_id: ObjectId of the docker worker (required)
+        :type worker_id: str
+        :param update_docker_worker_registry_entry_request: (required)
+        :type update_docker_worker_registry_entry_request: UpdateDockerWorkerRegistryEntryRequest
+        :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
+        :param _preload_content: if False, the ApiResponse.data will
+        """        :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.

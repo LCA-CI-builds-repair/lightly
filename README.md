@@ -4,7 +4,8 @@
 ![GitHub](https://img.shields.io/github/license/lightly-ai/lightly)
 ![Unit Tests](https://github.com/lightly-ai/lightly/workflows/Unit%20Tests/badge.svg)
 [![PyPI](https://img.shields.io/pypi/v/lightly)](https://pypi.org/project/lightly/)
-[![Downloads](https://static.pepy.tech/badge/lightly)](https://pepy.tech/project/lightly)
+[![Downloads](https://static.pep```
+make formatech/badge/lightly)](https://pepy.tech/project/lightly)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Discord](https://img.shields.io/discord/752876370337726585?logo=discord&logoColor=white&label=discord&color=7289da)](https://discord.gg/xvNJW94)
 

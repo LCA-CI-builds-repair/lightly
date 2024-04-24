@@ -1,8 +1,7 @@
 tox
 sphinx
 pylint
-pytest
-pytest-forked
+pytestmypy==1.4.1 # Frozen version to maintain consistency between CI and local dev environmentspytest-forked
 pytest-xdist
 pytest-mock
 responses
