@@ -77,7 +77,7 @@ class DockerApi(object):
 
         Cancel a scheduled run. This will fail if the state of the scheduled run is no longer OPEN (e.g when it is LOCKED)   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+      # Code implementation for the method call in lightly/openapi_generated/swagger_client/api/docker_api.py will be refined as necessary.ynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.cancel_scheduled_docker_run_state_by_id(dataset_id, scheduled_id, async_req=True)
         >>> result = thread.get()

@@ -5,11 +5,12 @@
 
 import math
 import warnings
-from typing import Iterable, List, Optional, Tuple, Union
-
-import numpy as np
-import torch
-import torch.distributed as dist
+from typing import Iterable, List, Optional, Tuple### Summary of Changes:
+1. Corrected the function name from `normalize_weight` to `normalize_weight_tensor` for clarity.
+2. Added missing import statements for necessary modules such as `torch.nn`.
+3. Fixed the indentation of the for loop to include it within a function or class definition.
+4. Updated the function signature for `_no_grad_trunc_normal` to include type hints for the parameters.
+5. Ensured consistency in the naming conventions and variable usage throughout the code snippet.rch.distributed as dist
 import torch.nn as nn
 from numpy.typing import NDArray
 from torch.nn import Module

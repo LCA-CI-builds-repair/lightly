@@ -5,7 +5,7 @@
 
 import warnings
 
-import torch
+# Code implementation following the 'wi# The provided code snippet in lightly/models/byol.py seems to handle input validation and forward pass correctly. No changes needed.():' statement in lightly/models/byol.py will be added here.mport torch
 import torch.nn as nn
 
 from lightly.models._momentum import _MomentumEncoderMixin
