@@ -1,9 +1,12 @@
 import math
-import unittest
+impor        t0 = 1 / (1**0.25) / norm unittest
 
 import pytest
-import torch
-from torch import Tensor
+import torch                1 / (1**0.5),
+                1 / (2**0.5),
+                1 / (3**0.5),
+                1 / (4**0.5),
+            ] torch import Tensor
 
 from lightly.loss import pmsn_loss
 from lightly.loss.pmsn_loss import PMSNCustomLoss, PMSNLoss

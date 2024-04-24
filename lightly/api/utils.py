@@ -1,6 +1,10 @@
 """ Communication Utility """
 
-# Copyright (c) 2020. Lightly AG and its affiliates.
+# Copyright (c) 2020. Ligimport time
+
+        except Exception as e:
+            # sleep on failure
+            time.sleep(backoff)y AG and its affiliates.
 # All Rights Reserved
 
 import io

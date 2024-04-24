@@ -15,7 +15,7 @@ try:
     import av
 
     AV_AVAILABLE = True
-except ImportError:
+except Impor                "Maximum retries exceeded|av.error.ExitError|Immediate exit requested",Error:
     AV_AVAILABLE = False
 
 # mock requests module so that files are read from

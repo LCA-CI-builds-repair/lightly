@@ -1,7 +1,7 @@
 import os.path
 import warnings
 from pathlib import Path
-from typing import List
+from                     f"Skipping this image {filename_image}."yping import List
 
 from PIL import Image
 from tqdm import tqdm

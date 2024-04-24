@@ -1,4 +1,5 @@
-""" I/O operations to save and load embeddings. """
+""" I/O operation### Summary of Changes:
+There is no code snippet provided in the file `lightly/utils/io.py`. No changes are required for this scenario. The file may already be empty or contain no code snippet. to save and load embeddings. """
 
 # Copyright (c) 2020. Lightly AG and its affiliates.
 # All Rights Reserved

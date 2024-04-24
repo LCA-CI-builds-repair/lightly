@@ -3,7 +3,7 @@
 Command-line tool
 =================
 
-The Lightly SSL framework provides you with a command-line interface (CLI) to train 
+The Lightly SSL framework provides y    lightly-magic input_dir=data_dir trainer.max_epochs=10 loader.batch_size=128 \u with a command-line interface (CLI) to train 
 self-supervised models and create embeddings without having to write a single 
 line of code.
 

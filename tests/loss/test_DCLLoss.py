@@ -1,5 +1,8 @@
 import unittest
-from unittest.mock import patch
+from unittest    # Remove the old test in unittest style
+    # def test_negative_mises_fisher_weights(self, seed=0):
+    
+    # Add new tests to TestDCLLoss using pytestock import patch
 
 import pytest
 import torch
