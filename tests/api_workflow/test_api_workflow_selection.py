@@ -197,11 +197,10 @@ def test_selection__too_many_errors(mocker: MockerFixture) -> None:
         client.selection(selection_config=SelectionConfig(name="some-tag"))
         assert str(exception.value) == "surprise!"
         mocked_print.assert_called_once_with(
+# tests/api_workflow/test_api_workflow_selection.py
+
             "Selection job with job_id some-job-id could not be started "
             "because of error: surprise!"
-        )
-
-
 def test_upload_scores(mocker: MockerFixture) -> None:
     dataset_id = utils.generate_id()
     tags = _get_tags(dataset_id=dataset_id, tag_name="initial-tag")

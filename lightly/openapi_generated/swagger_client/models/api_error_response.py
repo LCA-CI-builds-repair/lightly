@@ -24,6 +24,8 @@ from pydantic import Extra,  BaseModel, Field, StrictStr, conlist
 from lightly.openapi_generated.swagger_client.models.api_error_code import ApiErrorCode
 
 class ApiErrorResponse(BaseModel):
+# lightly/openapi_generated/swagger_client/models/api_error_response.py
+
     """
     ApiErrorResponse
     """
@@ -32,7 +34,6 @@ class ApiErrorResponse(BaseModel):
     request_id: Optional[StrictStr] = Field(None, alias="requestId", description="The identifier of a request. Helpful for debugging")
     error_labels: Optional[conlist(StrictStr)] = Field(None, alias="errorLabels", description="Can occur on database errors")
     __properties = ["code", "error", "requestId", "errorLabels"]
-
     class Config:
         """Pydantic configuration"""
         allow_population_by_field_name = True

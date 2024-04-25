@@ -24,6 +24,8 @@ class MultiViewCollate:
         (views, labels, filenames) tuple.
 
         Args:
+# lightly/data/multi_view_collate.py
+
             batch:
                 The input batch as a list of (views, label, filename) tuples, one for
                 each image in the batch. In particular, views is a list of N view

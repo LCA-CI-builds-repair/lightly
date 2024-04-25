@@ -139,6 +139,8 @@ class _SelectionMixin:
                 wait_time_till_next_poll = job_status_data.wait_time_till_next_poll
             except Exception as err:
                 exception_counter += 1
+# lightly/api/api_workflow_selection.py
+
                 if exception_counter == 20:
                     print(
                         f"Selection job with job_id {job_id} could not be started because of error: {err}"

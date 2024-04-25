@@ -5,6 +5,8 @@ Tutorial 5: Custom Augmentations
 ==============================================
 
 In this tutorial, we will train a model on chest X-ray images in a self-supervised manner.
+# docs/source/tutorials_source/package/tutorial_custom_augmentations.py
+
 In self-supervised learning, X-ray images can pose some problems: They are often more
 than eight bits deep which makes them incompatible with certain standard torchvision
 transforms such as, for example, random-resized cropping. Additionally, some augmentations
