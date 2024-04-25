@@ -26,7 +26,8 @@ class TestTiCoLoss:
 
 
 class TestTiCoLossUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestTiCoLoss using pytest.
+# Update the test cases in TestTiCoLoss class in test_TicoLoss.py to use pytest style
+class TestTiCoLoss:
     def test_forward_pass(self):
         torch.manual_seed(0)
         loss = TiCoLoss()
@@ -34,7 +35,7 @@ class TestTiCoLossUnitTest(unittest.TestCase):
             x0 = torch.randn((bsz, 256))
             x1 = torch.randn((bsz, 256))
 
-            # symmetry
+            # Add new test cases using pytest style
             l1 = loss(x0, x1, update_covariance_matrix=False)
             l2 = loss(x1, x0, update_covariance_matrix=False)
             self.assertAlmostEqual((l1 - l2).pow(2).item(), 0.0, 2)

@@ -27,7 +27,8 @@ class TestNTXentLoss:
 
 
 class TestNTXentLossUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestNTXentLoss using pytest.
+# Update the test cases in TestNTXentLoss class in test_NTXentLoss.py to use pytest style
+class TestNTXentLoss:
     def test_with_values(self):
         for n_samples in [1, 2, 4]:
             for dimension in [1, 2, 16, 64]:
@@ -35,7 +36,7 @@ class TestNTXentLossUnitTest(unittest.TestCase):
                     for gather_distributed in [False, True]:
                         out0 = np.random.normal(0, 1, size=(n_samples, dimension))
                         out1 = np.random.normal(0, 1, size=(n_samples, dimension))
-                        with self.subTest(
+                        assert # Add appropriate pytest assertions here
                             msg=(
                                 f"out0.shape={out0.shape}, temperature={temperature}, "
                                 f"gather_distributed={gather_distributed}"
