@@ -1446,14 +1446,15 @@ class IJEPAMaskCollator:
                 if timeout == 0:
                     tries += 1
                     timeout = og_timeout
-        mask = mask.squeeze()
-        # --
-        mask_complement = torch.ones((self.height, self.width), dtype=torch.int32)
-        mask_complement[top : top + h, left : left + w] = 0
-        # --
-        return mask, mask_complement
+                    # Add indentation for the following block
+            mask = mask.squeeze()
+            # --
+            mask_complement = torch.ones((self.height, self.width), dtype=torch.int32)
+            mask_complement[top : top + h, left : left + w] = 0
+            # --
+            return mask, mask_complement
 
-    def __call__(self, batch):
+        def __call__(self, batch):
         """
         Create encoder and predictor masks when collating imgs into a batch
         # 1. sample enc block (size + location) using seed
