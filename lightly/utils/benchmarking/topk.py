@@ -10,6 +10,7 @@ def mean_topk_accuracy(
     """Computes the mean accuracy for the specified values of k.
 
     The mean is calculated over the batch dimension.
+# Add necessary import statements here
 
     Args:
         predicted_classes:

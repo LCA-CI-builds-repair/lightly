@@ -17,6 +17,8 @@ def pytest_configure(config):
     https://docs.pytest.org/en/7.1.x/reference/reference.html#pytest.hookspec.pytest_configure
 
     This hook runs before any tests are collected or run.
+import pytest
+
     """
     config.addinivalue_line("markers", "slow: mark test as slow to run")
 

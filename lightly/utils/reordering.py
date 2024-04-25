@@ -1,8 +1,8 @@
 from typing import List, Sequence, TypeVar
+from typing import List, Sequence, TypeVar
 
 _K = TypeVar("_K")
 _V = TypeVar("_V")
-
 
 def sort_items_by_keys(
     keys: Sequence[_K], items: Sequence[_V], sorted_keys: Sequence[_K]
