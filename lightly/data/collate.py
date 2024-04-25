@@ -1446,12 +1446,12 @@ class IJEPAMaskCollator:
                 if timeout == 0:
                     tries += 1
                     timeout = og_timeout
-        mask = mask.squeeze()
-        # --
-        mask_complement = torch.ones((self.height, self.width), dtype=torch.int32)
-        mask_complement[top : top + h, left : left + w] = 0
-        # --
-        return mask, mask_complement
+            mask = mask.squeeze()
+            # -- 
+            mask_complement = torch.ones((self.height, self.width), dtype=torch.int32)
+            mask_complement[top : top + h, left : left + w] = 0
+            # -- 
+            return mask, mask_complement
 
     def __call__(self, batch):
         """

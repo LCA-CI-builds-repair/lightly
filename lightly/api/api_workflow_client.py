@@ -198,12 +198,12 @@ class ApiWorkflowClient(
                 Some values belonging to the samples
 
         Returns:
-            The list reordered.
-            The same reorder applied on the filenames_for_list would put them
-            in the order of the filenames in self.filenames_on_server.
-            every filename in self.filenames_on_server must be in the
-            filenames_for_list.
-
+        """
+        The list reordered.
+        The same reorder applied on the filenames_for_list would put them
+        in the order of the filenames in self.filenames_on_server.
+        every filename in self.filenames_on_server must be in the
+        filenames_for_list.
         """
         filenames_on_server = self.get_filenames()
         list_ordered = reordering.sort_items_by_keys(
