@@ -1,11 +1,11 @@
 """ Utils for working with SSL models """
-
 # Copyright (c) 2020. Lightly AG and its affiliates.
 # All Rights Reserved
 
 import math
 import warnings
 from typing import Iterable, List, Optional, Tuple, Union
+from typing_extensions import Literal
 
 import numpy as np
 import torch
@@ -15,8 +15,6 @@ from numpy.typing import NDArray
 from torch.nn import Module
 from torch.nn.modules.batchnorm import _BatchNorm
 from torch.nn.parameter import Parameter
-
-
 @torch.no_grad()
 def batch_shuffle(
     batch: torch.Tensor, distributed: bool = False
