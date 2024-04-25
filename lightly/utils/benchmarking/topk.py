@@ -10,7 +10,10 @@ def mean_topk_accuracy(
     """Computes the mean accuracy for the specified values of k.
 
     The mean is calculated over the batch dimension.
+# Check and correct the formatting and sorting of imports
+# Ensure necessary imports are present and correctly formatted
 
+"""
     Args:
         predicted_classes:
             Tensor of shape (batch_size, num_classes) with the predicted classes sorted
@@ -22,6 +25,7 @@ def mean_topk_accuracy(
             should be computed.
 
     Returns:
+"""
         Dictionary containing the mean accuracy for each value of k. For example for
         k=(1, 5) the dictionary could look like this: {1: 0.4, 5: 0.6}.
     """
