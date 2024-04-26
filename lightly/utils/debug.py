@@ -75,7 +75,6 @@ def generate_grid_of_augmented_images(
     """Returns a grid of augmented images. Images in a column belong together.
 
     This function ignores the transforms ToTensor and Normalize for visualization purposes.
-
     Args:
         input_images:
             List of PIL images for which the augmentations should be plotted.
@@ -120,6 +119,7 @@ def plot_augmented_images(
     """Returns a figure showing original images in the left column and augmented images to their right.
 
     This function ignores the transforms ToTensor and Normalize for visualization purposes.
+    This function ignores the transforms ToTensor and Normalize for visualization purposes.
 
     Args:
         input_images:
@@ -127,8 +127,6 @@ def plot_augmented_images(
         collate_function:
             The collate function of the self-supervised learning algorithm.
             Must be of type BaseCollateFunction or MultiViewCollateFunction.
-
-    Returns:
         A figure showing the original images in the left column and the augmented
         images to their right. If the collate_function is an instance of the
         BaseCollateFunction, two example augmentations are shown. For
