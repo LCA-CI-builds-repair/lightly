@@ -5,7 +5,6 @@ _V = TypeVar("_V")
 
 
 def sort_items_by_keys(
-    keys: Sequence[_K], items: Sequence[_V], sorted_keys: Sequence[_K]
 ) -> List[_V]:
     """Sorts the items in the same order as the sorted keys.
 
@@ -17,6 +16,8 @@ def sort_items_by_keys(
         sorted_keys:
             Keys in sorted order.
 
+    Returns:
+        List of items sorted based on the sorted keys.
     Returns:
         The list of sorted items.
 

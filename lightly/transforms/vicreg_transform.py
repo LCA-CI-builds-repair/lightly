@@ -70,9 +70,9 @@ class VICRegTransform(MultiViewTransform):
         rr_degrees:
             Range of degrees to select from for random rotation. If rr_degrees is None,
             images are rotated by 90 degrees. If rr_degrees is a (min, max) tuple,
-            images are rotated by a random angle in [min, max]. If rr_degrees is a
-            single number, images are rotated by a random angle in
-            [-rr_degrees, +rr_degrees]. All rotations are counter-clockwise.
+        rotate_range:
+            A tuple specifying the range of rotation angles in degrees. If rr_degrees is a
+            single number, images are rotated by a random angle in [-rr_degrees, +rr_degrees]. All rotations are counter-clockwise.
         normalize:
             Dictionary with 'mean' and 'std' for torchvision.transforms.Normalize.
 

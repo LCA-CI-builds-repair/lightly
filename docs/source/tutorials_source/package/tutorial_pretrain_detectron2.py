@@ -51,9 +51,6 @@ For the purpose of this tutorial you will need to:
 Finally, you will need the Detectron2 configuration files. They are available `here <https://github.com/facebookresearch/detectron2/tree/main/configs>`_.
 In this tutorial we use a Faster RCNN with a feature pyramid network (FPN), so make sure you have the relevant file (Base-RCNN-FPN.yaml) in your directory.
 
-
-"""
-
 # %%
 # Imports
 # -------
@@ -61,6 +58,8 @@ In this tutorial we use a Faster RCNN with a feature pyramid network (FPN), so m
 # Import the Python frameworks we need for this tutorial.
 import torch
 from detectron2 import config, modeling
+
+# Add code here to demonstrate the usage of Faster RCNN with FPN for pretraining
 from detectron2.checkpoint import DetectionCheckpointer
 
 from lightly.data import LightlyDataset

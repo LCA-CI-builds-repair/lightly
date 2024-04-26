@@ -7,8 +7,6 @@ from urllib3.exceptions import MaxRetryError
 
 from lightly.api import _version_checking
 from lightly.openapi_generated.swagger_client.api import VersioningApi
-
-
 # Overwrite the mock_versioning_api fixture from conftest.py that is applied by default
 # for all tests as we want to test the functionality of the versioning api.
 @pytest.fixture(autouse=True)

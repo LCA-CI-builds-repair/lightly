@@ -315,6 +315,7 @@ if not isinstance(av, ModuleNotFoundError):
         """
         _check_av_available()
 
+        # Check if the timestamps are sorted strictly monotonically ascending
         if len(timestamps) == 0:
             return []
 

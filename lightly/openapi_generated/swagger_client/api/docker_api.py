@@ -2270,7 +2270,7 @@ class DockerApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        # set the HTTP header `Accept`
+        # set the HTTP header `Accept` to specify the content type to be accepted by the server
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
 
@@ -2602,8 +2602,10 @@ class DockerApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_docker_run_report_write_url_by_id(self, run_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the docker run")], **kwargs) -> str:  # noqa: E501
-        """(Deprecated) get_docker_run_report_write_url_by_id  # noqa: E501
+    def get_docker_run_report_write_url_by_id(self, run_id: Annotated[constr(strict=True), Field(..., description="ObjectId of the docker run")], **kwargs) -> str:  # noqa: E501
+        """
+        (Deprecated) get_docker_run_report_write_url_by_id  
+        """
 
         DEPRECATED, use createDockerRunArtifact - Get the signed url to upload a report of a docker run  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2635,110 +2637,9 @@ class DockerApi(object):
         """(Deprecated) get_docker_run_report_write_url_by_id  # noqa: E501
 
         DEPRECATED, use createDockerRunArtifact - Get the signed url to upload a report of a docker run  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_docker_run_report_write_url_by_id_with_http_info(run_id, async_req=True)
-        >>> result = thread.get()
-
-        :param run_id: ObjectId of the docker run (required)
-        :type run_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        warnings.warn("GET /v1/docker/runs/{runId}/writeReportUrl is deprecated.", DeprecationWarning)
-
-        _params = locals()
-
-        _all_params = [
-            'run_id'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
         )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_docker_run_report_write_url_by_id" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['run_id']:
-            _path_params['runId'] = _params['run_id']
-
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['auth0Bearer', 'ApiKeyAuth']  # noqa: E501
-
-        _response_types_map = {
-            '200': "str",
-            '400': "ApiErrorResponse",
-            '401': "ApiErrorResponse",
-            '403': "ApiErrorResponse",
-            '404': "ApiErrorResponse",
-        }
-
-        return self.api_client.call_api(
-            '/v1/docker/runs/{runId}/writeReportUrl', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
             async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),

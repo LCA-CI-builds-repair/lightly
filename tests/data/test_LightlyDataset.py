@@ -133,22 +133,9 @@ class TestLightlyDataset(unittest.TestCase):
             sample, target, fname = dataset[i]
 
     def test_check_images(self):
-        # create a dataset
-        tmp_dir = tempfile.mkdtemp()
-        n_healthy = 100
-        n_corrupt = 20
-
-        dataset = torchvision.datasets.FakeData(size=n_healthy, image_size=(3, 32, 32))
-        sample_names = [f"img_{i}.jpg" for i in range(n_healthy)]
-        for sample_name, data in zip(sample_names, dataset):
-            path = os.path.join(tmp_dir, sample_name)
-            data[0].save(path)
-
-        corrupt_sample_names = [
-            f"img_{i}.jpg" for i in range(n_healthy, n_healthy + n_corrupt)
-        ]
         for sample_name in corrupt_sample_names:
             path = os.path.join(tmp_dir, sample_name)
+            # Add code here to save the corrupt sample images to the temporary directory
             with open(path, "a") as f:
                 f.write("this_is_not_an_image")
 
