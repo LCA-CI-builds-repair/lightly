@@ -197,8 +197,7 @@ def test_selection__too_many_errors(mocker: MockerFixture) -> None:
         client.selection(selection_config=SelectionConfig(name="some-tag"))
         assert str(exception.value) == "surprise!"
         mocked_print.assert_called_once_with(
-            "Selection job with job_id some-job-id could not be started "
-            "because of error: surprise!"
+"Selection job with job_id some-job-id could not be started due to the following error: surprise!"
         )
 
 

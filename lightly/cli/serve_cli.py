@@ -13,13 +13,13 @@ def lightly_serve(cfg):
 
     Command-Line Args:
         input_mount:
-            Path to the input directory.
+            # Path to the input directory.
         lightly_mount:
-            Path to the Lightly directory.
+            # Path to the Lightly directory.
         host:
-            Hostname for serving the data (defaults to localhost).
+            # Hostname for serving the data (defaults to localhost).
         port:
-            Port for serving the data (defaults to 3456).
+            # Port for serving the data (defaults to 3456).
 
     Examples:
         >>> lightly-serve input_mount=data/ lightly_mount=lightly/ port=3456

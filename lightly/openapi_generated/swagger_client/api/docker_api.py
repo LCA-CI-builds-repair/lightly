@@ -515,8 +515,8 @@ class DockerApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_docker_run_artifact(self, run_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the docker run")], docker_run_artifact_create_request : DockerRunArtifactCreateRequest, **kwargs) -> DockerRunArtifactCreatedData:  # noqa: E501
-        """create_docker_run_artifact  # noqa: E501
+    def create_docker_run_artifact(self, run_id: Annotated[constr(strict=True), Field(..., description="ObjectId of the docker run")], docker_run_artifact_create_request: DockerRunArtifactCreateRequest, **kwargs) -> DockerRunArtifactCreatedData:  # noqa: E501
+        """Create a docker run artifact."""  # noqa: E501
 
         creates a docker run artifact and returns the writeUrl and artifactId to upload and confirm  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2645,10 +2645,7 @@ class DockerApi(object):
         :type run_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
+        :param _preload_content: If False, the ApiResponse.data will be set to none and raw_data will store the HTTP response body without reading/decoding. Default is True.
         :type _preload_content: bool, optional
         :param _return_http_data_only: response data instead of ApiResponse
                                        object with status code, headers, etc

@@ -174,9 +174,9 @@ class _ExportDatasetMixin:
 
         Args:
             tag_id:
-                ID of the tag which should exported.
+                ID of the tag which should be exported.
         Returns:
-            A list of dictionaries in a format compatible with Labelbox v4.
+            A list of dictionaries representing samples in a format compatible with Labelbox v4.
 
         Examples:
             >>> client = ApiWorkflowClient(token="MY_AWESOME_TOKEN")

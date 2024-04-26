@@ -259,10 +259,9 @@ class _ComputeWorkerMixin:
             eb_error = eb.get("error")
             if str(e.status)[0] == "4" and eb_code is not None and eb_error is not None:
                 raise ValueError(
-                    f"Trying to schedule your job resulted in\n"
+                    f"Trying to schedule your job resulted in:\n"
                     f">> {eb_code}\n>> {json.dumps(eb_error, indent=4)}\n"
-                    f">> Please fix the issue mentioned above and see our docs "
-                    f"https://docs.lightly.ai/docs/all-configuration-options for more help."
+                    f">> Please fix the issue mentioned above and refer to our docs at https://docs.lightly.ai/docs/all-configuration-options for further assistance."
                 ) from e
             else:
                 raise e
@@ -359,6 +358,7 @@ class _ComputeWorkerMixin:
             )
 
     def get_compute_worker_runs(
+    def get_compute_worker_runs(
         self,
         dataset_id: Optional[str] = None,
     ) -> List[DockerRunData]:
@@ -370,7 +370,7 @@ class _ComputeWorkerMixin:
                 will be returned.
 
         Returns:
-            Runs sorted by creation time from the oldest to the latest.
+            A list of DockerRunData objects representing the Lightly Worker runs.
 
         Examples:
             >>> client = ApiWorkflowClient(token="MY_AWESOME_TOKEN")

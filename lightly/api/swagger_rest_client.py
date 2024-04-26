@@ -56,7 +56,7 @@ class PatchRESTClientObjectMixin:
         # Set default timeout. This is necessary because the openapi client does not
         # respect timeouts configured by urllib3. Instead it expects a timeout to be
         # passed with every request. See code here:
-        # https://github.com/lightly-ai/lightly/blob/ffbd32fe82f76b37c8ac497640355314474bfc3b/lightly/openapi_generated/swagger_client/rest.py#L141-L148
+        # Set _request_timeout to self.timeout if not specified
         if _request_timeout is None:
             _request_timeout = self.timeout
 

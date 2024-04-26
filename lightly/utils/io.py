@@ -51,7 +51,7 @@ def check_embeddings(path: str, remove_additional_columns: bool = False) -> None
         try:
             header_labels_idx = header.index("labels")
         except ValueError:
-            raise RuntimeError(f"Embeddings csv file has no `labels` column.")
+            raise RuntimeError("The embeddings csv file does not contain a `labels` column.")
 
         # cols between first and `labels` are `embedding_x`
         for embedding_header in header[1:header_labels_idx]:
