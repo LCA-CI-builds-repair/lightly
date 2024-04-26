@@ -43,13 +43,16 @@ class TestUtils(unittest.TestCase):
         image = Image.new("RGB", (128, 128))
 
         # test with quality=None
-        PIL_to_bytes(image)
+        result_none = PIL_to_bytes(image)
+        self.assertIsNotNone(result_none)
 
         # test with quality=90
-        PIL_to_bytes(image, quality=90)
+        result_quality_90 = PIL_to_bytes(image, quality=90)
+        self.assertIsNotNone(result_quality_90)
 
         # test with quality=90 and ext=jpg
-        PIL_to_bytes(image, ext="JPEG", quality=90)
+        result_quality_90_jpg = PIL_to_bytes(image, ext="JPEG", quality=90)
+        self.assertIsNotNone(result_quality_90_jpg)
 
     def test_get_signed_url_destination(self):
         # S3

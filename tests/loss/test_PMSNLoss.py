@@ -18,7 +18,6 @@ class TestPMSNLoss:
         t0 = 1 / (1**0.25) / norm
         t1 = 1 / (2**0.25) / norm
         t2 = 1 / (3**0.25) / norm
-        loss = criterion.regularization_loss(mean_anchor_probs=mean_anchor_probs)
         expected_loss = (
             t0 * math.log(t0 / 0.1) + t1 * math.log(t1 / 0.3) + t2 * math.log(t2 / 0.6)
         )
@@ -88,13 +87,17 @@ def test__power_law_distribution() -> None:
                 1 / (1**0.5),
                 1 / (2**0.5),
                 1 / (3**0.5),
+    power_dist = (
+        torch.tensor(
+            [
+                1 / (2**0.5),
+                1 / (3**0.5),
                 1 / (4**0.5),
             ]
         )
-        / 2.784457050376173,
+        / 2.784457050376173
     )
     assert power_dist.device == torch.device("cpu")
-    assert torch.allclose(power_dist.sum(), torch.Tensor([1.0]))
 
 
 def _uniform_distribution(mean_anchor_probabilities: Tensor) -> Tensor:

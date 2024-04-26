@@ -66,7 +66,7 @@ class PredictionTaskSchema(BaseModel):
         if not isinstance(v, PredictionTaskSchemaSimple):
             error_messages.append(f"Error! Input type `{type(v)}` is not `PredictionTaskSchemaSimple`")
         else:
-            match += 1
+        match += 1
         # validate data type: PredictionTaskSchemaKeypoint
         if not isinstance(v, PredictionTaskSchemaKeypoint):
             error_messages.append(f"Error! Input type `{type(v)}` is not `PredictionTaskSchemaKeypoint`")

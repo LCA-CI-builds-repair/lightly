@@ -90,7 +90,7 @@ class PredictionSingleton(BaseModel):
         if not isinstance(v, PredictionSingletonInstanceSegmentation):
             error_messages.append(f"Error! Input type `{type(v)}` is not `PredictionSingletonInstanceSegmentation`")
         else:
-            match += 1
+        match += 1
         # validate data type: PredictionSingletonKeypointDetection
         if not isinstance(v, PredictionSingletonKeypointDetection):
             error_messages.append(f"Error! Input type `{type(v)}` is not `PredictionSingletonKeypointDetection`")
