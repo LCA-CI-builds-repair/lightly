@@ -109,7 +109,7 @@ class ApiWorkflowClient(
             # Any error by API client if status not in [200, 299].
             ApiException,
             # Any error by urllib3 from within API client. Happens for failed requests
-            # that are not handled by API client. For example if there is no internet
+            # that are not handled by API client. For example, if there is no internet
             # connection or a timeout.
             HTTPError,
         ):

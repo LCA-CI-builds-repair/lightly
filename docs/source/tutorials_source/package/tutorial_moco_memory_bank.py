@@ -19,7 +19,6 @@ to compensate for the smaller batch size. MoCo takes this approach
 one step further by including a momentum encoder.
 
 We use the **CIFAR-10** dataset for this tutorial.
-
 In this tutorial you will learn:
 
 - How to use lightly to load a dataset and train a model

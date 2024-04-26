@@ -84,8 +84,6 @@ class UnseekableTimestampError(VideoError):
 # if a new worker accesses the dataset. Note that changes to the dataset class
 # by a worker are unique to that worker and not seen by other workers or the
 # main process.
-
-
 class VideoLoader(threading.local):
     """Implementation of VideoLoader.
 

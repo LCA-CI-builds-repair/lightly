@@ -145,19 +145,28 @@ class TestLightlyDataset(unittest.TestCase):
             data[0].save(path)
 
         corrupt_sample_names = [
-            f"img_{i}.jpg" for i in range(n_healthy, n_healthy + n_corrupt)
-        ]
-        for sample_name in corrupt_sample_names:
-            path = os.path.join(tmp_dir, sample_name)
-            with open(path, "a") as f:
-                f.write("this_is_not_an_image")
+# Fix CI in order for tests to pass. Relevant logs:
+# mypy lightly tests
+# lightly/loss/ssley_loss.py:6: note: In module imported here:
+# lightly/utils/dist.py: note: In class "GatherLayer":
+# lightly/utils/dist.py:19: error: Signature of "forward" incompatible with supertype "Function"  [override]
+# lightly/utils/dist.py:19: note: Error code "override" not covered by "type: ignore" comment
+# lightly/utils/dist.py:19: note:      Superclass:
+# lightly/utils/dist.py:19: note:          @staticmethod
 
-        # tests
-        healthy_images, corrupt_images = check_images(tmp_dir)
-        assert len(healthy_images) == n_healthy
-        assert len(corrupt_images) == n_corrupt
+        f"img_{i}.jpg" for i in range(n_healthy, n_healthy + n_corrupt)
+    ]
+    for sample_name in corrupt_sample_names:
+        path = os.path.join(tmp_dir, sample_name)
+        with open(path, "a") as f:
+            f.write("this_is_not_an_image")
 
-    def test_not_existing_folder_dataset(self):
+    # tests
+    healthy_images, corrupt_images = check_images(tmp_dir)
+    assert len(healthy_images) == n_healthy
+    assert len(corrupt_images) == n_corrupt
+
+def test_not_existing_folder_dataset(self):
         with self.assertRaises(ValueError):
             LightlyDataset("/a-random-hopefully-non/existing-path-to-nowhere/")
 
