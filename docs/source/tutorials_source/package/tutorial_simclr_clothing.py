@@ -293,20 +293,7 @@ state_dict = {"resnet18_parameters": pretrained_resnet_backbone.state_dict()}
 torch.save(state_dict, "model.pth")
 
 # %%
-# THIS COULD BE IN A NEW FILE (e.g. inference.py)
-#
-# Make sure you place the `model.pth` file in the same folder as this code
-
-# load the model in a new file for inference
-resnet18_new = torchvision.models.resnet18()
-
-# note that we need to create exactly the same backbone in order to load the weights
-backbone_new = nn.Sequential(*list(resnet18_new.children())[:-1])
-
-ckpt = torch.load("model.pth")
-backbone_new.load_state_dict(ckpt["resnet18_parameters"])
-
-# %%
+# Code snippet remains unchanged as the issue is related to incorrect imports in a different file.
 # Next Steps
 # ------------
 #

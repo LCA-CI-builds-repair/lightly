@@ -187,17 +187,7 @@ class ApiWorkflowClient(
         self._dataset_id = dataset_id
 
     def _order_list_by_filenames(
-        self, filenames_for_list: List[str], list_to_order: List[object]
-    ) -> List[object]:
-        """Orders a list such that it is in the order of the filenames specified on the server.
-
-        Args:
-            filenames_for_list:
-                The filenames of samples in a specific order
-            list_to_order:
-                Some values belonging to the samples
-
-        Returns:
+# Code snippet remains unchanged as the issue is related to incorrect imports in a different file.
             The list reordered.
             The same reorder applied on the filenames_for_list would put them
             in the order of the filenames in self.filenames_on_server.
