@@ -19,6 +19,7 @@ def pytest_configure(config):
     This hook runs before any tests are collected or run.
     """
     config.addinivalue_line("markers", "slow: mark test as slow to run")
+    """
 
     # This avoids running a version check when importing anything from lightly.
     # See lightly/__init__.py. Note that we cannot mock the version check

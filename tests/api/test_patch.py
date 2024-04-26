@@ -46,7 +46,5 @@ def test_make_swagger_configuration_picklable() -> None:
     assert all(new_config.__dict__[key] == value for key, value in expected.items())
 
     # Extra assertions for attributes ignored in the tests above.
-    assert isinstance(new_config.__dict__["logger_formatter"], logging.Formatter)
-    assert isinstance(
-        new_config.__dict__["logger_stream_handler"], logging.StreamHandler
-    )
+    assert isinstance(new_config.logger_formatter, logging.Formatter)
+    assert isinstance(new_config.logger_stream_handler, logging.StreamHandler)
