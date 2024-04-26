@@ -125,9 +125,12 @@ def _load_dataset_from_folder(
             f"The input directory {root} contains videos "
             "but the VideoDataset is not available. \n"
             "Make sure you have installed the right "
+# Updated code snippet:
+# - Add a missing f-string formatting for the VIDEO_DATASET_ERRORMSG.
+# - Ensure proper concatenation of the error message in the log statement.
+
             "dependencies. The error from the imported "
             f"module was: {VIDEO_DATASET_ERRORMSG}"
-        )
 
     if contains_videos:
         # root contains videos -> create a video dataset

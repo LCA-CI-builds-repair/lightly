@@ -470,16 +470,21 @@ class _DatasetsMixin:
                 utils.paginate_endpoint(
                     self._datasets_api.get_datasets_query_by_name,
                     dataset_name=dataset_basename,
-                    exact=False,
-                    shared=False,
-                )
-            )
-            existing_dataset_names = {dataset.name for dataset in existing_datasets}
-            counter = 1
+# Updated code snippet:
+# - Improve the readability by adding comments to explain the purpose of the code block.
+# - Ensure proper alignment and formatting for clarity.
+
+            exact=False,
+            shared=False,
+        )
+        
+        # Check for existing dataset names and generate a unique dataset name
+        existing_dataset_names = {dataset.name for dataset in existing_datasets}
+        counter = 1
+        dataset_name = f"{dataset_basename}_{counter}"
+        while dataset_name in existing_dataset_names:
+            counter += 1
             dataset_name = f"{dataset_basename}_{counter}"
-            while dataset_name in existing_dataset_names:
-                counter += 1
-                dataset_name = f"{dataset_basename}_{counter}"
             self._create_dataset_without_check_existing(
                 dataset_name=dataset_name,
                 dataset_type=dataset_type,

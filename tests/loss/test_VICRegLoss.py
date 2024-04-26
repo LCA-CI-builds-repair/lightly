@@ -28,17 +28,28 @@ class TestVICRegLoss:
 
 
 class TestVICRegLossUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestVICRegLoss using pytest.
-    def test_forward_pass(self):
-        loss = VICRegLoss()
-        for bsz in range(2, 4):
-            x0 = torch.randn((bsz, 32))
-            x1 = torch.randn((bsz, 32))
+# Updated code snippet:
+# - Convert the existing test method from unittest style to pytest style.
+# - Add the test method to the TestVICRegLoss class.
+# - Use pytest.approx to check the equality of floating-point values.
 
-            # symmetry
-            l1 = loss(x0, x1)
-            l2 = loss(x1, x0)
-            self.assertAlmostEqual((l1 - l2).pow(2).item(), 0.0)
+import pytest
+import torch
+from tests.loss.test_VICRegLoss import TestVICRegLoss
+from your_module import VICRegLoss
+
+class TestVICRegLoss:
+    
+    @pytest.mark.parametrize("bsz", [2, 3])
+    def test_forward_pass(self, bsz):
+        loss = VICRegLoss()
+        x0 = torch.randn((bsz, 32))
+        x1 = torch.randn((bsz, 32))
+
+        # symmetry
+        l1 = loss(x0, x1)
+        l2 = loss(x1, x0)
+        assert pytest.approx((l1 - l2).pow(2).item()) == 0.0
 
     @unittest.skipUnless(torch.cuda.is_available(), "Cuda not available")
     def test_forward_pass_cuda(self):

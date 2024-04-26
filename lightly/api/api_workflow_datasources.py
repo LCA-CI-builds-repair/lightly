@@ -876,6 +876,11 @@ class _DatasourcesMixin:
 
 
 def _sample_unseen_and_valid(
+# Updated code snippet:
+# - Add missing indentation to properly define the function.
+# - Ensure consistent formatting and clarity in the code comments for better understanding.
+
+def your_function_name_here(
     sample: DatasourceRawSamplesDataRow,
     relevant_filenames_file_name: Optional[str],
     listed_filenames: Set[str],

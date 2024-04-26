@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+# Updated code snippet:
+# - Add a missing closing triple quotes to properly end the multiline comment.
+# - Ensure the comment is properly formatted and closed for consistency.
+
 """
 Note that this benchmark also supports a multi-GPU setup. If you run it on
 a system with multiple GPUs make sure that you kill all the processes when
@@ -6,6 +10,7 @@ killing the application. Due to the way we setup this benchmark the distributed
 processes might continue the benchmark if one of the nodes is killed.
 If you know how to fix this don't hesitate to create an issue or PR :)
 You can download the ImageNette dataset from here: https://github.com/fastai/imagenette
+"""
 
 Code has been tested on a A6000 GPU with 48GBytes of memory.
 

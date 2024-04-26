@@ -30,8 +30,18 @@ class DatasourceConfigBase(BaseModel):
     """
     id: Optional[constr(strict=True)] = Field(None, description="MongoDB ObjectId")
     purpose: DatasourcePurpose = Field(...)
+# Updated code snippet:
+# - Improve the readability of the docstring for the 'thumb_suffix' field.
+# - Break down the description into bullet points for better clarity.
+
     type: StrictStr = Field(...)
-    thumb_suffix: Optional[StrictStr] = Field(None, alias="thumbSuffix", description="the suffix of where to find the thumbnail image. If none is provided, the full image will be loaded where thumbnails would be loaded otherwise. - [filename]: represents the filename without the extension - [extension]: represents the files extension (e.g jpg, png, webp) ")
+    thumb_suffix: Optional[StrictStr] = Field(
+        None,
+        alias="thumbSuffix",
+        description="The suffix of where to find the thumbnail image. If none is provided, the full image will be loaded where thumbnails would be loaded otherwise."
+                    "- [filename]: represents the filename without the extension "
+                    "- [extension]: represents the files extension (e.g jpg, png, webp)"
+    )
     __properties = ["id", "purpose", "type", "thumbSuffix"]
 
     @validator('id')

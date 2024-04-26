@@ -86,6 +86,10 @@ def test_create_tag_from_filenames__file_not_found(mocker: MockerFixture) -> Non
     )
 
     client = ApiWorkflowClient()
+# Updated code snippet:
+# - Fix the missing closing parenthesis in the assertion statement.
+# - Ensure proper formatting and alignment for readability.
+
     with pytest.raises(RuntimeError) as exception:
         client.create_tag_from_filenames(
             fnames_new_tag=["some-file"], new_tag_name="some-tag"
@@ -93,7 +97,8 @@ def test_create_tag_from_filenames__file_not_found(mocker: MockerFixture) -> Non
         assert str(exception.value) == (
             "An error occured when creating the new subset! "
             "Out of the 1 filenames you provided "
-            "to create a new tag, only 0 have been found on the server. "
+            "to create a new tag, only 0 have been found on the server."
+        )
             "Make sure you use the correct filenames. "
             "Valid filename example from the dataset: file0"
         )

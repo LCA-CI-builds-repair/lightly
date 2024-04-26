@@ -26,13 +26,25 @@ class TestTiCoLoss:
 
 
 class TestTiCoLossUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestTiCoLoss using pytest.
-    def test_forward_pass(self):
-        torch.manual_seed(0)
+# Updated code snippet:
+# - Convert the existing test method from unittest style to pytest style.
+# - Add the test method to the TestTiCoLoss class.
+# - Use pytest fixtures to handle the seed parameter.
+# - Use pytest.mark.parametrize to iterate over different batch sizes for testing.
+
+import pytest
+import torch
+from tests.loss.test_TicoLoss import TestTiCoLoss
+from your_module import TiCoLoss
+
+class TestTiCoLoss:
+    
+    @pytest.mark.parametrize("bsz", [2, 3])
+    def test_forward_pass(self, bsz, seed):
+        torch.manual_seed(seed)
         loss = TiCoLoss()
-        for bsz in range(2, 4):
-            x0 = torch.randn((bsz, 256))
-            x1 = torch.randn((bsz, 256))
+        x0 = torch.randn((bsz, 256))
+        x1 = torch.randn((bsz, 256))
 
             # symmetry
             l1 = loss(x0, x1, update_covariance_matrix=False)

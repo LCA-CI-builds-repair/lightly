@@ -349,8 +349,12 @@ class _ArtifactsMixin:
             >>> # print all corrupt samples and corruptions
             >>> with open("corruptness_check_information.json", 'r') as f:
             >>>     corruptness_check_information = json.load(f)
-            >>> for sample_name, error in corruptness_check_information["corrupt_samples"].items():
-            >>>     print(f"Sample '{sample_name}' is corrupt because of the error '{error}'.")
+# Updated code snippet:
+# - Fix the indentation of the code block to align properly with the Python syntax.
+# - Remove the unnecessary '>>>' characters as they are typically used in interactive Python sessions.
+
+for sample_name, error in corruptness_check_information["corrupt_samples"].items():
+    print(f"Sample '{sample_name}' is corrupt because of the error '{error}'.")
 
         """
         self._download_compute_worker_run_artifact_by_type(

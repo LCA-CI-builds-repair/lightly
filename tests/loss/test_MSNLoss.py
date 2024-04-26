@@ -32,12 +32,21 @@ class TestMSNLoss:
 
 
 class TestMSNLossUnitTest(TestCase):
-    # Old tests in unittest style, please add new tests to TestMSNLoss using pytest.
+# Updated code snippet:
+# - Convert the existing test method from unittest style to pytest style.
+# - Add the test method to the TestMSNLoss class.
+# - Use pytest.raises context manager to handle the ValueError assertions.
+
+import pytest
+from your_module import MSNLoss
+
+class TestMSNLoss:
+    
     def test__init__temperature(self) -> None:
         MSNLoss(temperature=1.0)
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             MSNLoss(temperature=0.0)
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             MSNLoss(temperature=-1.0)
 
     def test__init__sinkhorn_iterations(self) -> None:

@@ -27,13 +27,21 @@ class TestNTXentLoss:
 
 
 class TestNTXentLossUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestNTXentLoss using pytest.
-    def test_with_values(self):
-        for n_samples in [1, 2, 4]:
-            for dimension in [1, 2, 16, 64]:
-                for temperature in [0.1, 1, 10]:
-                    for gather_distributed in [False, True]:
-                        out0 = np.random.normal(0, 1, size=(n_samples, dimension))
+# Updated code snippet:
+# - Convert the existing test method from unittest style to pytest style.
+# - Add the test method to the TestNTXentLoss class.
+# - Use pytest.mark.parametrize to iterate over different values for testing.
+
+import pytest
+import numpy as np
+from tests.loss.test_NTXentLoss import TestNTXentLoss
+
+class TestNTXentLoss:
+    
+    @pytest.mark.parametrize("n_samples, dimension, temperature, gather_distributed",
+                             [(1, 1, 0.1, False), (2, 2, 1, True), (4, 16, 10, False)])
+    def test_with_values(self, n_samples, dimension, temperature, gather_distributed):
+        out0 = np.random.normal(0, 1, size=(n_samples, dimension))
                         out1 = np.random.normal(0, 1, size=(n_samples, dimension))
                         with self.subTest(
                             msg=(

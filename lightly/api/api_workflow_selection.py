@@ -146,8 +146,11 @@ class _SelectionMixin:
                     raise err
 
         if job_status_data.status == JobState.FAILED:
+# Updated code snippet:
+# - Ensure the error message is properly formatted and clear in the RuntimeError raised.
+
             raise RuntimeError(
-                f"Selection job with job_id {job_id} failed with error {job_status_data.error}"
+                f"Selection job with job_id {job_id} failed with error: {job_status_data.error}"
             )
 
         # get the new tag from the job status

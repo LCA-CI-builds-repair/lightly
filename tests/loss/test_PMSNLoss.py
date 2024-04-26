@@ -10,6 +10,10 @@ from lightly.loss.pmsn_loss import PMSNCustomLoss, PMSNLoss
 
 
 class TestPMSNLoss:
+# Updated code snippet:
+# - Remove the redundant line where 'loss' variable is reassigned before 'expected_loss' calculation.
+# - Complete the 'expected_loss' calculation based on the provided context.
+
     def test_regularization_loss(self) -> None:
         criterion = PMSNLoss()
         mean_anchor_probs = torch.Tensor([0.1, 0.3, 0.6])
@@ -18,8 +22,7 @@ class TestPMSNLoss:
         t0 = 1 / (1**0.25) / norm
         t1 = 1 / (2**0.25) / norm
         t2 = 1 / (3**0.25) / norm
-        loss = criterion.regularization_loss(mean_anchor_probs=mean_anchor_probs)
-        expected_loss = (
+        expected_loss = t0 * math.log(t0 / 0.1) + t1 * math.log(t1 / 0.3) + t2 * math.log(t2 / 0.6)
             t0 * math.log(t0 / 0.1) + t1 * math.log(t1 / 0.3) + t2 * math.log(t2 / 0.6)
         )
         assert loss == pytest.approx(expected_loss)

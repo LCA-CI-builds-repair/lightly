@@ -194,7 +194,11 @@ if not isinstance(av, ModuleNotFoundError):
             if num_frames == 0:
                 stream.thread_type = thread_type
                 for _ in container.decode(stream):
-                    num_frames += 1
+# Updated code snippet:
+# - Add a comment to describe the purpose of the code block.
+# - Ensure proper formatting and clarity in the code.
+
+        num_frames += 1
         return num_frames
 
     def all_video_frame_counts(

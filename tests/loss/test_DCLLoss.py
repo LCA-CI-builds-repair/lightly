@@ -27,14 +27,26 @@ class TestDCLLoss:
 
 
 class TestDCLUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestDCLLoss using pytest.
-    def test_negative_mises_fisher_weights(self, seed=0):
+# Updated code snippet:
+# - Convert the existing test method from unittest style to pytest style.
+# - Add the test method to the TestDCLLoss class.
+# - Use pytest fixtures to handle the seed parameter.
+# - Use pytest.mark.parametrize to iterate over different sigma values for testing.
+
+import pytest
+import torch
+from tests.loss.test_DCLLoss import TestDCLLoss
+from your_module import negative_mises_fisher_weights
+
+class TestDCLLoss:
+    
+    @pytest.mark.parametrize("sigma", [0.0000001, 0.5, 10000])
+    def test_negative_mises_fisher_weights(self, seed):
         torch.manual_seed(seed)
         out0 = torch.rand((3, 5))
         out1 = torch.rand((3, 5))
-        for sigma in [0.0000001, 0.5, 10000]:
-            with self.subTest(sigma=sigma):
-                negative_mises_fisher_weights(out0, out1, sigma)
+        
+        negative_mises_fisher_weights(out0, out1, sigma)
 
     def test_dclloss_forward(self, seed=0):
         torch.manual_seed(seed=seed)

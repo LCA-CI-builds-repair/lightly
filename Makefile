@@ -44,8 +44,11 @@ format-check:
 	@echo "⚫ Checking code format..."
 	isort --check-only --diff .
 	black --check .
+# Updated code snippet:
+# - Add a target in the Makefile to check the code style using flake8.
 
-# check style with flake8
+check_style:
+    flake8
 lint: lint-lightly lint-tests
 
 ## check lightly style with flake8

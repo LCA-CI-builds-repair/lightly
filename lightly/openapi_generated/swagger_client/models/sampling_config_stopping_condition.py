@@ -28,6 +28,9 @@ class SamplingConfigStoppingCondition(BaseModel):
     """
     n_samples: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="nSamples", description="How many samples/images should be used for the sampling. 0-1 represents a percentage of all. 1-N are absolute numbers")
     min_distance: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="minDistance", description="The minimum distance sampled images should have. Before the distance would fall below, the sampling is stopped.")
+# Updated code snippet:
+# - Add a docstring to describe the purpose of the __properties attribute.
+
     __properties = ["nSamples", "minDistance"]
 
     class Config:

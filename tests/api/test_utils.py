@@ -36,19 +36,23 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(env, "hello world")
 
     def test_getenv_fail(self):
+# Updated code snippet:
+# - Add comments to describe each test case being performed.
+# - Ensure clear separation and readability of the test cases.
+
         env = getenv("TEST_ENV_VARIABLE_WHICH_DOES_NOT_EXIST", "hello world")
         self.assertEqual(env, "hello world")
 
     def test_PIL_to_bytes(self):
         image = Image.new("RGB", (128, 128))
 
-        # test with quality=None
+        # Test PIL_to_bytes with quality=None
         PIL_to_bytes(image)
 
-        # test with quality=90
+        # Test PIL_to_bytes with quality=90
         PIL_to_bytes(image, quality=90)
 
-        # test with quality=90 and ext=jpg
+        # Test PIL_to_bytes with quality=90 and ext=jpg
         PIL_to_bytes(image, ext="JPEG", quality=90)
 
     def test_get_signed_url_destination(self):
