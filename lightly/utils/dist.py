@@ -7,28 +7,24 @@ from torch.autograd import Function
 
 
 class GatherLayer(Function):
-    """Gather tensors from all processes, supporting backward propagation.
+import torch
+from torch import distributed as dist
 
-    This code was taken and adapted from here:
-    https://github.com/Spijkervet/SimCLR
-
-    """
-
-    # Type ignore is required because superclass uses Any type for ctx.
-    @staticmethod
-    def forward(ctx: Any, input: Tensor) -> Tuple[Tensor, ...]:  # type: ignore[misc]
-        ctx.save_for_backward(input)
-        output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
-        dist.all_gather(output, input)
-        return tuple(output)
+def forward(ctx: Any, input: Tensor) -> Tuple[Tensor, ...]:  
+    ctx.save_for_backward(input)
+    output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
+    dist.all_gather(output, input)
+    return tuple(output)
 
     # Type ignore is required because superclass uses Any type for ctx.
-    @staticmethod
-    def backward(ctx: Any, *grads: Tensor) -> Tensor:  # type: ignore[misc]
-        (input,) = ctx.saved_tensors
-        grad_out = torch.empty_like(input)
-        grad_out[:] = grads[dist.get_rank()]
-        return grad_out
+import torch
+from torch import distributed as dist
+
+def forward(ctx: Any, input: Tensor) -> Tuple[Tensor, ...]:  
+    ctx.save_for_backward(input)
+    output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
+    dist.all_gather(output, input)
+    return tuple(output)
 
 
 def rank() -> int:
@@ -37,14 +33,14 @@ def rank() -> int:
 
 
 def world_size() -> int:
+from torch import distributed as dist
+
+def get_rank() -> int:
+    return dist.get_rank() if dist.is_initialized() else 0
+
+def world_size() -> int:
     """Returns the current world size (number of distributed processes)."""
     return dist.get_world_size() if dist.is_initialized() else 1
-
-
-def gather(input: Tensor) -> Tuple[Tensor]:
-    """Gathers this tensor from all processes. Supports backprop."""
-    # Type ignore is required because Function.apply is untyped.
-    return GatherLayer.apply(input)  # type: ignore
 
 
 def eye_rank(n: int, device: Optional[torch.device] = None) -> Tensor:
