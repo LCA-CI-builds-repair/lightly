@@ -1,20 +1,6 @@
 """ Contrastive Loss Functions """
-
-# Copyright (c) 2020. Lightly AG and its affiliates.
-# All Rights Reserved
-
-from typing import Sequence, Union
-
-import torch
-from torch import distributed as torch_dist
-from torch import nn
-
-from lightly.models.modules.memory_bank import MemoryBankModule
-from lightly.utils import dist
-
-
 class NTXentLoss(MemoryBankModule):
-    """Implementation of the Contrastive Cross Entropy Loss.
+    """Implementation of the Contrastive Cross Entropy Loss."""
 
     This implementation follows the SimCLR[0] paper. If you enable the memory
     bank by setting the `memory_bank_size` value > 0 the loss behaves like

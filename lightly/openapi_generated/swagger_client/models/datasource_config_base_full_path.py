@@ -14,21 +14,16 @@
 
 
 from __future__ import annotations
-import pprint
 import re  # noqa: F401
 import json
 
-
-
-from pydantic import Extra,  BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, StrictStr, Extra
 
 class DatasourceConfigBaseFullPath(BaseModel):
     """
     DatasourceConfigBaseFullPath
     """
     full_path: StrictStr = Field(..., alias="fullPath", description="path includes the bucket name and the path within the bucket where you have stored your information")
-    __properties = ["fullPath"]
-
     class Config:
         """Pydantic configuration"""
         allow_population_by_field_name = True

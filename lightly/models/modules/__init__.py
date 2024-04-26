@@ -21,11 +21,8 @@ from lightly.models.modules.heads import (
     SimSiamPredictionHead,
     SimSiamProjectionHead,
     SMoGPredictionHead,
-    SMoGProjectionHead,
-    SMoGPrototypes,
-    SwaVProjectionHead,
-    SwaVPrototypes,
-)
+from lightly.models.modules.smog_head import SMoGProjectionHead, SMoGPrototypes
+from lightly.models.modules.swav_head import SwaVProjectionHead, SwaVPrototypes
 from lightly.models.modules.nn_memory_bank import NNMemoryBankModule
 
 if _torchvision_vit_available:
