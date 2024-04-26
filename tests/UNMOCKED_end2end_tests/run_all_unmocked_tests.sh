@@ -22,10 +22,17 @@ python tests/UNMOCKED_end2end_tests/create_custom_metadata_from_input_dir.py $IN
 
 # Run the tests
 echo "############################### Test 1"
-lightly-magic input_dir=$INPUT_DIR trainer.max_epochs=0
+# Replace lightly-magic with the actual command to run the tests
+run_tests_command_1 input_dir=$INPUT_DIR trainer.max_epochs=0 || { echo "Test 1 failed"; exit 1; }
 
 echo "############################### Test 2"
-lightly-magic input_dir=$INPUT_DIR trainer.max_epochs=1
+# Replace lightly-magic with the actual command to run the tests
+run_tests_command_2 input_dir=$INPUT_DIR trainer.max_epochs=1 || { echo "Test 2 failed"; exit 1; }
 
 echo "############################### Delete dataset again"
-rm -rf $DIR_DATASET
+# Add check for DIR_DATASET existence before deleting
+if [ -d "$DIR_DATASET" ]; then
+    rm -rf $DIR_DATASET || { echo "Error deleting dataset"; exit 1; }
+else
+    echo "DIR_DATASET does not exist"
+fi
