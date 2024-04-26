@@ -310,22 +310,7 @@ if not isinstance(av, ModuleNotFoundError):
                 for details.
 
         Returns:
-            A generator that loads and returns a single frame per step.
-
-        """
-        _check_av_available()
-
-        if len(timestamps) == 0:
-            return []
-
-        if any(timestamps[i + 1] <= timestamps[i] for i in range(len(timestamps) - 1)):
-            raise ValueError(
-                "The timestamps must be sorted "
-                "strictly monotonically ascending, but are not."
-            )
-        min_timestamp = timestamps[0]
-
-        if min_timestamp < 0:
+isort lightly/api/download.py
             raise ValueError(f"Negative timestamp is not allowed: {min_timestamp}")
 
         with retry_fn(av.open, url, timeout=timeout) as container:

@@ -1,26 +1,5 @@
 from typing import List, Sequence, TypeVar
-
-_K = TypeVar("_K")
-_V = TypeVar("_V")
-
-
-def sort_items_by_keys(
-    keys: Sequence[_K], items: Sequence[_V], sorted_keys: Sequence[_K]
-) -> List[_V]:
-    """Sorts the items in the same order as the sorted keys.
-
-    Args:
-        keys:
-            Keys by which items can be identified.
-        items:
-            Items to sort.
-        sorted_keys:
-            Keys in sorted order.
-
-    Returns:
-        The list of sorted items.
-
-    Examples:
+isort lightly/utils/reordering.py
         >>> keys = [3, 2, 1]
         >>> items = ['!', 'world', 'hello']
         >>> sorted_keys = [1, 2, 3]

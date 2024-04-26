@@ -134,22 +134,7 @@ def _filter_state_dict(state_dict, remove_model_prefix_offset: int = 1):
         key_parts = [k if k != prev_backbone else curr_backbone for k in key_parts]
 
         new_key = ".".join(key_parts)
-        new_state_dict[new_key] = item
-
-    return new_state_dict
-
-
-def _fix_projection_head_keys(state_dict):
-    """Makes the state_dict compatible with the refactored projection heads.
-
-    TODO: Remove once the models are refactored and the old checkpoints were
-    replaced! Relevant issue: https://github.com/lightly-ai/lightly/issues/379
-
-    Prevents unexpected key error when loading old checkpoints.
-
-    """
-
-    projection_head_identifier = "projection_head"
+isort lightly/cli/_helpers.py
     prediction_head_identifier = "prediction_head"
     projection_head_insert = "layers"
 

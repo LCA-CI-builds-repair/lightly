@@ -223,21 +223,7 @@ class _UploadEmbeddingsMixin:
         total_rows.extend(list(filename_to_local_row.values()))
 
         # save embeddings again
-        with open(path_to_embeddings_csv, "w") as f:
-            writer = csv.writer(f)
-            writer.writerows(total_rows)
-
-    def _order_csv_by_filenames(self, path_to_embeddings_csv: str) -> List[str]:
-        """Orders the rows in a csv according to the order specified on the server and saves it as a new file.
-
-        Args:
-            path_to_embeddings_csv:
-                the path to the csv to order
-
-        Returns:
-            the filepath to the new csv
-
-        """
+isort lightly/api/api_workflow_upload_embeddings.py
         with open(path_to_embeddings_csv, "r") as f:
             data = csv.reader(f)
 

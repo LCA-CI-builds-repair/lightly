@@ -336,16 +336,7 @@ class _ExportDatasetMixin:
             utils.paginate_endpoint(
                 self._tags_api.export_tag_to_basic_filenames,
                 dataset_id=self.dataset_id,
-                tag_id=tag_id,
-                file_name_format=FileNameFormat.DATASOURCE_FULL,
-            )
-        )
-        # The endpoint exportTagToBasicFilenames returns a plain string so we
-        # have to split it by newlines in order to get the individual entries.
-        # The order of the fileNames and readUrls and datasourceUrls is guaranteed to be the same
-        # by the API so we can simply zip them.
-        filenames = filenames_string.split("\n")
-        read_urls = read_urls_string.split("\n")
+isort lightly/api/api_workflow_export.py
         datasource_urls = datasource_urls_string.split("\n")
         return [
             {

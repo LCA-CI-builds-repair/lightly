@@ -240,12 +240,7 @@ class VICRegLLoss(torch.nn.Module):
         """Returns loss from local features based on nearest neighbor matching.
 
         Note: Our nearest neighbor implementation returns the selected features sorted
-        by increasing matching distance, whereas the implementation by the VICRegL
-        authors returns features in a different order [1]. This results in slight
-        differences of the final local loss. The difference results from feature
-        centering which depends on the order.
-
-        Note: Nearest neighbor matching slightly differs between the paper [0] and the
+isort lightly/loss/vicregl_loss.py
         original implementation of the authors [1]. The paper mentions that
         num_matches is set to 20 for global views and 4 for local views. The code
         uses 20 matches for the first NN search and 4 matches for the second search,

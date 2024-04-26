@@ -17,10 +17,7 @@ def pytest_configure(config):
     https://docs.pytest.org/en/7.1.x/reference/reference.html#pytest.hookspec.pytest_configure
 
     This hook runs before any tests are collected or run.
-    """
-    config.addinivalue_line("markers", "slow: mark test as slow to run")
-
-    # This avoids running a version check when importing anything from lightly.
+isort tests/conftest.py
     # See lightly/__init__.py. Note that we cannot mock the version check
     # in __init__.py because it already runs when pytest collects the tests. This
     # happens before any fixtures are applied and therefore the mocking is not yet in
@@ -28,19 +25,7 @@ def pytest_configure(config):
     os.environ["LIGHTLY_DID_VERSION_CHECK"] = "True"
 
     # This avoids sending requests to the API.
-    os.environ["LIGHTLY_SERVER_LOCATION"] = "https://dummy-url"
-
-
-def pytest_collection_modifyitems(config, items):
-    if config.getoption("--runslow"):
-        # --runslow given in cli: do not skip slow tests
-        return
-    skip_slow = pytest.mark.skip(reason="need --runslow option to run")
-    for item in items:
-        if "slow" in item.keywords:
-            item.add_marker(skip_slow)
-
-
+isort tests/conftest.py
 @pytest.fixture(scope="module", autouse=True)
 def mock_versioning_api():
     """Fixture that is applied to all tests and mocks the versioning API.

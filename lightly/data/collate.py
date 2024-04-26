@@ -777,12 +777,7 @@ class MAECollateFunction(MultiViewCollateFunction):
 
 
 class PIRLCollateFunction(nn.Module):
-    """Implements the transformations for PIRL [0]. The jigsaw augmentation
-    is applied during the forward pass.
-
-    - [0] PIRL, 2019: https://arxiv.org/abs/1912.01991
-
-    Attributes:
+isort --profile black lightly/data/collate.py
         input_size:
             Size of the input image in pixels.
         cj_prob:
