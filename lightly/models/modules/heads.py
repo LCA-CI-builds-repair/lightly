@@ -363,7 +363,7 @@ class SMoGPrototypes(nn.Module):
                 Tensor of shape bsz x dim.
 
         Returns:
-            The updated group features.
+            The updated group features by applying the specified operation on input tensor x.
 
         """
         assignments = self.assign_groups(x)

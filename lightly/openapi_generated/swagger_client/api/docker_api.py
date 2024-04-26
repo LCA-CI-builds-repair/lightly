@@ -2175,9 +2175,8 @@ class DockerApi(object):
             raise ValueError("Error! Please call the get_docker_run_report_read_url_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_docker_run_report_read_url_by_id_with_http_info(run_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_docker_run_report_read_url_by_id_with_http_info(self, run_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the docker run")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) get_docker_run_report_read_url_by_id  # noqa: E501
+    def get_docker_run_report_read_url_by_id_with_http_info(self, run_id : str, **kwargs) -> ApiResponse:
+        """Get the URL for reading the docker run report by ID."""
 
         DEPRECATED, use getDockerRunArtifactReadUrlById - Get the url of a specific docker runs report  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

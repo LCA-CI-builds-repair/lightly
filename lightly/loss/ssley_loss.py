@@ -76,8 +76,10 @@ class SSLEYLoss(torch.nn.Module):
         if self.gather_distributed and dist.is_initialized():
             world_size = dist.get_world_size()
             if world_size > 1:
-                z_a = torch.cat(gather(z_a), dim=0)
-                z_b = torch.cat(gather(z_b), dim=0)
+                if z_a is not None and z_b is not None:
+                    if 'gather' in globals():
+                        z_a = torch.cat(gather(z_a), dim=0)
+                        z_b = torch.cat(gather(z_b), dim=0)
 
         var_loss = 0.5 * (
             variance_loss(x=z_a, eps=self.eps) + variance_loss(x=z_b, eps=self.eps)

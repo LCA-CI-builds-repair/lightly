@@ -29,7 +29,7 @@ class TestSSLEYLoss:
 
 class TestSSLEYLossUnitTest(unittest.TestCase):
     # Old tests in unittest style, please add new tests to TestSSLEYLoss using pytest.
-    def test_forward_pass(self):
+    def test_forward_pass_symmetry(self):
         loss = SSLEYLoss()
         for bsz in range(2, 4):
             x0 = torch.randn((bsz, 32))
@@ -38,7 +38,7 @@ class TestSSLEYLossUnitTest(unittest.TestCase):
             # symmetry
             l1 = loss(x0, x1)
             l2 = loss(x1, x0)
-            self.assertAlmostEqual((l1 - l2).pow(2).item(), 0.0)
+            assert np.isclose((l1 - l2).pow(2).item(), 0.0)
 
     @unittest.skipUnless(torch.cuda.is_available(), "Cuda not available")
     def test_forward_pass_cuda(self):
