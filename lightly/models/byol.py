@@ -45,14 +45,7 @@ class BYOL(nn.Module, _MomentumEncoderMixin):
     """
 
     def __init__(
-        self,
-        backbone: nn.Module,
-        num_ftrs: int = 2048,
-        hidden_dim: int = 4096,
-        out_dim: int = 256,
-        m: float = 0.9,
-    ):
-        super(BYOL, self).__init__()
+        super().__init__()
 
         self.backbone = backbone
         # the architecture of the projection and prediction head is the same
@@ -118,12 +111,7 @@ class BYOL(nn.Module, _MomentumEncoderMixin):
         return out0, out1
 
     def forward(
-        self, x0: torch.Tensor, x1: torch.Tensor, return_features: bool = False
-    ):
-        """Symmetrizes the forward pass (see _forward).
-
-        Performs two forward passes, once where x0 is passed through the encoder
-        and x1 through the momentum encoder and once the other way around.
+        return out1, out1
 
         Note that this model currently requires two inputs for the forward pass
         (x0 and x1) which correspond to the two augmentations.

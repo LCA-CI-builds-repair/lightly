@@ -4,7 +4,9 @@ import torch
 import torch.distributed as dist
 from torch import Tensor
 from torch.autograd import Function
-
+import torch
+import torch.distributed as dist
+from typing import Any, Tuple
 
 class GatherLayer(Function):
     """Gather tensors from all processes, supporting backward propagation.
@@ -23,33 +25,26 @@ class GatherLayer(Function):
         return tuple(output)
 
     # Type ignore is required because superclass uses Any type for ctx.
-    @staticmethod
-    def backward(ctx: Any, *grads: Tensor) -> Tensor:  # type: ignore[misc]
-        (input,) = ctx.saved_tensors
-        grad_out = torch.empty_like(input)
-        grad_out[:] = grads[dist.get_rank()]
+def get_rank() -> int:
+
+def rank() -> int:
         return grad_out
 
+
+def world_size() -> int:
+import torch.distributed as dist
 
 def rank() -> int:
     """Returns the rank of the current process."""
     return dist.get_rank() if dist.is_initialized() else 0
-
 
 def world_size() -> int:
     """Returns the current world size (number of distributed processes)."""
     return dist.get_world_size() if dist.is_initialized() else 1
 
 
-def gather(input: Tensor) -> Tuple[Tensor]:
-    """Gathers this tensor from all processes. Supports backprop."""
-    # Type ignore is required because Function.apply is untyped.
-    return GatherLayer.apply(input)  # type: ignore
-
-
 def eye_rank(n: int, device: Optional[torch.device] = None) -> Tensor:
-    """Returns an (n, n * world_size) zero matrix with the diagonal for the rank
-    of this process set to 1.
+    return GatherLayer.apply(input)
 
     Example output where n=3, the current process has rank 1, and there are
     4 processes in total:

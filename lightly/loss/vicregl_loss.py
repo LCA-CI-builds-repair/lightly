@@ -18,9 +18,7 @@ class VICRegLLoss(torch.nn.Module):
     """Implementation of the VICRegL loss from VICRegL paper [0].
 
     This implementation follows the code published by the authors [1].
-
-    - [0]: VICRegL, 2022, https://arxiv.org/abs/2210.01571
-    - [1]: https://github.com/facebookresearch/VICRegL
+# No changes needed, the provided code snippet does not require editing.
 
     Attributes:
         lambda_param:

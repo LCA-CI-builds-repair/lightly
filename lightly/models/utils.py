@@ -209,13 +209,13 @@ def update_momentum(model: nn.Module, model_ema: nn.Module, m: float):
         >>> update_momentum(projection_head, projection_head_momentum, m=0.999)
     """
     for model_ema, model in zip(model_ema.parameters(), model.parameters()):
-        model_ema.data = model_ema.data * m + model.data * (1.0 - m)
+        model_ema.data.addcmul_(m, model.data, 1.0 - m)
 
 
 @torch.no_grad()
 def normalize_weight(weight: nn.Parameter, dim: int = 1, keepdim: bool = True):
     """Normalizes the weight to unit length along the specified dimension."""
-    weight.div_(torch.norm(weight, dim=dim, keepdim=keepdim))
+    weight.divide_(torch.norm(weight, dim=dim, keepdim=keepdim))
 
 
 # copy paste from PyTorch master branch as it is not available in older releases
@@ -383,6 +383,7 @@ def mask_at_index(
 
 
 def prepend_class_token(
+def prepend_class_token(
     tokens: torch.Tensor, class_token: torch.Tensor
 ) -> torch.Tensor:
     """Prepends class token to tokens.
@@ -392,6 +393,7 @@ def prepend_class_token(
             Tokens tensor with shape (batch_size, sequence_length, dim).
         class_token:
             Class token with shape (1, 1, dim).
+"""
 
     Returns:
         Tokens tensor with the class token prepended at index 0 in every
@@ -542,12 +544,13 @@ def get_weight_decay_parameters(
     """Returns all parameters of the modules that should be decayed and not decayed.
 
     Args:
-        modules:
-            List of modules to get the parameters from.
         no_batch_norm:
             If True, batch norm parameters are decayed.
         no_bias:
             If True, bias parameters are decayed.
+
+    Returns:
+        None
 
     Returns:
         (params, params_no_weight_decay) tuple.
@@ -560,14 +563,16 @@ def get_weight_decay_parameters(
                 if not decay_batch_norm:
                     params_no_weight_decay.extend(mod.parameters(recurse=False))
                 else:
-                    params.extend(mod.parameters(recurse=False))
-            else:
-                for name, param in mod.named_parameters(recurse=False):
-                    if not decay_bias and name.endswith("bias"):
-                        params_no_weight_decay.append(param)
-                    else:
-                        params.append(param)
-    return params, params_no_weight_decay
+def trunc_normal_(tensor, mean=0.0, std=1.0, a=-2.0, b=2.0):
+    """Fills the input Tensor with values drawn from a truncated normal distribution.
+
+    Args:
+        tensor (Tensor): The input Tensor to be filled.
+        mean (float): The mean of the normal distribution.
+        std (float): The standard deviation of the normal distribution.
+        a (float): The left limit of the truncation range.
+        b (float): The right limit of the truncation range.
+"""
 
 
 def trunc_normal_(tensor, mean=0.0, std=1.0, a=-2.0, b=2.0):

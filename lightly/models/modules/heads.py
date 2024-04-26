@@ -607,8 +607,7 @@ class DINOProjectionHead(ProjectionHead):
         self.freeze_last_layer = freeze_last_layer
         self.last_layer = nn.Linear(bottleneck_dim, output_dim, bias=False)
         self.last_layer = nn.utils.weight_norm(self.last_layer)
-        # Tell mypy this is ok because fill_ is overloaded.
-        self.last_layer.weight_g.data.fill_(1)  # type: ignore
+        self.last_layer.weight_g.data.fill_(1)
 
         # Option to normalize last layer.
         if norm_last_layer:
