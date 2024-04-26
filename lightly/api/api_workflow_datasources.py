@@ -128,15 +128,15 @@ class _DatasourcesMixin:
                 Unix timestamp up to and including which samples are downloaded.
                 Defaults to the current timestamp.
             relevant_filenames_file_name:
+            relevant_filenames_text_file:
                 Path to the relevant filenames text file in the cloud bucket.
-                The path is relative to the datasource root. Optional.
+                The path is relative to the datasource root. This parameter is optional.
             run_id:
-                Run ID. Optional. Should be given along with
+                Run ID associated with the operation. This parameter is optional and should be provided along with
                 `relevant_filenames_artifact_id` to download relevant files only.
             relevant_filenames_artifact_id:
-                ID of the relevant filename artifact. Optional. Should be given along
-                with `run_id` to download relevant files only. Note that this is
-                different from `relevant_filenames_file_name`.
+                ID of the artifact containing relevant filenames. This parameter is optional and should be provided
+                along with `run_id` to download relevant files only. Note that this ID is distinct from `relevant_filenames_file_name`.
             use_redirected_read_url:
                 Flag for redirected read urls. When this flag is true,
                 RedirectedReadUrls are returned instead of ReadUrls, meaning that the
@@ -244,14 +244,13 @@ class _DatasourcesMixin:
                 Path to the relevant filenames text file in the cloud bucket.
                 The path is relative to the datasource root. Optional.
             run_id:
-                Run ID. Optional. Should be given along with
+                Run ID associated with the operation. This parameter is optional and should be provided along with
                 `relevant_filenames_artifact_id` to download relevant files only.
             relevant_filenames_artifact_id:
-                ID of the relevant filename artifact. Optional. Should be given along
-                with `run_id` to download relevant files only. Note that this is
-                different from `relevant_filenames_file_name`.
+                ID of the relevant filename artifact. This parameter is optional and should be provided along
+                with `run_id` to download relevant files only. Note that this ID is distinct from `relevant_filenames_file_name`.
             use_redirected_read_url:
-                Flag for redirected read urls. When this flag is true,
+                Flag indicating the use of redirected read URLs. Set this flag to true if redirected read URLs should be used.
                 RedirectedReadUrls are returned instead of ReadUrls, meaning that the
                 returned URLs have unlimited access to the file.
                 Defaults to False. When S3DelegatedAccess is configured, this flag has
@@ -876,6 +875,7 @@ class _DatasourcesMixin:
 
 
 def _sample_unseen_and_valid(
+def _sample_unseen_and_valid(
     sample: DatasourceRawSamplesDataRow,
     relevant_filenames_file_name: Optional[str],
     listed_filenames: Set[str],
@@ -886,7 +886,6 @@ def _sample_unseen_and_valid(
     # too much memory.
     if sample.file_name.startswith("/"):
         warnings.warn(
-            UserWarning(
                 f"Absolute file paths like {sample.file_name} are not supported"
                 f" in relevant filenames file {relevant_filenames_file_name} due to blob storage"
             )

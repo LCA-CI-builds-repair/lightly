@@ -31,6 +31,7 @@ class SamplingConfigStoppingCondition(BaseModel):
     __properties = ["nSamples", "minDistance"]
 
     class Config:
+        pass
         """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True

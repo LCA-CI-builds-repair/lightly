@@ -1437,7 +1437,7 @@ class IJEPAMaskCollator:
             mask[top : top + h, left : left + w] = 1
             # -- Constrain mask to a set of acceptable regions
             if acceptable_regions is not None:
-                constrain_mask(mask, tries)
+                mask, _ = constrain_mask(mask, acceptable_regions, tries)  # Corrected function call
             mask = torch.nonzero(mask.flatten())
             # -- If mask too small try again
             valid_mask = len(mask) > self.min_keep

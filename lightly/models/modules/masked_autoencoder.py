@@ -125,7 +125,7 @@ class MAEEncoder(vision_transformer.Encoder):
         dim = input.shape[-1]
         pos_embedding = nn.functional.interpolate(
             pos_embedding.reshape(1, int(math.sqrt(N)), int(math.sqrt(N)), dim).permute(
-                0, 3, 1, 2
+                0, 3, 1, 2)
             ),
             scale_factor=math.sqrt(npatch / N),
             mode="bicubic",

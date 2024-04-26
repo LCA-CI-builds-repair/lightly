@@ -297,12 +297,13 @@ torch.save(state_dict, "model.pth")
 #
 # Make sure you place the `model.pth` file in the same folder as this code
 
-# load the model in a new file for inference
+# Load the ResNet-18 model for inference
 resnet18_new = torchvision.models.resnet18()
 
-# note that we need to create exactly the same backbone in order to load the weights
+# Create the backbone by removing the last fully connected layer
 backbone_new = nn.Sequential(*list(resnet18_new.children())[:-1])
 
+# Load the pretrained weights into the backbone model
 ckpt = torch.load("model.pth")
 backbone_new.load_state_dict(ckpt["resnet18_parameters"])
 
