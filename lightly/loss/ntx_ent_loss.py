@@ -4,9 +4,8 @@
 # All Rights Reserved
 
 from typing import Sequence, Union
-
 import torch
-from torch import distributed as torch_dist
+import torch.distributed as torch_dist
 from torch import nn
 
 from lightly.models.modules.memory_bank import MemoryBankModule

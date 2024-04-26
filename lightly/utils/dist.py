@@ -1,5 +1,4 @@
 from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
-
 import torch
 import torch.distributed as dist
 from torch import Tensor
@@ -14,6 +13,16 @@ class GatherLayer(Function):
     https://github.com/Spijkervet/SimCLR
 
     """
+
+    @staticmethod
+    def forward(ctx, input):
+        # Implementation of the forward pass
+        pass
+
+    @staticmethod
+    def backward(ctx, grad_output):
+        # Implementation of the backward pass
+        pass
 
     @staticmethod
     def forward(ctx: FunctionCtx, input: Tensor) -> Tuple[Tensor, ...]:

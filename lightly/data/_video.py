@@ -9,7 +9,6 @@ import warnings
 import weakref
 from fractions import Fraction
 from typing import Any, Dict, List, Tuple
-
 import numpy as np
 import torch
 import torchvision
@@ -24,11 +23,11 @@ try:
     AV_AVAILABLE = True
 except ImportError:
     AV_AVAILABLE = False
-
 if io._HAS_VIDEO_OPT:
     torchvision.set_video_backend("video_reader")
 
 
+class VideoError(Exception):
 class VideoError(Exception):
     """Base exception class for errors during video loading."""
 
@@ -43,8 +42,6 @@ class EmptyVideoError(VideoError):
 
 class FrameShapeError(VideoError):
     """Exception raised when the loaded frame has an unexpected shape."""
-
-    pass
 
 
 class NonIncreasingTimestampError(VideoError):

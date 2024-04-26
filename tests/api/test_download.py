@@ -21,7 +21,6 @@ except ImportError:
 # mock requests module so that files are read from
 # disk instead of loading them from a remote url
 
-
 class MockedRequestsModule:
     def get(self, url, stream=None, *args, **kwargs):
         return MockedResponse(url)
