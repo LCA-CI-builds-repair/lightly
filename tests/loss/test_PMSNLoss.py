@@ -77,24 +77,24 @@ class TestPMSNCustomLoss:
 
 
 def test__power_law_distribution() -> None:
-    power_dist = pmsn_loss._power_law_distribution(
-        size=4, exponent=0.5, device=torch.device("cpu")
+power_dist = pmsn_loss._power_law_distribution(
+    size=4, exponent=0.5, device=torch.device("cpu")
+)
+# 2.784457050376173 == sum(1/(k**0.5) for k in range(1, 5))
+assert torch.allclose(
+    power_dist,
+    torch.Tensor(
+        [
+            1 / (1**0.5),
+            1 / (2**0.5),
+            1 / (3**0.5),
+            1 / (4**0.5),
+        ]
     )
-    # 2.784457050376173 == sum(1/(k**0.5) for k in range(1, 5))
-    assert torch.allclose(
-        power_dist,
-        torch.Tensor(
-            [
-                1 / (1**0.5),
-                1 / (2**0.5),
-                1 / (3**0.5),
-                1 / (4**0.5),
-            ]
-        )
-        / 2.784457050376173,
-    )
-    assert power_dist.device == torch.device("cpu")
-    assert torch.allclose(power_dist.sum(), torch.Tensor([1.0]))
+    / 2.784457050376173,
+)
+assert power_dist.device == torch.device("cpu")
+assert torch.allclose(power_dist.sum(), torch.Tensor([1.0]))
 
 
 def _uniform_distribution(mean_anchor_probabilities: Tensor) -> Tensor:

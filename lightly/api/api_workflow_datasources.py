@@ -251,7 +251,7 @@ class _DatasourcesMixin:
                 with `run_id` to download relevant files only. Note that this is
                 different from `relevant_filenames_file_name`.
             use_redirected_read_url:
-                Flag for redirected read urls. When this flag is true,
+                Flag for redirected read urls. When this flag is true, provide a description of what it enables or how it affects the behavior.
                 RedirectedReadUrls are returned instead of ReadUrls, meaning that the
                 returned URLs have unlimited access to the file.
                 Defaults to False. When S3DelegatedAccess is configured, this flag has
@@ -876,9 +876,9 @@ class _DatasourcesMixin:
 
 
 def _sample_unseen_and_valid(
-    sample: DatasourceRawSamplesDataRow,
-    relevant_filenames_file_name: Optional[str],
-    listed_filenames: Set[str],
+sample: DatasourceRawSamplesDataRow,
+relevant_filenames_file_name: Optional[str],
+listed_filenames: Set[str],
 ) -> bool:
     # Note: We want to remove these checks eventually. Absolute paths and relative paths
     # with dot notation should be handled either in the API or the Worker. Duplicate

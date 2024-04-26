@@ -1425,35 +1425,35 @@ class IJEPAMaskCollator:
                 mask *= acceptable_regions[k]
 
         # --
-        # -- Loop to sample masks until we find a valid one
-        tries = 0
-        timeout = og_timeout = 20
-        valid_mask = False
-        while not valid_mask:
-            # -- Sample block top-left corner
-            top = torch.randint(0, self.height - h, (1,))
-            left = torch.randint(0, self.width - w, (1,))
-            mask = torch.zeros((self.height, self.width), dtype=torch.int32)
-            mask[top : top + h, left : left + w] = 1
-            # -- Constrain mask to a set of acceptable regions
-            if acceptable_regions is not None:
-                constrain_mask(mask, tries)
-            mask = torch.nonzero(mask.flatten())
-            # -- If mask too small try again
-            valid_mask = len(mask) > self.min_keep
-            if not valid_mask:
-                timeout -= 1
-                if timeout == 0:
-                    tries += 1
-                    timeout = og_timeout
-        mask = mask.squeeze()
-        # --
-        mask_complement = torch.ones((self.height, self.width), dtype=torch.int32)
-        mask_complement[top : top + h, left : left + w] = 0
-        # --
-        return mask, mask_complement
+# -- Loop to sample masks until we find a valid one
+tries = 0
+timeout = og_timeout = 20
+valid_mask = False
+while not valid_mask:
+    # -- Sample block top-left corner
+    top = torch.randint(0, self.height - h, (1,))
+    left = torch.randint(0, self.width - w, (1,))
+    mask = torch.zeros((self.height, self.width), dtype=torch.int32)
+    mask[top : top + h, left : left + w] = 1
+    # -- Constrain mask to a set of acceptable regions
+    if acceptable_regions is not None:
+        constrain_mask(mask, tries)
+    mask = torch.nonzero(mask.flatten())
+    # -- If mask too small try again
+    valid_mask = len(mask) > self.min_keep
+    if not valid_mask:
+        timeout -= 1
+        if timeout == 0:
+            tries += 1
+            timeout = og_timeout
+mask = mask.squeeze()
+# --
+mask_complement = torch.ones((self.height, self.width), dtype=torch.int32)
+mask_complement[top : top + h, left : left + w] = 0
+# --
+return mask, mask_complement
 
-    def __call__(self, batch):
+def __call__(self, batch):
         """
         Create encoder and predictor masks when collating imgs into a batch
         # 1. sample enc block (size + location) using seed
