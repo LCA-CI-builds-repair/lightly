@@ -27,15 +27,14 @@ class TestDCLLoss:
 
 
 class TestDCLUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestDCLLoss using pytest.
+# Existing test case moved into the TestDCLLoss class for pytest implementation
+class TestDCLLoss:
     def test_negative_mises_fisher_weights(self, seed=0):
         torch.manual_seed(seed)
         out0 = torch.rand((3, 5))
         out1 = torch.rand((3, 5))
         for sigma in [0.0000001, 0.5, 10000]:
-            with self.subTest(sigma=sigma):
-                negative_mises_fisher_weights(out0, out1, sigma)
-
+            negative_mises_fisher_weights(out0, out1, sigma)
     def test_dclloss_forward(self, seed=0):
         torch.manual_seed(seed=seed)
         for batch_size in [2, 3]:

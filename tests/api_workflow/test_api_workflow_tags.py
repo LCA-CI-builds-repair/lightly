@@ -94,6 +94,7 @@ def test_create_tag_from_filenames__file_not_found(mocker: MockerFixture) -> Non
             "An error occured when creating the new subset! "
             "Out of the 1 filenames you provided "
             "to create a new tag, only 0 have been found on the server. "
+        )
             "Make sure you use the correct filenames. "
             "Valid filename example from the dataset: file0"
         )

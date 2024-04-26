@@ -172,22 +172,16 @@ class PredictionSingleton(BaseModel):
             return instance
 
         # deserialize data into PredictionSingletonClassification
-        try:
-            instance.actual_instance = PredictionSingletonClassification.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into PredictionSingletonObjectDetection
-        try:
-            instance.actual_instance = PredictionSingletonObjectDetection.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into PredictionSingletonSemanticSegmentation
-        try:
-            instance.actual_instance = PredictionSingletonSemanticSegmentation.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
+try:
+    if "classification" in json_str:
+        instance.actual_instance = PredictionSingletonClassification.from_json(json_str)
+    elif "object_detection" in json_str:
+        instance.actual_instance = PredictionSingletonObjectDetection.from_json(json_str)
+    elif "semantic_segmentation" in json_str:
+        instance.actual_instance = PredictionSingletonSemanticSegmentation.from_json(json_str)
+    match += 1
+except (ValidationError, ValueError) as e:
+    error_messages.append(str(e))
             error_messages.append(str(e))
         # deserialize data into PredictionSingletonInstanceSegmentation
         try:

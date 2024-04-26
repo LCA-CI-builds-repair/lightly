@@ -380,7 +380,7 @@ def _make_dataset(
 
             # keep track of valid files
             path = os.path.join(root, fname)
-            video_instances.append(path)
+            video_instances.append(Video(path))
 
     # define loader to get the timestamps
     num_workers = min(num_workers, len(video_instances))

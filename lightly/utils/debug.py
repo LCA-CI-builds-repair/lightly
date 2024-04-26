@@ -156,11 +156,9 @@ def plot_augmented_images(
             ax.set_axis_off()
 
     ax_top_left = axs[0, 0] if len(input_images) > 1 else axs[0]
-    ax_top_left.set(title="Original images")
-    ax_top_left.title.set_size(8)
+    ax_top_left.set_title("Original images", size=8)
     ax_top_next = axs[0, 1] if len(input_images) > 1 else axs[1]
-    ax_top_next.set(title="Augmented images")
-    ax_top_next.title.set_size(8)
+    ax_top_next.set_title("Augmented images", size=8)
     fig.tight_layout()
 
     return fig

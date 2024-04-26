@@ -436,7 +436,7 @@ class TestDownload(unittest.TestCase):
     def test_download_video_Frame_count_timeout(self):
         with tempfile.NamedTemporaryFile(suffix=".avi") as file:
             _generate_video(file.name)
-            with self.assertRaisesRegexp(
+            with self.assertRaisesRegex(
                 RuntimeError,
                 "Maximum retries exceeded.*av.error.ExitError.*Immediate exit requested.*",
             ):

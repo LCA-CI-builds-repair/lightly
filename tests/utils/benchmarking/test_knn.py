@@ -64,6 +64,7 @@ def test_knn__knn_k() -> None:
         [0, 1, 2, 3],
         # 1 is first because bank features with index 1 and 3 and label 1 are closest.
         # 0 is second because bank features with index 0 and 2 and label 0 are 2nd closest.
+    ]
         # 2 and 3 are last because there are no bank features with label 2 or 3.
         [1, 0, 2, 3],
     ]

@@ -49,6 +49,7 @@ class TestUtils(unittest.TestCase):
         PIL_to_bytes(image, quality=90)
 
         # test with quality=90 and ext=jpg
+        PIL_to_bytes(image, quality=90, ext='jpg')
         PIL_to_bytes(image, ext="JPEG", quality=90)
 
     def test_get_signed_url_destination(self):

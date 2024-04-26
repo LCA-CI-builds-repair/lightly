@@ -97,10 +97,9 @@ class ApiWorkflowClient(
                 warnings.warn(
                     UserWarning(
                         (
-                            f"Incompatible version of lightly pip package. "
-                            f"Please upgrade to the latest version "
-                            f"to be able to access the api."
-                        )
+                        f"Incompatible version of lightly pip package. "
+                        f"Please upgrade to the latest version "
+                        f"to be able to access the api."
                     )
                 )
         except (

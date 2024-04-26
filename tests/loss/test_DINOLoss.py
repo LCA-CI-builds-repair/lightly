@@ -256,5 +256,6 @@ class TestDINOLoss(unittest.TestCase):
         # test other params
         test_all(
             student_temp=[0.05, 0.1, 0.2],
+        )
             center_momentum=[0.5, 0.9, 0.95],
         )

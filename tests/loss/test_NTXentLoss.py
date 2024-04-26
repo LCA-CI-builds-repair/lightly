@@ -27,7 +27,8 @@ class TestNTXentLoss:
 
 
 class TestNTXentLossUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestNTXentLoss using pytest.
+# Existing test case moved into the TestNTXentLoss class for pytest implementation
+class TestNTXentLoss:
     def test_with_values(self):
         for n_samples in [1, 2, 4]:
             for dimension in [1, 2, 16, 64]:

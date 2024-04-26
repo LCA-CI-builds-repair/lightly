@@ -32,7 +32,8 @@ class TestMSNLoss:
 
 
 class TestMSNLossUnitTest(TestCase):
-    # Old tests in unittest style, please add new tests to TestMSNLoss using pytest.
+# Existing test case moved into the TestMSNLoss class for pytest implementation
+class TestMSNLoss:
     def test__init__temperature(self) -> None:
         MSNLoss(temperature=1.0)
         with self.assertRaises(ValueError):

@@ -21,6 +21,8 @@ CUSTOM_METADATA_FILENAME="${DIR_DATASET}/custom_metadata.json"
 python tests/UNMOCKED_end2end_tests/create_custom_metadata_from_input_dir.py $INPUT_DIR $CUSTOM_METADATA_FILENAME
 
 # Run the tests
+#!/bin/bash
+
 echo "############################### Test 1"
 lightly-magic input_dir=$INPUT_DIR trainer.max_epochs=0
 

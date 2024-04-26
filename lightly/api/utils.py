@@ -50,7 +50,7 @@ def retry(func, *args, **kwargs):  # type: ignore
 
     # try to make the request
     current_retries = 0
-    while True:
+    while current_retries < max_retries:
         try:
             # return on success
             return func(*args, **kwargs)

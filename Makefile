@@ -44,8 +44,8 @@ format-check:
 	@echo "⚫ Checking code format..."
 	isort --check-only --diff .
 	black --check .
-
-# check style with flake8
+# check style with flake8
+# Add rule or command to run flake8 for style checking
 lint: lint-lightly lint-tests
 
 ## check lightly style with flake8

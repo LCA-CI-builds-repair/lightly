@@ -26,7 +26,8 @@ class TestTiCoLoss:
 
 
 class TestTiCoLossUnitTest(unittest.TestCase):
-    # Old tests in unittest style, please add new tests to TestTiCoLoss using pytest.
+# Existing test case moved into the TestTiCoLoss class for pytest implementation
+class TestTiCoLoss:
     def test_forward_pass(self):
         torch.manual_seed(0)
         loss = TiCoLoss()

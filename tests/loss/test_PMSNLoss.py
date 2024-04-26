@@ -18,7 +18,6 @@ class TestPMSNLoss:
         t0 = 1 / (1**0.25) / norm
         t1 = 1 / (2**0.25) / norm
         t2 = 1 / (3**0.25) / norm
-        loss = criterion.regularization_loss(mean_anchor_probs=mean_anchor_probs)
         expected_loss = (
             t0 * math.log(t0 / 0.1) + t1 * math.log(t1 / 0.3) + t2 * math.log(t2 / 0.6)
         )
@@ -76,6 +75,7 @@ class TestPMSNCustomLoss:
         criterion(anchors, targets, prototypes)
 
 
+def test__power_law_distribution() -> None:
 def test__power_law_distribution() -> None:
     power_dist = pmsn_loss._power_law_distribution(
         size=4, exponent=0.5, device=torch.device("cpu")

@@ -1,6 +1,4 @@
 import os
-import time
-
 import pytest
 from pytest_mock import MockerFixture
 from urllib3.exceptions import MaxRetryError

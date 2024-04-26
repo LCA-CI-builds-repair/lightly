@@ -149,7 +149,7 @@ class TestLightlyDataset(unittest.TestCase):
         ]
         for sample_name in corrupt_sample_names:
             path = os.path.join(tmp_dir, sample_name)
-            with open(path, "a") as f:
+            with open(path, "w") as f:
                 f.write("this_is_not_an_image")
 
         # tests

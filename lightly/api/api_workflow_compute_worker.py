@@ -259,7 +259,7 @@ class _ComputeWorkerMixin:
                 raise ValueError(
                     f"Trying to schedule your job resulted in\n"
                     f">> {eb_code}\n>> {json.dumps(eb_error, indent=4)}\n"
-                    f">> Please fix the issue mentioned above and see our docs "
+                    f"Please fix the issue mentioned above and see our docs "
                     f"https://docs.lightly.ai/docs/all-configuration-options for more help."
                 ) from e
             else:
