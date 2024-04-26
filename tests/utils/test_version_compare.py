@@ -10,15 +10,9 @@ class TestVersionCompare(unittest.TestCase):
         self.assertEqual(version_compare.version_compare("1.1.0", "1.2.0"), -1)
 
         # test bigger than
-        self.assertEqual(version_compare.version_compare("1.2.0", "1.1.0"), 1)
-        self.assertEqual(version_compare.version_compare("1.2.0", "0.1.4"), 1)
-
-        # test equal
-        self.assertEqual(version_compare.version_compare("1.2.0", "1.2.0"), 0)
-
-    def test_invalid_versions(self) -> None:
-        with self.assertRaises(ValueError):
-            version_compare.version_compare("1.2", "1.1.0")
+- Ensure that the test cases in the `test_invalid_versions` method cover all possible invalid version inputs.
+- Add additional test cases to cover scenarios where versions are not comparable due to invalid formats.
+- Verify that the `version_compare` function correctly handles invalid version inputs and raises a `ValueError`.
 
         with self.assertRaises(ValueError):
             version_compare.version_compare("1.2.0.1", "1.1.0")

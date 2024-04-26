@@ -146,12 +146,9 @@ def _fix_projection_head_keys(state_dict):
     replaced! Relevant issue: https://github.com/lightly-ai/lightly/issues/379
 
     Prevents unexpected key error when loading old checkpoints.
-
-    """
-
-    projection_head_identifier = "projection_head"
-    prediction_head_identifier = "prediction_head"
-    projection_head_insert = "layers"
+- Ensure that the purpose of the code snippet is clear by adding appropriate comments or docstrings.
+- Consider refactoring the code to improve readability and maintainability.
+- Check if there are missing parts of the code that should be included for completeness.
 
     new_state_dict = {}
     for key, item in state_dict.items():

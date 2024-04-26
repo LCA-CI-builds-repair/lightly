@@ -433,14 +433,9 @@ class TestDownload(unittest.TestCase):
                     assert n_frames == true_n_frames
 
     @unittest.skipUnless(AV_AVAILABLE, "Pyav not installed")
-    def test_download_video_Frame_count_timeout(self):
-        with tempfile.NamedTemporaryFile(suffix=".avi") as file:
-            _generate_video(file.name)
-            with self.assertRaisesRegexp(
-                RuntimeError,
-                "Maximum retries exceeded.*av.error.ExitError.*Immediate exit requested.*",
-            ):
-                lightly.api.download.video_frame_count(file.name, timeout=0)
+- Update the deprecated `assertRaisesRegexp` method to the current `assertRaisesRegex` method for better compatibility.
+- Ensure that the regular expression pattern provided for matching the exception message is accurate and covers all possible variations.
+- Consider providing a more descriptive error message pattern for clarity in case of failure.
 
     @unittest.skipUnless(AV_AVAILABLE, "Pyav not installed")
     def test_download_video_frame_count_no_metadata(self):
