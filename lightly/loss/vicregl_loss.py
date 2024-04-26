@@ -1,18 +1,15 @@
 from typing import Optional, Sequence, Tuple
-
 import torch
 import torch.distributed as dist
 from torch import Tensor
 
 from lightly.loss.vicreg_loss import (
-    VICRegLoss,
     covariance_loss,
     invariance_loss,
     variance_loss,
 )
 from lightly.models.utils import nearest_neighbors
 from lightly.utils.dist import gather
-
 
 class VICRegLLoss(torch.nn.Module):
     """Implementation of the VICRegL loss from VICRegL paper [0].

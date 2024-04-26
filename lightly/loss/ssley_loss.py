@@ -51,6 +51,10 @@ class SSLEYLoss(Module):
         self.eps = eps
 
     def forward(self, z_a: Tensor, z_b: Tensor) -> Tensor:
+import torch
+import torch.distributed as dist
+from torch import Tensor
+
         """Returns SSL-EY loss.
 
         Args:
@@ -65,15 +69,15 @@ class SSLEYLoss(Module):
             raise ValueError(f"z_b must have batch size > 1 but found {z_b.shape[0]}.")
         if z_a.shape != z_b.shape:
             raise ValueError(
-                f"z_a and z_b must have same shape but found {z_a.shape} and "
+                f"z_a and z_b must have the same shape but found {z_a.shape} and "
                 f"{z_b.shape}."
             )
-        # gather all batches
-        if self.gather_distributed and dist.is_initialized():
+        # gather all batches if self.gather_distributed is enabled
+        if hasattr(self, 'gather_distributed') and self.gather_distributed and dist.is_initialized():
             world_size = dist.get_world_size()
             if world_size > 1:
-                z_a = torch.cat(gather(z_a), dim=0)
-                z_b = torch.cat(gather(z_b), dim=0)
+                z_a = torch.cat(dist.all_gather(z_a), dim=0)
+                z_b = torch.cat(dist.all_gather(z_b), dim=0)
 
         z_a = z_a - z_a.mean(dim=0)
         z_b = z_b - z_b.mean(dim=0)

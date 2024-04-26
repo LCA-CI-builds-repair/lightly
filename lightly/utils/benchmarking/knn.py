@@ -23,7 +23,7 @@ def knn_predict(
 
     Args:
         feature:
-            Tensor with shape (B, D) for which you want predictions.
+            Tensor with shape (N, D) for which you want predictions.
         feature_bank:
             Tensor of shape (D, N) of a database of features used for kNN.
         feature_labels:

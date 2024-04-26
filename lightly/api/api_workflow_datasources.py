@@ -86,7 +86,6 @@ class _DatasourcesMixin:
         """Downloads all prediction filenames and read urls from the datasource.
 
         See `download_raw_predictions_iter` for details.
-
         :meta private:  # Skip docstring generation
         """
         return list(
@@ -98,7 +97,7 @@ class _DatasourcesMixin:
                 run_id=run_id,
                 relevant_filenames_artifact_id=relevant_filenames_artifact_id,
                 use_redirected_read_url=use_redirected_read_url,
-                progress_bar=progress_bar,
+                progress_bar=progress_bar
             )
         )
 
@@ -427,6 +426,7 @@ class _DatasourcesMixin:
         Azure: https://docs.lightly.ai/docs/azure
 
         Args:
+        Args:
             container_name:
                 Container name of the dataset, for example: "my-container/path/to/my/data".
             account_name:
@@ -434,7 +434,7 @@ class _DatasourcesMixin:
             sas_token:
                 Secure Access Signature token.
             thumbnail_suffix:
-                Where to save thumbnails of the images in the dataset, for
+                Suffix for the thumbnail image.
                 example ".lightly/thumbnails/[filename]_thumb.[extension]".
                 Set to None to disable thumbnails and use the full images from the
                 datasource instead.

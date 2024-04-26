@@ -39,7 +39,7 @@ class PatchRESTClientObjectMixin:
 
         # Initialize RESTClientObject class
         super().__init__(
-            configuration=configuration, pools_size=pools_size, maxsize=maxsize
+            configuration=configuration, pools_size=pools_size, maxsize=maxsize)
         )
 
     def request(
@@ -69,6 +69,8 @@ class PatchRESTClientObjectMixin:
             body=body,
             post_params=post_params,
             _preload_content=_preload_content,
+            _request_timeout=_request_timeout,
+        )
             _request_timeout=_request_timeout,
         )
 

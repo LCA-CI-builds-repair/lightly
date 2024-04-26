@@ -1944,12 +1944,10 @@ class DockerApi(object):
         del _params['kwargs']
 
         _collection_formats = {}
-
         # process the path parameters
         _path_params = {}
-        if _params['scheduled_id']:
+        if _params.get('scheduled_id') is not None and _params['scheduled_id']:
             _path_params['scheduledId'] = _params['scheduled_id']
-
 
         # process the query parameters
         _query_params = []
@@ -1960,7 +1958,7 @@ class DockerApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        # set the HTTP header `Accept`
+        # Set the HTTP header `Accept` to accept 'application/json'
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
 
@@ -2018,10 +2016,10 @@ class DockerApi(object):
                  returns the request thread.
         :rtype: DockerRunLogData
         """
+        :rtype: DockerRunLogData
+        """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_docker_run_logs_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_docker_run_logs_by_id_with_http_info(run_id, cursor, **kwargs)  # noqa: E501
 
     @validate_arguments
     def get_docker_run_logs_by_id_with_http_info(self, run_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the docker run")], cursor : Annotated[Optional[conint(strict=True, ge=0)], Field(description="the cursor of where the logs last were")] = None, **kwargs) -> ApiResponse:  # noqa: E501
@@ -2770,175 +2768,8 @@ class DockerApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_docker_runs_count(self, get_assets_of_team : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user")] = None, get_assets_of_team_inclusive_self : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user including the assets of the user")] = None, show_archived : Annotated[Optional[StrictBool], Field(description="if this flag is true, we also get the archived assets")] = None, **kwargs) -> str:  # noqa: E501
-        """get_docker_runs_count  # noqa: E501
-
-        Gets the total count of the amount of runs existing for a user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_docker_runs_count(get_assets_of_team, get_assets_of_team_inclusive_self, show_archived, async_req=True)
-        >>> result = thread.get()
-
-        :param get_assets_of_team: if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user
-        :type get_assets_of_team: bool
-        :param get_assets_of_team_inclusive_self: if this flag is true, we get the relevant asset of the team of the user including the assets of the user
-        :type get_assets_of_team_inclusive_self: bool
-        :param show_archived: if this flag is true, we also get the archived assets
-        :type show_archived: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: str
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_docker_runs_count_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_docker_runs_count_with_http_info(get_assets_of_team, get_assets_of_team_inclusive_self, show_archived, **kwargs)  # noqa: E501
-
     @validate_arguments
-    def get_docker_runs_count_with_http_info(self, get_assets_of_team : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user")] = None, get_assets_of_team_inclusive_self : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user including the assets of the user")] = None, show_archived : Annotated[Optional[StrictBool], Field(description="if this flag is true, we also get the archived assets")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """get_docker_runs_count  # noqa: E501
-
-        Gets the total count of the amount of runs existing for a user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_docker_runs_count_with_http_info(get_assets_of_team, get_assets_of_team_inclusive_self, show_archived, async_req=True)
-        >>> result = thread.get()
-
-        :param get_assets_of_team: if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user
-        :type get_assets_of_team: bool
-        :param get_assets_of_team_inclusive_self: if this flag is true, we get the relevant asset of the team of the user including the assets of the user
-        :type get_assets_of_team_inclusive_self: bool
-        :param show_archived: if this flag is true, we also get the archived assets
-        :type show_archived: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        _params = locals()
-
-        _all_params = [
-            'get_assets_of_team',
-            'get_assets_of_team_inclusive_self',
-            'show_archived'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_docker_runs_count" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        if _params.get('get_assets_of_team') is not None:  # noqa: E501
-            _query_params.append((
-                'getAssetsOfTeam',
-                _params['get_assets_of_team'].value if hasattr(_params['get_assets_of_team'], 'value') else _params['get_assets_of_team']
-            ))
-
-        if _params.get('get_assets_of_team_inclusive_self') is not None:  # noqa: E501
-            _query_params.append((
-                'getAssetsOfTeamInclusiveSelf',
-                _params['get_assets_of_team_inclusive_self'].value if hasattr(_params['get_assets_of_team_inclusive_self'], 'value') else _params['get_assets_of_team_inclusive_self']
-            ))
-
-        if _params.get('show_archived') is not None:  # noqa: E501
-            _query_params.append((
-                'showArchived',
-                _params['show_archived'].value if hasattr(_params['show_archived'], 'value') else _params['show_archived']
-            ))
-
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain', 'application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['auth0Bearer', 'ApiKeyAuth']  # noqa: E501
-
-        _response_types_map = {
-            '200': "str",
-            '400': "ApiErrorResponse",
-            '401': "ApiErrorResponse",
-            '403': "ApiErrorResponse",
-            '404': "ApiErrorResponse",
-        }
-
-        return self.api_client.call_api(
-            '/v1/docker/runs/count', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
-    def get_docker_runs_query_by_dataset_id(self, dataset_id : Annotated[constr(strict=True), Field(..., description="ObjectId of the dataset")], page_size : Annotated[Optional[conint(strict=True, ge=1)], Field(description="pagination size/limit of the number of samples to return")] = None, page_offset : Annotated[Optional[conint(strict=True, ge=0)], Field(description="pagination offset")] = None, get_assets_of_team : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user")] = None, get_assets_of_team_inclusive_self : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user including the assets of the user")] = None, **kwargs) -> List[DockerRunData]:  # noqa: E501
+    def get_docker_runs_query_by_dataset_id(self, dataset_id: str, page_size: Optional[int] = None, page_offset: Optional[int] = None, get_assets_of_team: Optional[bool] = None, get_assets_of_team_inclusive_self: Optional[bool] = None, **kwargs) -> List[DockerRunData]:  # noqa: E501
         """get_docker_runs_query_by_dataset_id  # noqa: E501
 
         Get all docker runs of a user by dataset id  # noqa: E501
@@ -2955,8 +2786,6 @@ class DockerApi(object):
         :param page_offset: pagination offset
         :type page_offset: int
         :param get_assets_of_team: if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user
-        :type get_assets_of_team: bool
-        :param get_assets_of_team_inclusive_self: if this flag is true, we get the relevant asset of the team of the user including the assets of the user
         :type get_assets_of_team_inclusive_self: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

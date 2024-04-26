@@ -32,8 +32,8 @@ class SharedAccessConfigData(BaseModel):
     access_type: SharedAccessType = Field(..., alias="accessType")
     users: conlist(StrictStr) = Field(..., description="List of user mails with access to the dataset")
     teams: conlist(StrictStr) = Field(..., description="List of teams with access to the dataset")
-    created_at: conint(strict=True, ge=0) = Field(..., alias="createdAt", description="unix timestamp in milliseconds")
-    last_modified_at: conint(strict=True, ge=0) = Field(..., alias="lastModifiedAt", description="unix timestamp in milliseconds")
+    created_at: conint(strict=True, ge=0) = Field(..., alias="createdAt", description="Unix timestamp in milliseconds indicating the creation time")
+    last_modified_at: conint(strict=True, ge=0) = Field(..., alias="lastModifiedAt", description="Unix timestamp in milliseconds indicating the last modification time")
     __properties = ["id", "owner", "accessType", "users", "teams", "createdAt", "lastModifiedAt"]
 
     @validator('id')

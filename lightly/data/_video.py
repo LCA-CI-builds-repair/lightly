@@ -490,9 +490,8 @@ class VideoDataset(datasets.VisionDataset):
 
         self.extensions = extensions
         self.backend = torchvision.get_video_backend()
-        self.exception_on_non_increasing_timestamp = (
-            exception_on_non_increasing_timestamp
-        )
+        # Flag to indicate whether an exception should be raised on non-increasing timestamps
+        self.exception_on_non_increasing_timestamp = exception_on_non_increasing_timestamp
 
         self.videos = videos
         self.video_timestamps = video_timestamps
@@ -526,14 +525,14 @@ class VideoDataset(datasets.VisionDataset):
         self._video_loader_lock = threading.Lock()
 
     def __getitem__(self, index):
+    def __getitem__(self, index):
         """Returns item at index.
 
         Finds the video of the frame at index with the help of the frame
         offsets. Then, loads the frame from the video, applies the transforms,
         and returns the frame along with the index of the video (as target).
 
-        For example, if there are two videos with 10 and 20 frames respectively
-        in the input directory:
+        For example, if there are two videos with 10 and 20 frames respectively, the function will retrieve the frame at the specified index from the corresponding video. It then processes the frame with the defined transforms and returns it, along with the video index as the target.
 
         Requesting the 5th sample returns the 5th frame from the first video and
         the target indicates the index of the source video which is 0.
