@@ -283,6 +283,24 @@ def format_custom_metadata(
     }
 
     for i, (filename, metadata) in enumerate(custom_metadata):
+def format_coco_annotations(images: List[str], metadata: Dict[str, str]) -> Dict[str, List[Dict[str, Union[int, str]]]:
+    """Formats COCO annotations for images and custom metadata.
+
+    Args:
+        images:
+            List of image filenames.
+        metadata:
+            Dictionary containing custom metadata for images.
+
+    Returns:
+        Formatted COCO annotations.
+    """
+    formatted = {
+        COCO_ANNOTATION_KEYS.images: [],
+        COCO_ANNOTATION_KEYS.custom_metadata: []
+    }
+
+    for i, filename in enumerate(images):
         formatted[COCO_ANNOTATION_KEYS.images].append(
             {
                 COCO_ANNOTATION_KEYS.images_id: i,

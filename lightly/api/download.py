@@ -320,8 +320,7 @@ if not isinstance(av, ModuleNotFoundError):
 
         if any(timestamps[i + 1] <= timestamps[i] for i in range(len(timestamps) - 1)):
             raise ValueError(
-                "The timestamps must be sorted "
-                "strictly monotonically ascending, but are not."
+                "The timestamps must be sorted in strictly monotonically ascending order."
             )
         min_timestamp = timestamps[0]
 

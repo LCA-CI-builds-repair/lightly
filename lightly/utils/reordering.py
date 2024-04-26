@@ -1,11 +1,13 @@
 from typing import List, Sequence, TypeVar
+from typing import TypeVar, Sequence, List
 
 _K = TypeVar("_K")
 _V = TypeVar("_V")
 
-
 def sort_items_by_keys(
-    keys: Sequence[_K], items: Sequence[_V], sorted_keys: Sequence[_K]
+    keys: Sequence[_K], 
+    items: Sequence[_V], 
+    sorted_keys: Sequence[_K]
 ) -> List[_V]:
     """Sorts the items in the same order as the sorted keys.
 
