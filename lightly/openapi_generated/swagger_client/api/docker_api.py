@@ -2531,83 +2531,89 @@ class DockerApi(object):
         del _params['kwargs']
 
         _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['run_id']:
-            _path_params['runId'] = _params['run_id']
+# process the path parameters
+_path_params = {}
+if 'run_id' in _params:
+    _path_params['runId'] = _params['run_id']
 
 
         # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
+# process the query parameters
+_query_params = {}
+# process the header parameters
+_header_params = dict(_params.get('_headers', {}))
+# process the form parameters
+_form_params = {}
+_files = {}
+# process the body parameter
+_body_params = None
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['auth0Bearer', 'ApiKeyAuth']  # noqa: E501
+# authentication setting
+_auth_settings = ['auth0Bearer', 'ApiKeyAuth']  # noqa: E501
 
-        _response_types_map = {
-            '200': "List[TagData]",
-            '400': "ApiErrorResponse",
-            '401': "ApiErrorResponse",
-            '403': "ApiErrorResponse",
-            '404': "ApiErrorResponse",
-        }
+_response_types_map = {
+    '200': "List[TagData]",
+    '400': "ApiErrorResponse",
+    '401': "ApiErrorResponse",
+    '403': "ApiErrorResponse",
+    '404': "ApiErrorResponse",
+}
 
         return self.api_client.call_api(
-            '/v1/docker/runs/{runId}/tags', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+# Make API request with the following parameters:
+# - Path parameters: _path_params
+# - Query parameters: _query_params
+# - Header parameters: _header_params
+# - Body parameter: _body_params
+# - Post parameters: _form_params
+# - Files: _files
+# - Response types map: _response_types_map
+# - Authentication settings: _auth_settings
+# - Asynchronous request flag: _params.get('async_req')
+# - Return HTTP data only flag: _params.get('_return_http_data_only')
+# - Preload content flag: _params.get('_preload_content', True)
+# - Request timeout: _params.get('_request_timeout')
+# - Collection formats: _collection_formats
+# - Request authentication: _params.get('_request_auth')
 
     @validate_arguments
-    def get_docker_runs(self, page_size : Annotated[Optional[conint(strict=True, ge=1)], Field(description="pagination size/limit of the number of samples to return")] = None, page_offset : Annotated[Optional[conint(strict=True, ge=0)], Field(description="pagination offset")] = None, get_assets_of_team : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user")] = None, get_assets_of_team_inclusive_self : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user including the assets of the user")] = None, show_archived : Annotated[Optional[StrictBool], Field(description="if this flag is true, we also get the archived assets")] = None, **kwargs) -> List[DockerRunData]:  # noqa: E501
-        """get_docker_runs  # noqa: E501
+def get_docker_runs(self, 
+                    page_size: Annotated[Optional[conint(strict=True, ge=1)], Field(description="pagination size/limit of the number of samples to return")] = None, 
+                    page_offset: Annotated[Optional[conint(strict=True, ge=0)], Field(description="pagination offset")] = None, 
+                    get_assets_of_team: Annotated[Optional[bool], Field(description="if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user")] = None, 
+                    get_assets_of_team_inclusive_self: Annotated[Optional[bool], Field(description="if this flag is true, we get the relevant asset of the team of the user including the assets of the user")] = None, 
+                    show_archived: Annotated[Optional[bool], Field(description="if this flag is true, we also get the archived assets")] = None, 
+                    **kwargs) -> List[DockerRunData]:  # noqa: E501
+    """get_docker_runs
 
-        Gets all docker runs for a user.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+    Gets all docker runs for a user.
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_docker_runs(page_size, page_offset, get_assets_of_team, get_assets_of_team_inclusive_self, show_archived, async_req=True)
-        >>> result = thread.get()
+    >>> thread = api.get_docker_runs(page_size, page_offset, get_assets_of_team, get_assets_of_team_inclusive_self, show_archived, async_req=True)
+    >>> result = thread.get()
 
-        :param page_size: pagination size/limit of the number of samples to return
-        :type page_size: int
-        :param page_offset: pagination offset
-        :type page_offset: int
-        :param get_assets_of_team: if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user
-        :type get_assets_of_team: bool
-        :param get_assets_of_team_inclusive_self: if this flag is true, we get the relevant asset of the team of the user including the assets of the user
-        :type get_assets_of_team_inclusive_self: bool
-        :param show_archived: if this flag is true, we also get the archived assets
-        :type show_archived: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
+    :param page_size: pagination size/limit of the number of samples to return
+    :type page_size: int
+    :param page_offset: pagination offset
+    :type page_offset: int
+    :param get_assets_of_team: if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user
+    :type get_assets_of_team: bool
+    :param get_assets_of_team_inclusive_self: if this flag is true, we get the relevant asset of the team of the user including the assets of the user
+    :type get_assets_of_team_inclusive_self: bool
+    :param show_archived: if this flag is true, we also get the archived assets
+    :type show_archived: bool
+    :param async_req: Whether to execute the request asynchronously.
+    :type async_req: bool, optional
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: Returns the result object.
+             If the method is called asynchronously,
                  returns the request thread.
         :rtype: List[DockerRunData]
         """
@@ -2694,41 +2700,43 @@ class DockerApi(object):
         del _params['kwargs']
 
         _collection_formats = {}
+if _params.get('page_size') is not None:  # noqa: E501
+    _query_params.append((
+        'pageSize',
+        _params['page_size'].value if isinstance(_params['page_size'], Annotated) and hasattr(_params['page_size'], 'value') else _params['page_size']
+    ))
 
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        if _params.get('page_size') is not None:  # noqa: E501
-            _query_params.append((
-                'pageSize',
-                _params['page_size'].value if hasattr(_params['page_size'], 'value') else _params['page_size']
-            ))
+if _params.get('page_offset') is not None:  # noqa: E501
+    _query_params.append((
+        'pageOffset',
+        _params['page_offset'].value if isinstance(_params['page_offset'], Annotated) and hasattr(_params['page_offset'], 'value') else _params['page_offset']
+    ))
 
         if _params.get('page_offset') is not None:  # noqa: E501
-            _query_params.append((
-                'pageOffset',
-                _params['page_offset'].value if hasattr(_params['page_offset'], 'value') else _params['page_offset']
-            ))
+_query_params.append((
+    'getAssetsOfTeam',
+    _params['get_assets_of_team'].value if isinstance(_params['get_assets_of_team'], Annotated) and hasattr(_params['get_assets_of_team'], 'value') else _params['get_assets_of_team']
+))
 
         if _params.get('get_assets_of_team') is not None:  # noqa: E501
-            _query_params.append((
-                'getAssetsOfTeam',
-                _params['get_assets_of_team'].value if hasattr(_params['get_assets_of_team'], 'value') else _params['get_assets_of_team']
-            ))
+_query_params.append((
+    'getAssetsOfTeamInclusiveSelf',
+    _params['get_assets_of_team_inclusive_self'].value if isinstance(_params['get_assets_of_team_inclusive_self'], Annotated) and hasattr(_params['get_assets_of_team_inclusive_self'], 'value') else _params['get_assets_of_team_inclusive_self']
+))
 
         if _params.get('get_assets_of_team_inclusive_self') is not None:  # noqa: E501
-            _query_params.append((
-                'getAssetsOfTeamInclusiveSelf',
-                _params['get_assets_of_team_inclusive_self'].value if hasattr(_params['get_assets_of_team_inclusive_self'], 'value') else _params['get_assets_of_team_inclusive_self']
-            ))
+_query_params.append((
+    'showArchived',
+    _params['show_archived'].value if isinstance(_params['show_archived'], Annotated) and hasattr(_params['show_archived'], 'value') else _params['show_archived']
+))
 
         if _params.get('show_archived') is not None:  # noqa: E501
-            _query_params.append((
-                'showArchived',
-                _params['show_archived'].value if hasattr(_params['show_archived'], 'value') else _params['show_archived']
-            ))
+# process the header parameters
+_header_params = dict(_params.get('_headers', {}))
+
+# process the form parameters
+_form_params = {}
+_files = {}
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -2742,15 +2750,15 @@ class DockerApi(object):
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['auth0Bearer', 'ApiKeyAuth']  # noqa: E501
-
-        _response_types_map = {
-            '200': "List[DockerRunData]",
-            '400': "ApiErrorResponse",
-            '401': "ApiErrorResponse",
-            '403': "ApiErrorResponse",
-            '404': "ApiErrorResponse",
         }
+
+        return self.api_client.call_api(
+            '/v1/docker/runs', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
 
         return self.api_client.call_api(
             '/v1/docker/runs', 'GET',

@@ -49,18 +49,13 @@ For the purpose of this tutorial you will need to:
     Images show one or multiple instances of grocery products in shelves or similar scenarios.
 
 Finally, you will need the Detectron2 configuration files. They are available `here <https://github.com/facebookresearch/detectron2/tree/main/configs>`_.
-In this tutorial we use a Faster RCNN with a feature pyramid network (FPN), so make sure you have the relevant file (Base-RCNN-FPN.yaml) in your directory.
-
-
-"""
-
-# %%
 # Imports
 # -------
 #
 # Import the Python frameworks we need for this tutorial.
 import torch
 from detectron2 import config, modeling
+from detectron2.engine import defaults
 from detectron2.checkpoint import DetectionCheckpointer
 
 from lightly.data import LightlyDataset

@@ -289,17 +289,16 @@ def format_custom_metadata(
                 COCO_ANNOTATION_KEYS.images_filename: filename,
             }
         )
-        formatted[COCO_ANNOTATION_KEYS.custom_metadata].append(
-            {
-                COCO_ANNOTATION_KEYS.custom_metadata_image_id: i,
-                **metadata,
-            }
-        )
+        if metadata:
+            formatted[COCO_ANNOTATION_KEYS.custom_metadata].append(
+                {
+                    COCO_ANNOTATION_KEYS.custom_metadata_image_id: i,
+                    **metadata,
+                }
+            )
 
     return formatted
-
-
-def save_custom_metadata(path: str, custom_metadata: List[Tuple[str, Any]]) -> None:
+def save_custom_metadata(path: str, custom_metadata: List[Tuple[str, Dict[str, Any]]) -> None:
     """Saves custom metadata in a .json.
 
     Args:

@@ -1,12 +1,11 @@
 from typing import List, Sequence, TypeVar
-
 _K = TypeVar("_K")
 _V = TypeVar("_V")
 
 
 def sort_items_by_keys(
     keys: Sequence[_K], items: Sequence[_V], sorted_keys: Sequence[_K]
-) -> List[_V]:
+) -> Dict[_K, _V]:
     """Sorts the items in the same order as the sorted keys.
 
     Args:
@@ -16,7 +15,6 @@ def sort_items_by_keys(
             Items to sort.
         sorted_keys:
             Keys in sorted order.
-
     Returns:
         The list of sorted items.
 

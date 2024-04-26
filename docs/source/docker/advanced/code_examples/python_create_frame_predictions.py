@@ -60,8 +60,8 @@ for video_path in dataset_dir.glob("**/*.mp4"):
 # │           │   ├── video_0-001-mp4.json
 # │           │   ├── video_0-002-mp4.json
 # │           │   └── ...
-# │           └── train
-# │               ├── video_1-000-mp4.json
+# │           ├── train
+# │           │   └── video_1-000-mp4.json
 # │               ├── video_1-001-mp4.json
 # │               ├── video_1-002-mp4.json
 # |               ├── ...
