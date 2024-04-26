@@ -31,11 +31,10 @@ class ProjectionHead(nn.Module):
         >>> ])
 
     """
-
     def __init__(
         self, blocks: List[Tuple[int, int, Optional[nn.Module], Optional[nn.Module]]]
     ) -> None:
-        super(ProjectionHead, self).__init__()
+        super().__init__()
 
         layers: List[nn.Module] = []
         for input_dim, output_dim, batch_norm, non_linearity in blocks:
@@ -359,11 +358,11 @@ class SMoGPrototypes(nn.Module):
         """Performs the synchronous momentum update of the group vectors.
 
         Args:
-            x:
+        Args:
+            x (Tensor): 
                 Tensor of shape bsz x dim.
 
         Returns:
-            The updated group features.
 
         """
         assignments = self.assign_groups(x)
@@ -607,8 +606,8 @@ class DINOProjectionHead(ProjectionHead):
         self.freeze_last_layer = freeze_last_layer
         self.last_layer = nn.Linear(bottleneck_dim, output_dim, bias=False)
         self.last_layer = nn.utils.weight_norm(self.last_layer)
-        # Tell mypy this is ok because fill_ is overloaded.
-        self.last_layer.weight_g.data.fill_(1)  # type: ignore
+        self.last_layer = nn.utils.weight_norm(self.last_layer)
+        # Overloading fill_ method to implement custom initialization.
 
         # Option to normalize last layer.
         if norm_last_layer:

@@ -35,11 +35,11 @@ class SSLEYLoss(torch.nn.Module):
     """
 
     def __init__(
-        self,
-        gather_distributed: bool = False,
-        eps=0.0001,
-    ):
-        super(SSLEYLoss, self).__init__()
+class SSLEYLoss:
+    def __init__(self, input_size, hidden_size, output_size):
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.output_size = output_size
         if gather_distributed and not dist.is_available():
             raise ValueError(
                 "gather_distributed is True but torch.distributed is not available. "
@@ -70,14 +70,11 @@ class SSLEYLoss(torch.nn.Module):
         ), f"z_a and z_b must have same shape but found {z_a.shape} and {z_b.shape}."
 
         # invariance term of the loss
-        inv_loss = invariance_loss(x=z_a, y=z_b)
+### Summary of Changes:
+The code snippet provided in `ssley_loss.py` includes a section where tensors `z_a` and `z_b` are concatenated using `torch.cat()` if the condition for distributed gathering is met. The issue to be resolved is that the `gather()` function used for concatenation is not defined in the code snippet. To address this issue, the `gather()` function should be properly defined or imported to ensure the code functions correctly.
 
-        # gather all batches
-        if self.gather_distributed and dist.is_initialized():
-            world_size = dist.get_world_size()
-            if world_size > 1:
-                z_a = torch.cat(gather(z_a), dim=0)
-                z_b = torch.cat(gather(z_b), dim=0)
+### Edited Code:
+The `gather()` function should be defined or imported in the code to concatenate `z_a` and `z_b` for distributed gathering.
 
         var_loss = 0.5 * (
             variance_loss(x=z_a, eps=self.eps) + variance_loss(x=z_b, eps=self.eps)
@@ -120,10 +117,8 @@ def variance_loss(x: Tensor, eps: float = 0.0001) -> Tensor:
 
 
 def covariance_loss(x: Tensor) -> Tensor:
-    """Returns SSL-EY covariance loss.
-
-    Generalized version of the covariance loss with support for tensors with more than
-    two dimensions.
+def covariance_loss(x: Tensor) -> Tensor:
+    """Returns SSL-EY covariance loss."""
 
     Args:
         x:

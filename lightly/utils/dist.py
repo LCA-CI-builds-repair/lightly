@@ -1,8 +1,7 @@
 from typing import Optional, Tuple
-
 import torch
 import torch.distributed as dist
-
+from typing import Tuple
 
 class GatherLayer(torch.autograd.Function):
     """Gather tensors from all processes, supporting backward propagation.
@@ -33,13 +32,16 @@ def rank() -> int:
 
 
 def world_size() -> int:
+import torch
+import torch.distributed as dist
+from typing import Tuple
+
+def world_size() -> int:
     """Returns the current world size (number of distributed processes)."""
     return dist.get_world_size() if dist.is_initialized() else 1
 
-
 def gather(input: torch.Tensor) -> Tuple[torch.Tensor]:
     """Gathers this tensor from all processes. Supports backprop."""
-    return GatherLayer.apply(input)
 
 
 def eye_rank(n: int, device: Optional[torch.device] = None) -> torch.Tensor:
@@ -81,12 +83,12 @@ def rank_zero_only(fn):
         >>> print_rank_zero("Hello from rank 0!")
 
     """
+from torch.distributed import get_rank as rank
 
-    def wrapped(*args, **kwargs):
-        if rank() == 0:
-            return fn(*args, **kwargs)
+if rank() == 0:
+    return fn(*args, **kwargs)
 
-    return wrapped
+return wrapped
 
 
 @rank_zero_only

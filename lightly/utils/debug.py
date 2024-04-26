@@ -120,9 +120,8 @@ def plot_augmented_images(
     """Returns a figure showing original images in the left column and augmented images to their right.
 
     This function ignores the transforms ToTensor and Normalize for visualization purposes.
-
     Args:
-        input_images:
+        input_images (List[PIL.Image]): 
             List of PIL images for which the augmentations should be plotted.
         collate_function:
             The collate function of the self-supervised learning algorithm.

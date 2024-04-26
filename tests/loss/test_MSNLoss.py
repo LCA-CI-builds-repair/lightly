@@ -32,13 +32,14 @@ class TestMSNLoss:
 
 
 class TestMSNLossUnitTest(TestCase):
-    # Old tests in unittest style, please add new tests to TestMSNLoss using pytest.
-    def test__init__temperature(self) -> None:
-        MSNLoss(temperature=1.0)
-        with self.assertRaises(ValueError):
-            MSNLoss(temperature=0.0)
-        with self.assertRaises(ValueError):
-            MSNLoss(temperature=-1.0)
+    # New test function using pytest
+    class TestMSNLoss:
+        def test__init__temperature(self) -> None:
+            MSNLoss(temperature=1.0)
+            with pytest.raises(ValueError):
+                MSNLoss(temperature=0.0)
+            with pytest.raises(ValueError):
+                MSNLoss(temperature=-1.0)
 
     def test__init__sinkhorn_iterations(self) -> None:
         MSNLoss(sinkhorn_iterations=0)

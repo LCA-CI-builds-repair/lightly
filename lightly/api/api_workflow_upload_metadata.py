@@ -178,8 +178,7 @@ class _UploadCustomMetadataMixin:
                     "No image found for custom metadata annotation "
                     f"with image_id {image_id}. "
                     "This custom metadata annotation is skipped. ",
-                    InvalidCustomMetadataWarning,
-                )
+from .custom_warnings import InvalidCustomMetadataWarning
                 continue
             sample_id = filename_to_sample_id.get(filename, None)
             if sample_id is None:
