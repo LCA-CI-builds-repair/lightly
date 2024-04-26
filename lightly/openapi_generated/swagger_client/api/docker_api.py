@@ -2580,34 +2580,32 @@ class DockerApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_docker_runs(self, page_size : Annotated[Optional[conint(strict=True, ge=1)], Field(description="pagination size/limit of the number of samples to return")] = None, page_offset : Annotated[Optional[conint(strict=True, ge=0)], Field(description="pagination offset")] = None, get_assets_of_team : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user")] = None, get_assets_of_team_inclusive_self : Annotated[Optional[StrictBool], Field(description="if this flag is true, we get the relevant asset of the team of the user including the assets of the user")] = None, show_archived : Annotated[Optional[StrictBool], Field(description="if this flag is true, we also get the archived assets")] = None, **kwargs) -> List[DockerRunData]:  # noqa: E501
-        """get_docker_runs  # noqa: E501
-
-        Gets all docker runs for a user.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_docker_runs(page_size, page_offset, get_assets_of_team, get_assets_of_team_inclusive_self, show_archived, async_req=True)
-        >>> result = thread.get()
-
-        :param page_size: pagination size/limit of the number of samples to return
-        :type page_size: int
-        :param page_offset: pagination offset
-        :type page_offset: int
-        :param get_assets_of_team: if this flag is true, we get the relevant asset of the team of the user rather than the assets of the user
-        :type get_assets_of_team: bool
-        :param get_assets_of_team_inclusive_self: if this flag is true, we get the relevant asset of the team of the user including the assets of the user
-        :type get_assets_of_team_inclusive_self: bool
-        :param show_archived: if this flag is true, we also get the archived assets
-        :type show_archived: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
+    def get_docker_runs(self, 
+                        page_size: Optional[int] = None, 
+                        page_offset: Optional[int] = None, 
+                        get_assets_of_team: Optional[bool] = None, 
+                        get_assets_of_team_inclusive_self: Optional[bool] = None, 
+                        show_archived: Optional[bool] = None, 
+                        **kwargs) -> List[DockerRunData]:  # noqa: E501
+        """Get all docker runs for a user.
+        
+        This method retrieves all docker runs for a user.
+        
+        :param page_size: Pagination size/limit of the number of samples to return
+        :type page_size: Optional[int]
+        :param page_offset: Pagination offset
+        :type page_offset: Optional[int]
+        :param get_assets_of_team: If true, get the relevant asset of the team of the user rather than the user's assets
+        :type get_assets_of_team: Optional[bool]
+        :param get_assets_of_team_inclusive_self: If true, get the relevant asset of the team of the user including the user's assets
+        :type get_assets_of_team_inclusive_self: Optional[bool]
+        :param show_archived: If true, also get the archived assets
+        :type show_archived: Optional[bool]
+        :param async_req: Whether to execute the request asynchronously
+        :type async_req: Optional[bool]
+        :param _request_timeout: Timeout setting for this request. Can be a total request timeout or a pair of connection and read timeouts
+        :return: List of DockerRunData objects
+        """
                  returns the request thread.
         :rtype: List[DockerRunData]
         """

@@ -21,11 +21,11 @@ CUSTOM_METADATA_FILENAME="${DIR_DATASET}/custom_metadata.json"
 python tests/UNMOCKED_end2end_tests/create_custom_metadata_from_input_dir.py $INPUT_DIR $CUSTOM_METADATA_FILENAME
 
 # Run the tests
-echo "############################### Test 1"
-lightly-magic input_dir=$INPUT_DIR trainer.max_epochs=0
+# Run Test 1 with trainer.max_epochs set to 0
+lightly-magic --input_dir=$INPUT_DIR --trainer.max_epochs=0
 
-echo "############################### Test 2"
-lightly-magic input_dir=$INPUT_DIR trainer.max_epochs=1
+# Run Test 2 with trainer.max_epochs set to 1
+lightly-magic --input_dir=$INPUT_DIR --trainer.max_epochs=1
 
-echo "############################### Delete dataset again"
+# Delete dataset
 rm -rf $DIR_DATASET
