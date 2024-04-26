@@ -1,14 +1,13 @@
 from typing import Dict, List, Optional, Tuple, Union
-
 import torchvision.transforms as T
 from PIL.Image import Image
 from torch import Tensor
+from typing_extensions import Literal
 
 from lightly.transforms.gaussian_blur import GaussianBlur
 from lightly.transforms.multi_crop_transform import MultiCropTranform
 from lightly.transforms.rotation import random_rotation_transform
 from lightly.transforms.utils import IMAGENET_NORMALIZE
-
 
 class SwaVTransform(MultiCropTranform):
     """Implements the multi-crop transformations for SwaV.

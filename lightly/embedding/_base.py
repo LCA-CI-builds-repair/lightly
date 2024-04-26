@@ -1,10 +1,10 @@
 """ BaseEmbeddings """
-
 # Copyright (c) 2020. Lightly AG and its affiliates.
 # All Rights Reserved
 import copy
 import os
 from typing import Any, List, Optional, Sequence, Tuple, Union
+from typing_extensions import Literal
 
 import omegaconf
 from omegaconf import DictConfig

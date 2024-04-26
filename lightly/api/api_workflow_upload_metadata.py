@@ -1,5 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Dict, List, Union
+from typing_extensions import Literal
 
 from requests import Response
 from tqdm import tqdm
@@ -14,8 +15,6 @@ from lightly.openapi_generated.swagger_client.models import (
 )
 from lightly.utils import hipify
 from lightly.utils.io import COCO_ANNOTATION_KEYS
-
-
 class InvalidCustomMetadataWarning(Warning):
     pass
 

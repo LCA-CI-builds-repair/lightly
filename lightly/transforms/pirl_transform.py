@@ -1,12 +1,10 @@
 from typing import Dict, List, Tuple, Union
-
 import torchvision.transforms as T
-
 from lightly.transforms.jigsaw import Jigsaw
 from lightly.transforms.multi_view_transform import MultiViewTransform
 from lightly.transforms.rotation import random_rotation_transform
 from lightly.transforms.utils import IMAGENET_NORMALIZE
-
+from typing_extensions import Literal
 
 class PIRLTransform(MultiViewTransform):
     """Implements the transformations for PIRL [0]. The jigsaw augmentation

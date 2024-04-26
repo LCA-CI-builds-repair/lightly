@@ -1,6 +1,7 @@
 import time
 import warnings
 from typing import Dict, Iterator, List, Optional, Set, Tuple, Union
+from typing_extensions import Literal
 
 import tqdm
 
@@ -14,8 +15,6 @@ from lightly.openapi_generated.swagger_client.models import (
 from lightly.openapi_generated.swagger_client.models.datasource_raw_samples_data_row import (
     DatasourceRawSamplesDataRow,
 )
-
-
 class _DatasourcesMixin:
     def download_raw_samples(
         self,

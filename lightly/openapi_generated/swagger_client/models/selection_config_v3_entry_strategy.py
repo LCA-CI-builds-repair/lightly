@@ -24,7 +24,7 @@ from pydantic import Extra,  BaseModel, Field, StrictFloat, StrictInt, confloat,
 from lightly.openapi_generated.swagger_client.models.selection_config_v3_entry_strategy_all_of_target_range import SelectionConfigV3EntryStrategyAllOfTargetRange
 from lightly.openapi_generated.swagger_client.models.selection_strategy_threshold_operation import SelectionStrategyThresholdOperation
 from lightly.openapi_generated.swagger_client.models.selection_strategy_type_v3 import SelectionStrategyTypeV3
-
+from typing_extensions import Literal
 class SelectionConfigV3EntryStrategy(BaseModel):
     """
     SelectionConfigV3EntryStrategy

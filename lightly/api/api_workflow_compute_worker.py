@@ -5,6 +5,7 @@ import json
 import time
 from functools import partial
 from typing import Any, Callable, Dict, Iterator, List, Optional, Type, TypeVar, Union
+from typing_extensions import Literal
 
 from lightly.api import utils
 from lightly.openapi_generated.swagger_client.api_client import ApiClient

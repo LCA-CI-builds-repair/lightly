@@ -1,15 +1,13 @@
 from typing import Any, Dict, List, Tuple, Union
-
 import torch
 from pytorch_lightning import LightningModule
 from torch import Tensor
 from torch.nn import CrossEntropyLoss, Linear, Module
 from torch.optim import SGD, Optimizer
+from typing_extensions import Literal
 
 from lightly.utils.benchmarking.topk import mean_topk_accuracy
 from lightly.utils.scheduler import CosineWarmupScheduler
-
-
 class LinearClassifier(LightningModule):
     def __init__(
         self,

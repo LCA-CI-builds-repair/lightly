@@ -6,6 +6,7 @@ import threading
 import warnings
 from concurrent.futures import ThreadPoolExecutor
 from typing import Callable, Dict, Iterable, List, Optional, Tuple, Type, Union
+from typing_extensions import Literal
 
 import PIL
 import requests

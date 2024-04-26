@@ -1,9 +1,8 @@
 from typing import Any, Callable, Dict, Optional, Union
-
 import torch
 from torch import Tensor
 from torch.optim.optimizer import Optimizer, required  # type: ignore[attr-defined]
-
+from typing_extensions import Literal
 
 class LARS(Optimizer):
     """Extends SGD in PyTorch with LARS scaling from the paper "Large batch training of
