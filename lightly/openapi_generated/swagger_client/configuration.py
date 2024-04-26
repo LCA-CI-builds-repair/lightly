@@ -199,11 +199,11 @@ conf = lightly.openapi_generated.swagger_client.Configuration(
         """
 
         self.datetime_format = "%Y-%m-%dT%H:%M:%S.%f%z"
-        """datetime format
+        """Datetime format with timezone in the format: Year-Month-DayTHour:Minute:Second.MicrosecondTimezone
         """
 
         self.date_format = "%Y-%m-%d"
-        """date format
+        """Date format in the format: Year-Month-Day
         """
 
     def __deepcopy__(self, memo):

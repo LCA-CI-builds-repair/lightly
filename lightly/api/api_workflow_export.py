@@ -162,6 +162,7 @@ class _ExportDatasetMixin:
         return self.export_label_box_data_rows_by_tag_id(tag.id)
 
     def export_label_box_v4_data_rows_by_tag_id(
+    def fetch_samples(
         self,
         tag_id: str,
     ) -> List[Dict]:
@@ -174,7 +175,7 @@ class _ExportDatasetMixin:
 
         Args:
             tag_id:
-                ID of the tag which should exported.
+                ID of the tag which should be exported.
         Returns:
             A list of dictionaries in a format compatible with Labelbox v4.
 
@@ -197,10 +198,10 @@ class _ExportDatasetMixin:
         return [row.to_dict() for row in label_box_data_rows]
 
     def export_label_box_v4_data_rows_by_tag_name(
-        self,
+    def fetch_samples(
         tag_name: str,
     ) -> List[Dict]:
-        """Fetches samples in a format compatible with Labelbox.
+        """Fetches samples in a format compatible with Labelbox v4.
 
         The format is documented here: https://docs.labelbox.com/docs/images-json
 

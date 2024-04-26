@@ -269,17 +269,18 @@ class _DownloadDatasetMixin:
         )
 
     def export_label_studio_tasks_by_tag_id(
+    def export_samples(
         self,
         tag_id: str,
     ) -> List[Dict]:
-        """Exports samples in a format compatible with Label Studio.
+        """Exports samples in a format compatible with Label Studio v1.0.
 
         The format is documented here:
         https://labelstud.io/guide/tasks.html#Basic-Label-Studio-JSON-format
 
         Args:
             tag_id:
-                Id of the tag which should exported.
+                Id of the tag which should be exported.
 
         Returns:
             A list of dictionaries in a format compatible with Label Studio.
