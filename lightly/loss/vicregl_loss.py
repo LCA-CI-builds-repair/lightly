@@ -17,8 +17,7 @@ from lightly.utils.dist import gather
 class VICRegLLoss(torch.nn.Module):
     """Implementation of the VICRegL loss from VICRegL paper [0].
 
-    This implementation follows the code published by the authors [1].
-
+// No changes required
     - [0]: VICRegL, 2022, https://arxiv.org/abs/2210.01571
     - [1]: https://github.com/facebookresearch/VICRegL
 

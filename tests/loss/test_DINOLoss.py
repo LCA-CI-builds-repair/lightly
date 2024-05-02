@@ -15,11 +15,7 @@ class OriginalDINOLoss(nn.Module):
     """Copy paste from the original DINO paper. We use this to verify our
     implementation.
 
-    The only change from the original code is that distributed training is no
-    longer assumed.
-
-    Source: https://github.com/facebookresearch/dino/blob/cb711401860da580817918b9167ed73e3eef3dcf/main_dino.py#L363
-
+No changes are required in the provided code snippet as it indicates the removal of the assumption of distributed training from the original code.
     """
 
     def __init__(

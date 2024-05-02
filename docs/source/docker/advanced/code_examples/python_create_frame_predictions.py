@@ -36,13 +36,18 @@ for video_path in dataset_dir.glob("**/*.mp4"):
             "file_name": str(frame_name),
             "predictions": frame_predictions,
         }
-        out_path = predictions_dir / frame_name.with_suffix(".json")
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(out_path, "w") as file:
-            json.dump(prediction, file)
+import json
 
+# Sample dictionary
+data = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
 
-# example directory structure before
+# Writing JSON data
+with open("data_file.json", "w") as write_file:
+    json.dump(data, write_file, indent=4)
 # .
 # ├── test
 # │   └── video_0.mp4

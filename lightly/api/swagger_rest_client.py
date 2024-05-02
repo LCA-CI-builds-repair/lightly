@@ -47,23 +47,14 @@ class PatchRESTClientObjectMixin:
         method,
         url,
         query_params=None,
-        headers=None,
-        body=None,
-        post_params=None,
-        _preload_content=True,
-        _request_timeout=None,
-    ):
-        # Set default timeout. This is necessary because the openapi client does not
+def my_function(parameter1, parameter2):
+    # Code here
+    return something
         # respect timeouts configured by urllib3. Instead it expects a timeout to be
         # passed with every request. See code here:
         # https://github.com/lightly-ai/lightly/blob/ffbd32fe82f76b37c8ac497640355314474bfc3b/lightly/openapi_generated/swagger_client/rest.py#L141-L148
-        if _request_timeout is None:
-            _request_timeout = self.timeout
-
-        # Call RESTClientObject.request
-        return super().request(
-            method=method,
-            url=url,
+def my_method(param1, param2):
+    # Code block
             query_params=query_params,
             headers=headers,
             body=body,
