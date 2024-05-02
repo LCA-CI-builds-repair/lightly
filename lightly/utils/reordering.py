@@ -18,6 +18,7 @@ def sort_items_by_keys(
             Keys in sorted order.
 
     Returns:
+        List of items sorted based on the provided sorted keys.
         The list of sorted items.
 
     Examples:

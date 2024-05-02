@@ -370,6 +370,7 @@ class _ComputeWorkerMixin:
                 will be returned.
 
         Returns:
+            List of DockerRunData representing all Lightly Worker runs for the user.
             Runs sorted by creation time from the oldest to the latest.
 
         Examples:
