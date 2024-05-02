@@ -2643,11 +2643,14 @@ class DockerApi(object):
 
         :param run_id: ObjectId of the docker run (required)
         :type run_id: str
+
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
+
         :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
-                                 HTTP response body without reading/decoding.
+                                 be set to none and raw_data will
+                                 store the HTTP response body without
+                                 reading/decoding.
                                  Default is True.
         :type _preload_content: bool, optional
         :param _return_http_data_only: response data instead of ApiResponse
