@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, Optional, Union
+from typing import Any, Callable, Dict, Optional, Union, Literal
 
 import torch
 from torch import Tensor
@@ -10,7 +10,6 @@ class LARS(Optimizer):
     Convolutional Networks" [0].
 
     Implementation from PyTorch Lightning Bolts [1].
-
     - [0]: https://arxiv.org/pdf/1708.03888.pdf
     - [1]: https://github.com/Lightning-Universe/lightning-bolts/blob/2dfe45a4cf050f120d10981c45cfa2c785a1d5e6/pl_bolts/optimizers/lars.py#L1
 

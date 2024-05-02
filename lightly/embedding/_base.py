@@ -4,8 +4,7 @@
 # All Rights Reserved
 import copy
 import os
-from typing import Any, List, Optional, Sequence, Tuple, Union
-
+from typing import Any, List, Optional, Sequence, Tuple, Union, Literal
 import omegaconf
 from omegaconf import DictConfig
 from pytorch_lightning import LightningModule, Trainer

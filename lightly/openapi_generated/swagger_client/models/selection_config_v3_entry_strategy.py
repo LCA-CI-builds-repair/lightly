@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional, Union
-from pydantic import Extra,  BaseModel, Field, StrictFloat, StrictInt, confloat, conint
+from typing import Any, Dict, Optional, Union, Literal
+from pydantic import Extra, BaseModel, Field, StrictFloat, StrictInt, confloat, conint
 from lightly.openapi_generated.swagger_client.models.selection_config_v3_entry_strategy_all_of_target_range import SelectionConfigV3EntryStrategyAllOfTargetRange
 from lightly.openapi_generated.swagger_client.models.selection_strategy_threshold_operation import SelectionStrategyThresholdOperation
 from lightly.openapi_generated.swagger_client.models.selection_strategy_type_v3 import SelectionStrategyTypeV3

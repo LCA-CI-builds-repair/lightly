@@ -5,7 +5,7 @@
 
 import math
 import warnings
-from typing import Iterable, List, Optional, Tuple, Union
+from typing import Iterable, List, Optional, Tuple, Union, Literal
 
 import numpy as np
 import torch
@@ -15,7 +15,6 @@ from numpy.typing import NDArray
 from torch.nn import Module
 from torch.nn.modules.batchnorm import _BatchNorm
 from torch.nn.parameter import Parameter
-
 
 @torch.no_grad()
 def batch_shuffle(
