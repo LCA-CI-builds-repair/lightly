@@ -34,31 +34,35 @@ class TestNTXentLossUnitTest(unittest.TestCase):
                 for temperature in [0.1, 1, 10]:
                     for gather_distributed in [False, True]:
                         out0 = np.random.normal(0, 1, size=(n_samples, dimension))
-                        out1 = np.random.normal(0, 1, size=(n_samples, dimension))
-                        with self.subTest(
-                            msg=(
-                                f"out0.shape={out0.shape}, temperature={temperature}, "
-                                f"gather_distributed={gather_distributed}"
-                            )
-                        ):
-                            out0 = torch.FloatTensor(out0)
-                            out1 = torch.FloatTensor(out1)
+import numpy as np
+import torch
+from lightly.loss import NTXentLoss
 
-                            loss_function = NTXentLoss(
-                                temperature=temperature,
-                                gather_distributed=gather_distributed,
-                            )
-                            l1 = float(loss_function(out0, out1))
-                            l2 = float(loss_function(out1, out0))
-                            l1_manual = self.calc_ntxent_loss_manual(
-                                out0, out1, temperature=temperature
-                            )
-                            l2_manual = self.calc_ntxent_loss_manual(
-                                out0, out1, temperature=temperature
-                            )
-                            self.assertAlmostEqual(l1, l2, places=5)
-                            self.assertAlmostEqual(l1, l1_manual, places=5)
-                            self.assertAlmostEqual(l2, l2_manual, places=5)
+out1 = np.random.normal(0, 1, size=(n_samples, dimension))
+with self.subTest(
+    msg=(
+        f"out0.shape={out0.shape}, temperature={temperature}, "
+        f"gather_distributed={gather_distributed}"
+    )
+):
+    out0 = torch.tensor(out0)
+    out1 = torch.tensor(out1)
+
+    loss_function = NTXentLoss(
+        temperature=temperature,
+        gather_distributed=gather_distributed,
+    )
+    l1 = float(loss_function(out0, out1))
+    l2 = float(loss_function(out1, out0))
+    l1_manual = self.calc_ntxent_loss_manual(
+        out0, out1, temperature=temperature
+    )
+    l2_manual = self.calc_ntxent_loss_manual(
+        out0, out1, temperature=temperature
+    )
+    self.assertAlmostEqual(l1, l2, places=5)
+    self.assertAlmostEqual(l1, l1_manual, places=5)
+    self.assertAlmostEqual(l2, l2_manual, places=5)
 
     def calc_ntxent_loss_manual(self, out0, out1, temperature: float) -> float:
         # using the pseudocode directly from https://arxiv.org/pdf/2002.05709.pdf , Algorithm 1

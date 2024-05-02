@@ -39,15 +39,9 @@ class TestSwaVLossUnitTest(unittest.TestCase):
 
                 with self.subTest(
                     msg=f"n_low_res={n_low_res}, sinkhorn_iterations={sinkhorn_iterations}"
-                ):
-                    loss = criterion(high_res, low_res)
-                    # loss should be almost zero for unit matrix
-                    self.assertGreater(0.5, loss.cpu().numpy())
-
-    def test_forward_pass_queue(self):
-        n = 32
-        n_high_res = 2
-        high_res = [torch.eye(32, 32) for i in range(n_high_res)]
+loss = criterion(high_res, low_res)
+# loss should be almost zero for unit matrix
+self.assertGreater(0.5, loss.cpu().numpy())
         queue_length = 128
         queue = [torch.eye(128, 32) for i in range(n_high_res)]
 

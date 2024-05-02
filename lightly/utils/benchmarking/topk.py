@@ -20,7 +20,6 @@ def mean_topk_accuracy(
         k:
             Sequence of integers specifying the values of k for which the accuracy
             should be computed.
-
     Returns:
         Dictionary containing the mean accuracy for each value of k. For example for
         k=(1, 5) the dictionary could look like this: {1: 0.4, 5: 0.6}.
