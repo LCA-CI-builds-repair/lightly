@@ -6,6 +6,10 @@ from torch import Tensor
 from torch.autograd import Function
 
 
+import torch
+import torch.distributed as dist
+from typing import Any, Tuple
+
 class GatherLayer(Function):
     """Gather tensors from all processes, supporting backward propagation.
 
