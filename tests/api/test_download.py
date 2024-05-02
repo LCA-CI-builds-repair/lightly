@@ -438,8 +438,7 @@ class TestDownload(unittest.TestCase):
             _generate_video(file.name)
             with self.assertRaisesRegexp(
                 RuntimeError,
-                "Maximum retries exceeded.*av.error.ExitError.*Immediate exit requested.*",
-            ):
+                "Maximum retries exceeded.*av.error.ExitError.*Immediate exit requested.*"):
                 lightly.api.download.video_frame_count(file.name, timeout=0)
 
     @unittest.skipUnless(AV_AVAILABLE, "Pyav not installed")

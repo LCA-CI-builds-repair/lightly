@@ -62,12 +62,10 @@ class TagArithmeticsResponse(BaseModel):
         # validate data type: CreateEntityResponse
         if not isinstance(v, CreateEntityResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `CreateEntityResponse`")
-        else:
-            match += 1
+        match = 0
         # validate data type: TagBitMaskResponse
         if not isinstance(v, TagBitMaskResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `TagBitMaskResponse`")
-        else:
             match += 1
         if match > 1:
             # more than 1 match

@@ -348,8 +348,12 @@ class _ArtifactsMixin:
             >>>
             >>> # print all corrupt samples and corruptions
             >>> with open("corruptness_check_information.json", 'r') as f:
-            >>>     corruptness_check_information = json.load(f)
-            >>> for sample_name, error in corruptness_check_information["corrupt_samples"].items():
+import json
+
+with open('file_path', 'r') as f:
+    corruptness_check_information = json.load(f)
+    for sample_name, error in corruptness_check_information["corrupt_samples"].items():
+        # Add your code logic here
             >>>     print(f"Sample '{sample_name}' is corrupt because of the error '{error}'.")
 
         """

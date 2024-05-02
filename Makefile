@@ -4,13 +4,14 @@
 .PHONY: clean clean-build clean-pyc clean-out docs help
 .DEFAULT_GOAL := help
 
-# TODO
+# TODO
 help:
+	@echo "Displaying Makefile help information..."
 
-## make clean
+## make clean
 clean: clean-tox clean-build clean-pyc clean-out
 
-## remove build artifacts
+## remove build artifacts
 clean-build:
 	rm -fr build/
 	rm -fr dist/
@@ -18,11 +19,11 @@ clean-build:
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
 
-## remove python file artifacts
+## remove python file artifacts
 clean-pyc:
 	find . -name '__pycache__' -exec rm -fr {} +
 
-## remove hydra outputs
+## remove hydra outputs
 clean-out:
 	rm -fr outputs/
 	rm -fr lightly_outputs/
@@ -30,7 +31,7 @@ clean-out:
 	rm -fr lightly_epoch_*.ckpt
 	rm -fr last.ckpt
 
-## remove tox cache
+## remove tox cache
 clean-tox:
 	rm -fr .tox
 
@@ -45,10 +46,10 @@ format-check:
 	isort --check-only --diff .
 	black --check .
 
-# check style with flake8
+# check style with flake8
 lint: lint-lightly lint-tests
 
-## check lightly style with flake8
+## check lightly style with flake8
 lint-lightly:
 	pylint --rcfile=pylintrc lightly
 
@@ -56,7 +57,7 @@ lint-lightly:
 lint-tests:
 	pylint --rcfile=pylintrc tests
 
-## run tests
+## run tests
 test:
 	pytest tests --runslow
 
@@ -78,15 +79,15 @@ dist: clean
 	python setup.py sdist bdist_wheel
 	ls -l dist
 
-## install the package to active site
+## install the package to active site
 install: clean 
 	pip install .
 
-# uninstall package from active site
+# uninstall package from active site
 uninstall: clean
 	pip uninstall lightly
 
-## run tests in tox envs
+## run tests in tox envs
 tox:
 	tox
 
