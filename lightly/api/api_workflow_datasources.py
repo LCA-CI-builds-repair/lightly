@@ -892,7 +892,7 @@ def _sample_unseen_and_valid(
             )
         )
         return False
-    elif sample.file_name.startswith(("./", "../")):
+    elif sample.file_name.startswith(("./") or sample.file_name.startswith("../")):
         warnings.warn(
             UserWarning(
                 f"Using dot notation ('./', '../') like in {sample.file_name} is not supported"

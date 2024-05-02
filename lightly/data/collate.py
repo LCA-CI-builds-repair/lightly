@@ -1452,7 +1452,6 @@ class IJEPAMaskCollator:
         mask_complement[top : top + h, left : left + w] = 0
         # --
         return mask, mask_complement
-
     def __call__(self, batch):
         """
         Create encoder and predictor masks when collating imgs into a batch
