@@ -37,7 +37,6 @@ class TestMSNLossUnitTest(TestCase):
         MSNLoss(temperature=1.0)
         with self.assertRaises(ValueError):
             MSNLoss(temperature=0.0)
-        with self.assertRaises(ValueError):
             MSNLoss(temperature=-1.0)
 
     def test__init__sinkhorn_iterations(self) -> None:

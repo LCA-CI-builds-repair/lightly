@@ -82,5 +82,5 @@ trainer = pl.Trainer(
     strategy="ddp",
     sync_batchnorm=True,
     use_distributed_sampler=True,  # or replace_sampler_ddp=True for PyTorch Lightning <2.0
-)
+),
 trainer.fit(model=model, train_dataloaders=dataloader)
