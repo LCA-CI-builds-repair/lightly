@@ -12,7 +12,6 @@ class GatherLayer(Function):
 
     This code was taken and adapted from here:
     https://github.com/Spijkervet/SimCLR
-
     """
 
     @staticmethod

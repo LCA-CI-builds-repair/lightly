@@ -4,8 +4,8 @@ from unittest import mock
 import torch
 from pytest import CaptureFixture
 
+import unittest
 from lightly.utils import dist
-
 
 class TestDist(unittest.TestCase):
     def test_eye_rank_undist(self):

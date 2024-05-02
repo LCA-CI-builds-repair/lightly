@@ -3,14 +3,8 @@
 # Copyright (c) 2020. Lightly AG and its affiliates.
 # All Rights Reserved
 
-from typing import Sequence, Union
-
-import torch
-from torch import distributed as torch_dist
-from torch import nn
-
-from lightly.models.modules.memory_bank import MemoryBankModule
-from lightly.utils import dist
+from lightly.models.modules.memory_bank import MemoryBank
+from lightly.utils import distributed as dist
 
 
 class NTXentLoss(MemoryBankModule):

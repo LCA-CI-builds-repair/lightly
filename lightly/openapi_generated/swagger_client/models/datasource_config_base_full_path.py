@@ -12,14 +12,8 @@
     Do not edit the class manually.
 """
 
-
 from __future__ import annotations
-import pprint
-import re  # noqa: F401
 import json
-
-
-
 from pydantic import Extra,  BaseModel, Field, StrictStr
 
 class DatasourceConfigBaseFullPath(BaseModel):

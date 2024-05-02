@@ -6,7 +6,6 @@ import torch
 from PIL import Image
 
 from lightly.data import collate
-from lightly.utils import debug
 
 try:
     import matplotlib.pyplot as plt
