@@ -14,7 +14,10 @@ DIR_DATASET=clothing_dataset_small
 if [ -d $DIR_DATASET ]; then
   echo "Skipping download of dataset, it already exists."
 else
-  git clone https://github.com/alexeygrigorev/clothing-dataset-small $DIR_DATASET
+  if ! git clone https://github.com/alexeygrigorev/clothing-dataset-small $DIR_DATASET; then
+    echo "Error: Failed to clone the dataset."
+    exit 1
+  fi
 fi
 INPUT_DIR="${DIR_DATASET}/test/dress"
 CUSTOM_METADATA_FILENAME="${DIR_DATASET}/custom_metadata.json"
@@ -27,5 +30,6 @@ lightly-magic input_dir=$INPUT_DIR trainer.max_epochs=0
 echo "############################### Test 2"
 lightly-magic input_dir=$INPUT_DIR trainer.max_epochs=1
 
+# Delete dataset again
 echo "############################### Delete dataset again"
 rm -rf $DIR_DATASET

@@ -3,7 +3,6 @@ lightly_mount: ''   # Path to the lightly directory.
 host: 'localhost'   # Hostname for serving the data.
 port: 3456          # Port for serving the data.
 
-
 # Disable Hydra log directories.
 defaults:  
   - _self_  
@@ -13,4 +12,4 @@ defaults:
 hydra:  
   output_subdir: null  
   run:  
-    dir: .
+    dir: '.'
