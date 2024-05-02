@@ -43,7 +43,6 @@ class TestNTXentLossUnitTest(unittest.TestCase):
                         ):
                             out0 = torch.FloatTensor(out0)
                             out1 = torch.FloatTensor(out1)
-
                             loss_function = NTXentLoss(
                                 temperature=temperature,
                                 gather_distributed=gather_distributed,
