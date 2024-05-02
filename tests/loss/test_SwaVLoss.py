@@ -25,7 +25,7 @@ class TestNTXentLoss:
         mock_is_available.assert_called_once()
 
 
-class TestSwaVLossUnitTest(unittest.TestCase):
+class TestSwaVLoss:
     # Old tests in unittest style, please add new tests to TestSwavLoss using pytest.
     def test_forward_pass(self):
         n = 32

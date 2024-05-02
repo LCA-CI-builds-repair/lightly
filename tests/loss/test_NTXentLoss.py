@@ -26,7 +26,7 @@ class TestNTXentLoss:
         mock_is_available.assert_called_once()
 
 
-class TestNTXentLossUnitTest(unittest.TestCase):
+class TestNTXentLoss:
     # Old tests in unittest style, please add new tests to TestNTXentLoss using pytest.
     def test_with_values(self):
         for n_samples in [1, 2, 4]:
