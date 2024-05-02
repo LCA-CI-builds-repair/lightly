@@ -19,7 +19,6 @@ def sort_items_by_keys(
 
     Returns:
         The list of sorted items.
-
     Examples:
         >>> keys = [3, 2, 1]
         >>> items = ['!', 'world', 'hello']

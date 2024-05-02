@@ -33,7 +33,6 @@ class TestTiCoLossUnitTest(unittest.TestCase):
         for bsz in range(2, 4):
             x0 = torch.randn((bsz, 256))
             x1 = torch.randn((bsz, 256))
-
             # symmetry
             l1 = loss(x0, x1, update_covariance_matrix=False)
             l2 = loss(x1, x0, update_covariance_matrix=False)

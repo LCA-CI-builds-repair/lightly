@@ -36,7 +36,6 @@ class TestSwaVLossUnitTest(unittest.TestCase):
             for sinkhorn_iterations in range(3):
                 criterion = SwaVLoss(sinkhorn_iterations=sinkhorn_iterations)
                 low_res = [torch.eye(n, n) for i in range(n_low_res)]
-
                 with self.subTest(
                     msg=f"n_low_res={n_low_res}, sinkhorn_iterations={sinkhorn_iterations}"
                 ):
