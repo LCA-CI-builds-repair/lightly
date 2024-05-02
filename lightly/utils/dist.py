@@ -13,6 +13,10 @@ class GatherLayer(Function):
     https://github.com/Spijkervet/SimCLR
 
     """
+from typing import Any, Tuple
+import torch
+import torch.distributed as dist
+from torch import Tensor
 
     # Type ignore is required because superclass uses Any type for ctx.
     @staticmethod
