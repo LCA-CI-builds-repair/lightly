@@ -30,7 +30,6 @@ class MultiViewCollate:
                 tensors. Every view tensor is a transformed version of the original
                 image. Label and filename are the class label and filename of the
                 corresponding image.
-
                 Example:
                     >>> batch = [
                     >>>     ([img_0_view_0, ..., img_0_view_N], label_0, filename_0),   # image 0

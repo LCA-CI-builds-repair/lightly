@@ -144,7 +144,6 @@ class _SelectionMixin:
                         f"Selection job with job_id {job_id} could not be started because of error: {err}"
                     )
                     raise err
-
         if job_status_data.status == JobState.FAILED:
             raise RuntimeError(
                 f"Selection job with job_id {job_id} failed with error {job_status_data.error}"

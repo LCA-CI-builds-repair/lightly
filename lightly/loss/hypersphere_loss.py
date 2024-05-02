@@ -14,13 +14,9 @@ class HypersphereLoss(torch.nn.Module):
 
     [0] Tongzhou Wang. et.al, 2020, ... https://arxiv.org/abs/2005.10242
 
-    Note:
-        In order for this loss to function as advertized, an l1-normalization to the hypersphere is required.
-        This loss function applies this l1-normalization internally in the loss-layer.
-        However, it is recommended that the same normalization is also applied in your architecture,
-        considering that this l1-loss is also intended to be applied during inference.
-        Perhaps there may be merit in leaving it out of the inferrence pathway, but this use has not been tested.
-
+    class GatherLayer(Function):
+        def forward(self, input: Any, target: Tensor) -> tuple[Tensor, ...]:
+            pass
         Moreover it is recommended that the layers preceeding this loss function are either a linear layer without activation,
         a batch-normalization layer, or both. The directly upstream architecture can have a large influence
         on the ability of this loss to achieve its stated aim of promoting uniformity on the hypersphere;

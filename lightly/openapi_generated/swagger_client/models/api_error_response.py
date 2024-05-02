@@ -31,7 +31,7 @@ class ApiErrorResponse(BaseModel):
     error: StrictStr = Field(..., description="The detailed error message or code of the error")
     request_id: Optional[StrictStr] = Field(None, alias="requestId", description="The identifier of a request. Helpful for debugging")
     error_labels: Optional[conlist(StrictStr)] = Field(None, alias="errorLabels", description="Can occur on database errors")
-    __properties = ["code", "error", "requestId", "errorLabels"]
+    __properties: List[str] = ["code", "error", "requestId", "errorLabels"]
 
     class Config:
         """Pydantic configuration"""

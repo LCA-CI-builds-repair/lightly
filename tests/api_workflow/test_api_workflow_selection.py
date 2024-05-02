@@ -201,7 +201,6 @@ def test_selection__too_many_errors(mocker: MockerFixture) -> None:
             "because of error: surprise!"
         )
 
-
 def test_upload_scores(mocker: MockerFixture) -> None:
     dataset_id = utils.generate_id()
     tags = _get_tags(dataset_id=dataset_id, tag_name="initial-tag")
