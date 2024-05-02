@@ -3,7 +3,6 @@ from typing import List, Sequence, TypeVar
 _K = TypeVar("_K")
 _V = TypeVar("_V")
 
-
 def sort_items_by_keys(
     keys: Sequence[_K], items: Sequence[_V], sorted_keys: Sequence[_K]
 ) -> List[_V]:
@@ -19,7 +18,6 @@ def sort_items_by_keys(
 
     Returns:
         The list of sorted items.
-
     Examples:
         >>> keys = [3, 2, 1]
         >>> items = ['!', 'world', 'hello']
