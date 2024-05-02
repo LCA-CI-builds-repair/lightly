@@ -5,14 +5,14 @@ import torch.distributed as dist
 from torch import Tensor
 from torch.autograd import Function
 from torch.autograd.function import FunctionCtx
-
+import torch.nn
+import torch.nn.functional
 
 class GatherLayer(Function):
     """Gather tensors from all processes, supporting backward propagation.
 
     This code was taken and adapted from here:
     https://github.com/Spijkervet/SimCLR
-
     """
 
     @staticmethod
