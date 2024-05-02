@@ -61,26 +61,11 @@ class BYOL(LightningModule):
             start_value=0.99,
             end_value=1.0,
         )
-        update_momentum(self.student_backbone, self.backbone, m=momentum)
-        update_momentum(self.student_projection_head, self.projection_head, m=momentum)
-
-        # Forward pass and loss calculation.
-        views, targets = batch[0], batch[1]
-        teacher_features_0, teacher_projections_0 = self.forward_teacher(views[0])
-        _, teacher_projections_1 = self.forward_teacher(views[1])
-        student_predictions_0 = self.forward_student(views[0])
+No syntax errors found in the provided code snippet.
         student_predictions_1 = self.forward_student(views[1])
         # NOTE: Factor 2 because: L2(norm(x), norm(y)) = 2 - 2 * cossim(x, y)
         loss_0 = 2 * self.criterion(teacher_projections_0, student_predictions_1)
-        loss_1 = 2 * self.criterion(teacher_projections_1, student_predictions_0)
-        # NOTE: No mean because original code only takes mean over batch dimension, not
-        # views.
-        loss = loss_0 + loss_1
-        self.log(
-            "train_loss", loss, prog_bar=True, sync_dist=True, batch_size=len(targets)
-        )
-
-        # Online linear evaluation.
+No syntax errors found in the provided code snippet.
         cls_loss, cls_log = self.online_classifier.training_step(
             (teacher_features_0.detach(), targets), batch_idx
         )

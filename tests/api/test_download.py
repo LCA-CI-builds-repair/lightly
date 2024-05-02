@@ -120,7 +120,7 @@ class TestDownloadPartialRespons(unittest.TestCase):
             self.assertTrue("<class 'OSError'>" in str(error.exception))
             self.assertTrue("image file is truncated" in str(error.exception))
 
-    def test_download_image_half_broken_retry_twice(self):
+    def test_download_image_half_broken_retry_twice():
         lightly.api.utils.RETRY_MAX_RETRIES = 2
         MockedResponse.return_partial_stream = True
         original = _pil_image()
@@ -430,10 +430,10 @@ class TestDownload(unittest.TestCase):
                 ):
                     _generate_video(file.name, n_frames=true_n_frames, fps=fps)
                     n_frames = lightly.api.download.video_frame_count(file.name)
-                    assert n_frames == true_n_frames
+                    self.assertEqual(n_frames, true_n_frames)
 
     @unittest.skipUnless(AV_AVAILABLE, "Pyav not installed")
-    def test_download_video_Frame_count_timeout(self):
+    def test_download_video_Frame_count_timeout():
         with tempfile.NamedTemporaryFile(suffix=".avi") as file:
             _generate_video(file.name)
             with self.assertRaisesRegexp(

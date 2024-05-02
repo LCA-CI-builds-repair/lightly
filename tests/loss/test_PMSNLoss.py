@@ -6,6 +6,8 @@ import torch
 from torch import Tensor
 
 from lightly.loss import pmsn_loss
+import torch
+
 from lightly.loss.pmsn_loss import PMSNCustomLoss, PMSNLoss
 
 
