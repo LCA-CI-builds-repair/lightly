@@ -10,9 +10,9 @@ from typing import Callable, Dict, Iterable, List, Optional, Tuple, Type, Union
 import PIL
 import requests
 import tqdm
+from typing_extensions import Literal
 
 from lightly.api import utils
-
 try:
     import av
 except ModuleNotFoundError:
