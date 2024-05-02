@@ -297,8 +297,6 @@ def format_custom_metadata(
         )
 
     return formatted
-
-
 def save_custom_metadata(path: str, custom_metadata: List[Tuple[str, Any]]) -> None:
     """Saves custom metadata in a .json.
 
