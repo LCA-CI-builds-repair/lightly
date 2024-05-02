@@ -27,10 +27,10 @@ class ApiErrorResponse(BaseModel):
     """
     ApiErrorResponse
     """
-    code: ApiErrorCode = Field(...)
+    code: ApiErrorCode
     error: StrictStr = Field(..., description="The detailed error message or code of the error")
     request_id: Optional[StrictStr] = Field(None, alias="requestId", description="The identifier of a request. Helpful for debugging")
-    error_labels: Optional[conlist(StrictStr)] = Field(None, alias="errorLabels", description="Can occur on database errors")
+    error_labels: Optional[List[StrictStr]] = Field(None, alias="errorLabels", description="Can occur on database errors")
     __properties = ["code", "error", "requestId", "errorLabels"]
 
     class Config:
