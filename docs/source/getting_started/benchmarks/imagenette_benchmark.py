@@ -238,11 +238,10 @@ test_transforms = torchvision.transforms.Compose(
         torchvision.transforms.Resize(input_size),
         torchvision.transforms.CenterCrop(128),
         torchvision.transforms.ToTensor(),
-        normalize_transform,
     ]
 )
 
-# we use test transformations for getting the feature for kNN on train data
+# we use test transformations for getting the feature for kNN on test data
 dataset_train_kNN = LightlyDataset(input_dir=path_to_train, transform=test_transforms)
 
 dataset_test = LightlyDataset(input_dir=path_to_test, transform=test_transforms)
