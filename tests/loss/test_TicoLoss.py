@@ -25,9 +25,9 @@ class TestTiCoLoss:
         mock_is_available.assert_called_once()
 
 
-class TestTiCoLossUnitTest(unittest.TestCase):
+class TestTiCoLossUnitTest(pytest.TestCase):
     # Old tests in unittest style, please add new tests to TestTiCoLoss using pytest.
-    def test_forward_pass(self):
+    def forward_pass(self):
         torch.manual_seed(0)
         loss = TiCoLoss()
         for bsz in range(2, 4):

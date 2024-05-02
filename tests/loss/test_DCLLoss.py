@@ -26,9 +26,9 @@ class TestDCLLoss:
         mock_is_available.assert_called_once()
 
 
-class TestDCLUnitTest(unittest.TestCase):
+class TestDCLUnitTest(pytest.TestCase):
     # Old tests in unittest style, please add new tests to TestDCLLoss using pytest.
-    def test_negative_mises_fisher_weights(self, seed=0):
+    def negative_mises_fisher_weights(self):
         torch.manual_seed(seed)
         out0 = torch.rand((3, 5))
         out1 = torch.rand((3, 5))

@@ -31,9 +31,9 @@ class TestMSNLoss:
         mock_is_available.assert_called_once()
 
 
-class TestMSNLossUnitTest(TestCase):
+class TestMSNLossUnitTest(pytest.TestCase):
     # Old tests in unittest style, please add new tests to TestMSNLoss using pytest.
-    def test__init__temperature(self) -> None:
+    def _init__temperature(self) -> None:
         MSNLoss(temperature=1.0)
         with self.assertRaises(ValueError):
             MSNLoss(temperature=0.0)

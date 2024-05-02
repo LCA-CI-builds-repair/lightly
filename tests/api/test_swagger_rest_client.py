@@ -39,13 +39,13 @@ class TestLightlySwaggerRESTClientObject:
         )
         response = mocker.MagicMock()
         response.status = 200
-        client.pool_manager.request = mocker.MagicMock(return_value=response)
+client.pool_manager.request = mocker.MagicMock(return_value=response)
 
-        # use default timeout
-        client.request(method="GET", url="some-url")
+# use default timeout
+client.request(method="GET", url="some-url")
 
-        calls = client.pool_manager.request.mock_calls
-        _, _, kwargs = calls[0]
+calls = client.pool_manager.request.mock_calls
+_, _, kwargs = calls[0]
         assert isinstance(kwargs["timeout"], Timeout)
         assert kwargs["timeout"].total == 5
 
