@@ -41,9 +41,6 @@ lightly.loss
 .. autoclass:: lightly.loss.regularizer.co2.CO2Regularizer
    :members:
 
-.. autoclass:: lightly.loss.ssley_loss.SSLEYLoss
-   :members:
-
 .. autoclass:: lightly.loss.swav_loss.SwaVLoss
    :members:
 
