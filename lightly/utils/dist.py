@@ -5,6 +5,24 @@ import torch.distributed as dist
 
 
 class GatherLayer(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx: Any, input: torch.Tensor) -> Tuple[torch.Tensor, ...]:
+        ctx.save_for_backward(input)
+        # gather logic...
+        return collected_tensors
+    @staticmethod
+    def backward(ctx: Any, *grad_outputs: torch.Tensor) -> torch.Tensor:
+        input, = ctx.saved_tensors
+        # backward logic...
+        return input
+def rank_zero_only(func: Callable) -> Callable:
+    def wrapper(*args: Any, **kwargs: Any) -> None:
+        if dist.get_rank() == 0:
+            func(*args, **kwargs)
+    return wrapper
+@rank_zero_only
+def print_rank_zero(message: str) -> None:
+    print(message)
     """Gather tensors from all processes, supporting backward propagation.
 
     This code was taken and adapted from here:
