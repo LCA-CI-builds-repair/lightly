@@ -1,9 +1,6 @@
 name: Code Format Check
 
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
+on: push
 
 jobs:
   test:
@@ -20,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: "3.7"
+        python-version: '3.7'
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
@@ -33,3 +30,7 @@ jobs:
     - name: Run Type Check
       run: |
         make type-check
+
+env:
+  PIP_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2023-12-06
+  UV_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2023-12-06
