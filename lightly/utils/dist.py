@@ -1,5 +1,10 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
-
+from typing import Any, Callable, Optional, Tuple, TypeVar, Union
+try:
+    from typing import Literal
+except ImportError:
+    # For Python versions < 3.8, Literal is not available in the typing module.
+    # We can use a custom implementation or a different approach.
+    from typing_extensions import Literal
 import torch
 import torch.distributed as dist
 from torch import Tensor
