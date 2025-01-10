@@ -26,7 +26,7 @@ class MAE(LightningModule):
 
         self.mask_ratio = 0.75
         self.patch_size = vit.patch_embed.patch_size[0]
-        self.sequence_length = vit.patch_embed.num_patches + + vit.num_prefix_tokens
+        self.sequence_length = vit.patch_embed.num_patches + vit.num_prefix_tokens
         self.mask_token = Parameter(torch.zeros(1, 1, decoder_dim))
         torch.nn.init.normal_(self.mask_token, std=0.02)
         self.backbone = MAEBackbone.from_vit(vit)
@@ -90,9 +90,7 @@ class MAE(LightningModule):
         target = utils.get_at_index(patches, idx_mask - 1)
 
         loss = self.criterion(predictions, target)
-        self.log(
-            "train_loss", loss, prog_bar=True, sync_dist=True, batch_size=len(targets)
-        )
+        self.log("train_loss", loss, prog_bar=True, sync_dist=True, batch_size=len(targets))
 
         cls_features = features[:, 0]
         cls_loss, cls_log = self.online_classifier.training_step(
@@ -140,12 +138,8 @@ class MAE(LightningModule):
         scheduler = {
             "scheduler": CosineWarmupScheduler(
                 optimizer=optimizer,
-                warmup_epochs=(
-                    self.trainer.estimated_stepping_batches
-                    / self.trainer.max_epochs
-                    * 40
-                ),
-                max_epochs=self.trainer.estimated_stepping_batches,
+                warmup_epochs=(self.trainer.estimated_stepping_batches / self.trainer.max_epochs * 40),
+                max_epochs=self.trainer.estimated_stepping_batches
             ),
             "interval": "step",
         }
