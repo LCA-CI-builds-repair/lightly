@@ -4,7 +4,13 @@ import torch
 from pytorch_lightning import LightningModule
 from timm.models.vision_transformer import vit_base_patch16_224
 from torch import Tensor
-from torch.nn import MSELoss, Parameter
+from torch.nn import (
+    MSELoss,
+    Parameter,
+)
+from torch.optim import (
+    AdamW,
+)
 from torch.optim import AdamW
 
 from lightly.models import utils
