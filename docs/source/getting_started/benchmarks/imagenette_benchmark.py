@@ -7,7 +7,7 @@ processes might continue the benchmark if one of the nodes is killed.
 If you know how to fix this don't hesitate to create an issue or PR :)
 You can download the ImageNette dataset from here: https://github.com/fastai/imagenette
 
-Code has been tested on a A6000 GPU with 48GBytes of memory.
+Code has been tested on an A6000 GPU with 48GBytes of memory.
 
 Code to reproduce the benchmark results:
 
@@ -61,8 +61,8 @@ Results (4.5.2023):
 """
 import copy
 import os
-import time
 import sys
+import time
 
 import numpy as np
 import pytorch_lightning as pl
