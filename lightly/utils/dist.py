@@ -1,4 +1,9 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+from typing import Any, Callable, Optional, Tuple, TypeVar, Union
+
+try:
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
 
 import torch
 import torch.distributed as dist
