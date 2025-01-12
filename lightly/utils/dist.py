@@ -1,5 +1,8 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+from typing import Any, Callable, Optional, Tuple, TypeVar, Union
 
+import sys
+if sys.version_info >= (3, 8):
+    from typing import Literal
 import torch
 import torch.distributed as dist
 from torch import Tensor
@@ -79,7 +82,10 @@ _T = TypeVar("_T")
 
 
 # TODO(Guarin, 01/2024): Refine typings for callable with ParamSpec once we drop support
-# for Python <=3.9.
+# for Python <=3.9 and remove the conditional import of Literal.
+if sys.version_info < (3, 8):
+    Literal = None
+
 def rank_zero_only(fn: Callable[..., _T]) -> Callable[..., Union[_T, None]]:
     """Decorator that only runs the function on the process with rank 0.
 
