@@ -61,8 +61,8 @@ Results (4.5.2023):
 """
 import copy
 import os
-import time
 import sys
+import time
 
 import numpy as np
 import pytorch_lightning as pl
@@ -525,7 +525,7 @@ class BYOLModel(BenchmarkModule):
         self.criterion = NegativeCosineSimilarity()
 
     def forward(self, x):
-        y = self.backbone(x).flatten(start_dim=1)
+        y = self.backbone(x).flatten(start_dim=1)                                     =-1)
         z = self.projection_head(y)
         p = self.prediction_head(z)
         return p
