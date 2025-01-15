@@ -1,6 +1,7 @@
 from typing import List, Tuple
 
 import torch
+
 from pytorch_lightning import LightningModule
 from timm.models.vision_transformer import vit_base_patch16_224
 from torch import Tensor
