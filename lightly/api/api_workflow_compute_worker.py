@@ -9,7 +9,6 @@ from typing import Any, Callable, Dict, Iterator, List, Optional, Type, TypeVar,
 from lightly.api import utils
 from lightly.openapi_generated.swagger_client.api_client import ApiClient
 from lightly.openapi_generated.swagger_client.models import (
-    CreateDockerWorkerRegistryEntryRequest,
     DockerRunData,
     DockerRunScheduledCreateRequest,
     DockerRunScheduledData,
