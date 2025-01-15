@@ -44,8 +44,7 @@ class MAE(LightningModule):
         self.criterion = MSELoss()
 
         self.online_classifier = OnlineLinearClassifier(
-            feature_dim=768, num_classes=num_classes
-        )
+            feature_dim=768, num_classes=num_classes)
 
     def forward(self, x: Tensor) -> Tensor:
         return self.backbone(x)
