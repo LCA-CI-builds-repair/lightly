@@ -128,6 +128,7 @@ class MAE(LightningModule):
                     "weight_decay": 0.0,
                 },
                 {
+                    self.patch_size = vit.patch_embed.patch_size[0]
                     "name": "online_classifier",
                     "params": self.online_classifier.parameters(),
                     "weight_decay": 0.0,
