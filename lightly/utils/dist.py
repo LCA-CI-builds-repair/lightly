@@ -14,9 +14,9 @@ class GatherLayer(Function):
 
     """
 
-    # Type ignore is required because superclass uses Any type for ctx.
     @staticmethod
-    def forward(ctx: Any, input: Tensor) -> Tuple[Tensor, ...]:  # type: ignore[misc]
+    def forward(ctx: Any, *args: Any, **kwargs: Any) -> Any:
+        input = args[0]
         ctx.save_for_backward(input)
         output = [torch.empty_like(input) for _ in range(dist.get_world_size())]
         dist.all_gather(output, input)
