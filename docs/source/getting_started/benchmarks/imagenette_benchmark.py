@@ -61,8 +61,8 @@ Results (4.5.2023):
 """
 import copy
 import os
-import time
 import sys
+import time
 
 import numpy as np
 import pytorch_lightning as pl
