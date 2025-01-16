@@ -28,7 +28,7 @@ class GatherLayer(Function):
         (input,) = ctx.saved_tensors
         grad_out = torch.empty_like(input)
         grad_out[:] = grads[dist.get_rank()]
-        return grad_out
+        return grad_out  # No change needed here
 
 
 def rank() -> int:
