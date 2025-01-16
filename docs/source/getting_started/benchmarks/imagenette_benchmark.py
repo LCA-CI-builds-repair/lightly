@@ -93,7 +93,7 @@ from lightly.loss import (
     VICRegLLoss,
     VICRegLoss,
 )
-from lightly.models import modules, utils
+from lightly.models import modules, utils, importlib
 from lightly.models.modules import heads, masked_autoencoder, masked_autoencoder_timm, memory_bank
 from lightly.transforms import (
     BYOLTransform,
