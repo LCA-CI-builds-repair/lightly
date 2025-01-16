@@ -83,6 +83,74 @@ class MAE(LightningModule):
         )
         features = self.forward_encoder(images, idx_keep)
         predictions = self.forward_decoder(features, idx_keep, idx_mask)
+        # get image patches for masked tokens
+        patches = utils.patchify(images, self.patch_size)
+        # must adjust idx_mask for missing class token
+        target = utils.get_at_index(patches, idx_mask - 1)
+        loss = self.criterion(predictions, target)
+        self.log(
+            "train_loss", loss, prog_bar=True, sync_dist=True, batch_size=len(targets)
+        )
+
+        cls_features = features[:, 0]
+        cls_loss, cls_log = self.online_classifier.training_step(
+            (cls_features.detach(), targets), batch_idx
+        )
+        self.log_dict(cls_log, sync_dist=True, batch_size=len(targets))
+        return loss + cls_loss
+
+    def configure_optimizers(self):
+        # Don't use weight decay for batch norm, bias parameters, and classification
+        # head to improve performance.
+        params, params_no_weight_decay = utils.get_weight_decay_parameters(
+            [self.backbone, self.decoder]
+        )
+        params.append(self.mask_token)
+        optimizer = AdamW(
+            [
+                {"name": "mae", "params": params},
+                {
+                    "name": "mae_no_weight_decay",
+                    "params": params_no_weight_decay,
+                    "weight_decay": 0.0,
+                },
+                {
+                    "name": "online_classifier",
+                    "params": self.online_classifier.parameters(),
+                    "weight_decay": 0.0,
+                },
+            ],
+            lr=1.5e-4 * self.batch_size_per_device * self.trainer.world_size / 256,
+            weight_decay=0.05,
+            betas=(0.9, 0.95),
+        )
+        scheduler = {
+            "scheduler": CosineWarmupScheduler(
+                optimizer=optimizer,
+                warmup_epochs=(
+                    self.trainer.estimated_stepping_batches
+                    / self.trainer.max_epochs
+                    * 40
+                ),
+                max_epochs=self.trainer.estimated_stepping_batches,
+            ),
+            "interval": "step",
+        }
+        return [optimizer], [scheduler]
+
+    def training_step(
+        self, batch: Tuple[List[Tensor], Tensor, List[str]], batch_idx: int
+    ) -> Tensor:
+        images, targets = batch[0], batch[1]
+        images = images[0]  # images is a list containing only one view
+        batch_size = images.shape[0]
+        idx_keep, idx_mask = utils.random_token_mask(
+            size=(batch_size, self.sequence_length),
+            mask_ratio=self.mask_ratio,
+            device=images.device,
+        )
+        features = self.forward_encoder(images, idx_keep)
+        predictions = self.forward_decoder(features, idx_keep, idx_mask)
 
         # get image patches for masked tokens
         patches = utils.patchify(images, self.patch_size)
