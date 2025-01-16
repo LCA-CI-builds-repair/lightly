@@ -61,8 +61,8 @@ Results (4.5.2023):
 """
 import copy
 import os
-import time
 import sys
+import time
 
 import numpy as np
 import pytorch_lightning as pl
@@ -94,7 +94,12 @@ from lightly.loss import (
     VICRegLoss,
 )
 from lightly.models import modules, utils
-from lightly.models.modules import heads, masked_autoencoder, masked_autoencoder_timm, memory_bank
+from lightly.models.modules import (
+    heads,
+    masked_autoencoder,
+    masked_autoencoder_timm,
+    memory_bank,
+)
 from lightly.transforms import (
     BYOLTransform,
     BYOLView1Transform,
