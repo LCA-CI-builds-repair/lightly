@@ -11,7 +11,6 @@ from lightly.openapi_generated.swagger_client.api_client import ApiClient
 from lightly.openapi_generated.swagger_client.models import (
     CreateDockerWorkerRegistryEntryRequest,
     DockerRunData,
-    DockerRunScheduledCreateRequest,
     DockerRunScheduledData,
     DockerRunScheduledPriority,
     DockerRunScheduledState,
