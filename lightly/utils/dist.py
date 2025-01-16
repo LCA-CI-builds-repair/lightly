@@ -1,4 +1,9 @@
-from typing import Any, Callable, Literal, Optional, Tuple, TypeVar, Union
+import sys
+from typing import Any, Callable, Optional, Tuple, TypeVar, Union
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 import torch
 import torch.distributed as dist
