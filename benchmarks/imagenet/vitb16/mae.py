@@ -26,7 +26,7 @@ class MAE(LightningModule):
 
         self.mask_ratio = 0.75
         self.patch_size = vit.patch_embed.patch_size[0]
-        self.sequence_length = vit.patch_embed.num_patches + + vit.num_prefix_tokens
+        self.sequence_length = vit.patch_embed.num_patches + vit.num_prefix_tokens
         self.mask_token = Parameter(torch.zeros(1, 1, decoder_dim))
         torch.nn.init.normal_(self.mask_token, std=0.02)
         self.backbone = MAEBackbone.from_vit(vit)
@@ -82,7 +82,11 @@ class MAE(LightningModule):
             device=images.device,
         )
         features = self.forward_encoder(images, idx_keep)
-        predictions = self.forward_decoder(features, idx_keep, idx_mask)
+        predictions = self.forward_decoder(
+            features,
+            idx_keep,
+            idx_mask
+        )
 
         # get image patches for masked tokens
         patches = utils.patchify(images, self.patch_size)
