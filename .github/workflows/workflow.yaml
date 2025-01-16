@@ -1,13 +1,6 @@
 name: check setup.py
 
-on:
-  push:
-    paths-ignore:
-      - 'docs/**'
-  pull_request:
-    paths-ignore:
-      - 'docs/**'
-  workflow_dispatch:
+on: push
 
 jobs:
   test:
@@ -49,3 +42,7 @@ jobs:
         INPUT_DIR_1="clothing_dataset_small/test/dress"
         lightly-train input_dir=$INPUT_DIR_1 trainer.max_epochs=1 loader.num_workers=6
         lightly-embed input_dir=$INPUT_DIR_1
+
+env:
+  PIP_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2024-01-05
+  UV_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2024-01-05
