@@ -1,4 +1,105 @@
 # -*- coding: utf-8 -*-
+
+"""ImageNet benchmark"""
+++ b/docs/source/lightly.loss.rst
+
+from typing import Tuple, Union
+import torch
+import torch.nn.functional as F
+from pytorch_lightning import LightningModule
+from torch import Tensor
+from torch.nn import Module
+from lightly.models.utils import activate_requires_grad, deactivate_requires_grad
+from lightly.utils.benchmarking import knn_predict
+from lightly.utils.benchmarking.topk import mean_topk_accuracy
+class KNNClassifier(LightningModule):
+    def __init__(
+        self,
+        model: Module,
+        num_classes: int,
+        knn_k: int = 200,
+        knn_t: float = 0.1,
+        topk: Tuple[int, ...] = (1, 5),
+        feature_dtype: torch.dtype = torch.float32,
+    ):
+        """KNN classifier for benchmarking.
+        Settings based on InstDisc [0]. Code adapted from MoCo [1].
+        - [0]: InstDisc, 2018, https://arxiv.org/pdf/1805.01978v1.pdf
+        - [1]: MoCo, 2019, https://github.com/facebookresearch/moco
+        Args:
+            model:
+                Model used for feature extraction. Must define a forward(images) method
+                that returns a feature tensor.
+            num_classes:
+                Number of classes in the dataset.
+            knn_k:
+                Number of neighbors used for KNN search.
+            knn_t:
+                Temperature parameter to reweights similarities.
+            topk:
+                Tuple of integers defining the top-k accuracy metrics to compute.
+            feature_dtype:
+                Torch data type of the features used for KNN search. Reduce to float16
+                for memory-efficient KNN search.
+
+        Examples:
+            >>> from pytorch_lightning import Trainer
+            >>> from torch import nn
+            >>> import torchvision
+            >>> from lightly.models import LinearClassifier
+            >>>
+            >>> class SimCLR(nn.Module):
+            >>>     def __init__(self):
+            >>>         super().__init__()
+            >>>         self.backbone = torchvision.models.resnet18()
+            >>>         self.backbone.fc = nn.Identity() # Ignore classification layer
+            >>>         self.projection_head = SimCLRProjectionHead(512, 512, 128)
+            >>>
+            >>>     def forward(self, x):
+            >>>         # Forward must return image features.
+            >>>         features = self.backbone(x).flatten(start_dim=1)
+            >>>         return features
+            >>>
+            >>> # Initialize a model.
+            >>> model = SimCLR()
+            >>>
+            >>>
+            >>> # Wrap it with a KNNClassifier.
+            >>> knn_classifier = KNNClassifier(resnet, num_classes=10)
+            >>>
+            >>>
+            >>> # Extract features and evaluate.
+            >>> trainer = Trainer(max_epochs=1)
+            >>> trainer.fit(knn_classifier, train_dataloder, val_dataloaders)
+    """
+    super().__init__()
+    self.save_hyperparameters(
+        {
+            "num_classes": num_classes,
+            "knn_k": knn_k,
+            "knn_t": knn_t,
+            "topk": topk,
+            "feature_dtype": str(feature_dtype),
+        }
+    )
+    self.model = model
+    self.num_classes = num_classes
+    self.knn_k = knn_k
+    self.knn_t = knn_t
+    self.topk = topk
+    self.feature_dtype = feature_dtype
+    self._train_features = []
+    self._train_targets = []
+    self._train_features_tensor: Union[Tensor, None] = None
+    self._train_targets
+
+def forward(self, images: Tensor) -> Tensor:
+    features = self.model.forward(images).flatten(start_dim=1)
+    output: Tensor = self.classification_head(features)
+    return output
+
+def shared_step(
+    self, batch: Tuple
 """
 Note that this benchmark also supports a multi-GPU setup. If you run it on
 a system with multiple GPUs make sure that you kill all the processes when
