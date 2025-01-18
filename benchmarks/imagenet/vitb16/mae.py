@@ -16,19 +16,19 @@ from lightly.utils.scheduler import CosineWarmupScheduler
 
 
 class MAE(LightningModule):
-    def __init__(self, batch_size_per_device: int, num_classes: int) -> None:
+    def __init__(self, batch_size_per_device: int, num_classes: int):
         super().__init__()
         self.save_hyperparameters()
         self.batch_size_per_device = batch_size_per_device
 
-        decoder_dim = 512
+        decoder_dim = 512  # decoder dimension
         vit = vit_base_patch16_224()
 
         self.mask_ratio = 0.75
         self.patch_size = vit.patch_embed.patch_size[0]
-        self.sequence_length = vit.patch_embed.num_patches + + vit.num_prefix_tokens
+        self.sequence_length = vit.patch_embed.num_patches + vit.num_prefix_tokens
         self.mask_token = Parameter(torch.zeros(1, 1, decoder_dim))
-        torch.nn.init.normal_(self.mask_token, std=0.02)
+        torch.nn.init.normal_(self.mask_token, std=0.02)  # initialize mask token
         self.backbone = MAEBackbone.from_vit(vit)
         self.decoder = masked_autoencoder_timm.MAEDecoder(
             num_patches=vit.patch_embed.num_patches,
@@ -41,7 +41,7 @@ class MAE(LightningModule):
             proj_drop_rate=0.0,
             attn_drop_rate=0.0,
         )
-        self.criterion = MSELoss()
+        self.criterion = MSELoss()  # mean squared error loss
 
         self.online_classifier = OnlineLinearClassifier(
             feature_dim=768, num_classes=num_classes
@@ -96,7 +96,7 @@ class MAE(LightningModule):
 
         cls_features = features[:, 0]
         cls_loss, cls_log = self.online_classifier.training_step(
-            (cls_features.detach(), targets), batch_idx
+            cls_features.detach(), targets, batch_idx
         )
         self.log_dict(cls_log, sync_dist=True, batch_size=len(targets))
         return loss + cls_loss
@@ -118,8 +118,8 @@ class MAE(LightningModule):
         params, params_no_weight_decay = utils.get_weight_decay_parameters(
             [self.backbone, self.decoder]
         )
-        params.append(self.mask_token)
-        optimizer = AdamW(
+        params.append(self.mask_token)  # add mask token to optimizer
+        optimizer = AdamW(  # AdamW optimizer
             [
                 {"name": "mae", "params": params},
                 {
@@ -147,7 +147,7 @@ class MAE(LightningModule):
                 ),
                 max_epochs=self.trainer.estimated_stepping_batches,
             ),
-            "interval": "step",
+            "interval": "step",  # update scheduler every step
         }
         return [optimizer], [scheduler]
 
