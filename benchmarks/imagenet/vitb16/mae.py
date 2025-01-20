@@ -16,17 +16,20 @@ from lightly.utils.scheduler import CosineWarmupScheduler
 
 
 class MAE(LightningModule):
-    def __init__(self, batch_size_per_device: int, num_classes: int) -> None:
+    def __init__(
+        self, batch_size_per_device: int, num_classes: int
+    ) -> None:
         super().__init__()
         self.save_hyperparameters()
         self.batch_size_per_device = batch_size_per_device
 
         decoder_dim = 512
         vit = vit_base_patch16_224()
-
         self.mask_ratio = 0.75
         self.patch_size = vit.patch_embed.patch_size[0]
-        self.sequence_length = vit.patch_embed.num_patches + + vit.num_prefix_tokens
+        self.sequence_length = (
+            vit.patch_embed.num_patches + vit.num_prefix_tokens
+        )
         self.mask_token = Parameter(torch.zeros(1, 1, decoder_dim))
         torch.nn.init.normal_(self.mask_token, std=0.02)
         self.backbone = MAEBackbone.from_vit(vit)
@@ -112,7 +115,7 @@ class MAE(LightningModule):
         self.log_dict(cls_log, prog_bar=True, sync_dist=True, batch_size=len(targets))
         return cls_loss
 
-    def configure_optimizers(self):
+    def configure_optimizers(self) -> dict:
         # Don't use weight decay for batch norm, bias parameters, and classification
         # head to improve performance.
         params, params_no_weight_decay = utils.get_weight_decay_parameters(
@@ -133,7 +136,10 @@ class MAE(LightningModule):
                     "weight_decay": 0.0,
                 },
             ],
-            lr=1.5e-4 * self.batch_size_per_device * self.trainer.world_size / 256,
+            lr=1.5e-4
+            * self.batch_size_per_device
+            * self.trainer.world_size
+            / 256,
             weight_decay=0.05,
             betas=(0.9, 0.95),
         )
