@@ -31,15 +31,7 @@ class MAE(LightningModule):
         torch.nn.init.normal_(self.mask_token, std=0.02)
         self.backbone = MAEBackbone.from_vit(vit)
         self.decoder = masked_autoencoder_timm.MAEDecoder(
-            num_patches=vit.patch_embed.num_patches,
-            patch_size=self.patch_size,
-            embed_dim=vit.embed_dim,
-            decoder_embed_dim=decoder_dim,
-            decoder_depth=8,
-            decoder_num_heads=16,
-            mlp_ratio=4.0,
-            proj_drop_rate=0.0,
-            attn_drop_rate=0.0,
+            num_patches=vit.patch_embed.num_patches, patch_size=self.patch_size, embed_dim=vit.embed_dim, decoder_embed_dim=decoder_dim, decoder_depth=8, decoder_num_heads=16, mlp_ratio=4.0, proj_drop_rate=0.0, attn_drop_rate=0.0
         )
         self.criterion = MSELoss()
 
@@ -99,6 +91,7 @@ class MAE(LightningModule):
             (cls_features.detach(), targets), batch_idx
         )
         self.log_dict(cls_log, sync_dist=True, batch_size=len(targets))
+        
         return loss + cls_loss
 
     def validation_step(
@@ -113,8 +106,7 @@ class MAE(LightningModule):
         return cls_loss
 
     def configure_optimizers(self):
-        # Don't use weight decay for batch norm, bias parameters, and classification
-        # head to improve performance.
+        # Don't use weight decay for batch norm, bias parameters, and classification head to improve performance.
         params, params_no_weight_decay = utils.get_weight_decay_parameters(
             [self.backbone, self.decoder]
         )
