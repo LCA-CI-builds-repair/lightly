@@ -112,13 +112,12 @@ class MAE(LightningModule):
         self.log_dict(cls_log, prog_bar=True, sync_dist=True, batch_size=len(targets))
         return cls_loss
 
-    def configure_optimizers(self):
-        # Don't use weight decay for batch norm, bias parameters, and classification
-        # head to improve performance.
+    def configure_optimizers(self) -> tuple:
         params, params_no_weight_decay = utils.get_weight_decay_parameters(
             [self.backbone, self.decoder]
         )
         params.append(self.mask_token)
+
         optimizer = AdamW(
             [
                 {"name": "mae", "params": params},
@@ -133,18 +132,19 @@ class MAE(LightningModule):
                     "weight_decay": 0.0,
                 },
             ],
-            lr=1.5e-4 * self.batch_size_per_device * self.trainer.world_size / 256,
+            lr=1.5e-4
+            * self.batch_size_per_device
+            * self.trainer.world_size
+            / 256,
             weight_decay=0.05,
             betas=(0.9, 0.95),
         )
         scheduler = {
             "scheduler": CosineWarmupScheduler(
                 optimizer=optimizer,
-                warmup_epochs=(
-                    self.trainer.estimated_stepping_batches
-                    / self.trainer.max_epochs
-                    * 40
-                ),
+                warmup_epochs=self.trainer.estimated_stepping_batches
+                / self.trainer.max_epochs
+                * 40,
                 max_epochs=self.trainer.estimated_stepping_batches,
             ),
             "interval": "step",
