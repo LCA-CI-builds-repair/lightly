@@ -94,7 +94,12 @@ from lightly.loss import (
     VICRegLoss,
 )
 from lightly.models import modules, utils
-from lightly.models.modules import heads, masked_autoencoder, masked_autoencoder_timm, memory_bank
+from lightly.models.modules import (
+    heads,
+    masked_autoencoder,
+    masked_autoencoder_timm,
+    memory_bank,
+)
 from lightly.transforms import (
     BYOLTransform,
     BYOLView1Transform,
